@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mochila Digital Pro+</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --roxo: #ddd6fe;
+  --roxo-forte: #a78bfa;
+  --bg: #faf9ff;
+  --card: #ffffff;
+  --text: #2a2a2a;
+}
+
+body.dark {
+  --bg: #1e1b2e;
+  --card: #2a2540;
+  --text: #ffffff;
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+}
+
+.sidebar {
+  width: 240px;
+  background: var(--roxo-forte);
+  color: white;
+  padding: 20px;
+  height: 100vh;
+}
+
+.sidebar button {
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  cursor: pointer;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: var(--roxo-forte);
+}
+
+.header p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.card {
+  background: var(--card);
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.subject {
+  background: #f3f0ff;
+  border-left: 4px solid var(--roxo-forte);
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+button {
+  margin-top: 5px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  background: var(--roxo-forte);
+  color: white;
+  cursor: pointer;
+}
+
+.delete { background: #ef4444; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+}
+
+.cell {
+  background: #ede9fe;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.cell.active {
+  background: #a78bfa;
+  color: white;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.day {
+  padding: 10px;
+  border-radius: 8px;
+  background: #ede9fe;
+  text-align: center;
+  cursor: pointer;
+}
+
+.day.present { background: #34d399; color: white; }
+.day.absent { background: #f87171; color: white; }
+
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <button onclick="show('materias')">Matérias</button>
+  <button onclick="show('provas')">Provas</button>
+  <button onclick="show('horario')">Horário</button>
+  <button onclick="show('frequencia')">Frequência</button>
+  <button onclick="toggleDark()">🌙</button>
+</div>
+
+<div class="main">
+
+<div class="header">
+  <h1>Mochila Digital da Maria</h1>
+  <p>"Cada dia é uma nova chance de aprender algo incrível."</p>
+</div>
+
+<div id="materias">
+  <div class="card"><h2>Exatas</h2><button onclick="add('exatas')">+ Matéria</button><div id="exatas"></div></div>
+  <div class="card"><h2>Humanas</h2><button onclick="add('humanas')">+ Matéria</button><div id="humanas"></div></div>
+  <div class="card"><h2>Itinerário</h2><button onclick="add('itinerario')">+ Matéria</button><div id="itinerario"></div></div>
+  <div class="card"><h2>Curso</h2><button onclick="add('curso')">+ Matéria</button><div id="curso"></div></div>
+</div>
+
+<div id="provas" style="display:none">
+  <div class="card">
+    <h2>Calendário de Provas</h2>
+    <div class="calendar" id="calendar"></div>
+  </div>
+</div>
+
+<div id="horario" style="display:none">
+  <div class="card">
+    <h2>Horário de Aula</h2>
+    <div class="grid" id="grade"></div>
+  </div>
+</div>
+
+<div id="frequencia" style="display:none">
+  <div class="card">
+    <h2>Frequência</h2>
+    <div class="calendar" id="freq"></div>
+  </div>
+</div>
+
+</div>
+
+<script>
+function show(id){
+  ['materias','provas','horario','frequencia'].forEach(s=>{
+    document.getElementById(s).style.display='none';
+  });
+  document.getElementById(id).style.display='block';
+}
+
+function add(cat){
+  let div=document.createElement('div');
+  div.className='subject';
+  div.innerHTML=`
+    <input placeholder='Matéria'>
+    <button onclick='task(this)'>+ Tarefa</button>
+    <button onclick='diary(this)'>+ Diário</button>
+    <button class='delete' onclick='this.parentElement.remove()'>Excluir</button>
+    <div class='tasks'></div>
+    <div class='diary'></div>
+  `;
+  document.getElementById(cat).appendChild(div);
+}
+
+function task(btn){
+  let d=document.createElement('div');
+  d.innerHTML=`<input placeholder='Tarefa'><button class='delete' onclick='this.parentElement.remove()'>X</button>`;
+  btn.parentElement.querySelector('.tasks').appendChild(d);
+}
+
+function diary(btn){
+  let d=document.createElement('div');
+  d.innerHTML=`<textarea placeholder='Diário'></textarea><button class='delete' onclick='this.parentElement.remove()'>X</button>`;
+  btn.parentElement.querySelector('.diary').appendChild(d);
+}
+
+function toggleDark(){
+  document.body.classList.toggle('dark');
+}
+
+// calendário simples
+for(let i=1;i<=30;i++){
+  let d=document.createElement('div');
+  d.className='day';
+  d.innerText=i;
+  d.onclick=()=>d.classList.toggle('active');
+  document.getElementById('calendar').appendChild(d);
+}
+
+// frequência
+for(let i=1;i<=30;i++){
+  let d=document.createElement('div');
+  d.className='day';
+  d.innerText=i;
+  d.onclick=()=>{
+    if(d.classList.contains('present')){d.classList.remove('present');d.classList.add('absent');}
+    else if(d.classList.contains('absent')){d.classList.remove('absent');}
+    else{d.classList.add('present');}
+  };
+  document.getElementById('freq').appendChild(d);
+}
+
+// grade horário
+for(let i=0;i<25;i++){
+  let c=document.createElement('div');
+  c.className='cell';
+  c.contentEditable=true;
+  document.getElementById('grade').appendChild(c);
+}
+
+</script>
+
+</body>
+</html>
