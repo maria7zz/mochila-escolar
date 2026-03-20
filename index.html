@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mochila Digital Pro+</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --roxo: #ddd6fe;
+  --roxo-forte: #a78bfa;
+  --bg: #faf9ff;
+  --card: #ffffff;
+  --text: #2a2a2a;
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+}
+
+.sidebar {
+  width: 220px;
+  background: var(--roxo-forte);
+  color: white;
+  padding: 20px;
+  height: 100vh;
+}
+
+.sidebar button {
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  cursor: pointer;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: var(--roxo-forte);
+}
+
+.header p {
+  margin: 5px 0 20px;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.card {
+  background: var(--card);
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+/* GRID DE MATÉRIAS */
+.subject-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+/* POST-IT */
+.subject {
+  background: #f3f0ff;
+  border-radius: 15px;
+  padding: 10px;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.subject input {
+  border: none;
+  font-weight: bold;
+  background: transparent;
+}
+
+.tasks, .diary {
+  margin-top: 8px;
+}
+
+.tasks input, .diary textarea {
+  width: 100%;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+textarea { resize: none; height: 50px; }
+
+button {
+  margin-top: 5px;
+  padding: 5px;
+  border: none;
+  border-radius: 8px;
+  background: var(--roxo-forte);
+  color: white;
+  cursor: pointer;
+}
+
+.delete { background: #ef4444; }
+
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <button onclick="show('materias')">Matérias</button>
+</div>
+
+<div class="main">
+
+<div class="header">
+  <h1>Mochila Digital da Maria</h1>
+  <p>"Cada dia é uma nova chance de aprender algo incrível."</p>
+</div>
+
+<div id="materias">
+  <div class="card">
+    <h2>Matérias</h2>
+    <button onclick="add()">+ Matéria</button>
+    <div class="subject-container" id="materiasContainer"></div>
+  </div>
+</div>
+
+</div>
+
+<script>
+function show(id){
+  document.getElementById('materias').style.display='block';
+}
+
+function add(){
+  let div=document.createElement('div');
+  div.className='subject';
+
+  div.innerHTML=`
+    <input placeholder='Matéria'>
+
+    <div class='tasks'>
+      <button onclick='addTask(this)'>+ tarefa</button>
+    </div>
+
+    <div class='diary'>
+      <button onclick='addDiary(this)'>+ diário</button>
+    </div>
+
+    <button class='delete' onclick='this.parentElement.remove()'>Excluir</button>
+  `;
+
+  document.getElementById('materiasContainer').appendChild(div);
+}
+
+function addTask(btn){
+  let input=document.createElement('input');
+  input.placeholder='Digite a tarefa';
+  btn.parentElement.appendChild(input);
+}
+
+function addDiary(btn){
+  let textarea=document.createElement('textarea');
+  textarea.placeholder='Escreva sobre a aula';
+  btn.parentElement.appendChild(textarea);
+}
+</script>
+
+</body>
+</html>
