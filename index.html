@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mochila Digital Pro</title>
+
+<style>
+:root{
+  --rosa-escuro:#ad1457;
+  --rosa:#e91e63;
+  --rosa-claro:#f8bbd0;
+  --bg:#f6f7fb;
+  --card:#ffffff;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+
+body{
+  background:var(--bg);
+  display:flex;
+}
+
+/* LOGIN */
+#login{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:linear-gradient(135deg,var(--rosa-escuro),var(--rosa));
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.login-box{
+  background:white;
+  padding:40px;
+  border-radius:20px;
+  width:320px;
+  text-align:center;
+  box-shadow:0 20px 50px rgba(0,0,0,0.3);
+}
+
+.login-box h2{margin-bottom:20px;color:var(--rosa-escuro);}
+
+input, textarea, select{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border-radius:10px;
+  border:1px solid #ddd;
+}
+
+button{
+  background:var(--rosa);
+  color:white;
+  border:none;
+  padding:10px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+button:hover{transform:scale(1.05);}
+
+/* APP */
+#app{display:none;width:100%;}
+
+/* SIDEBAR */
+.sidebar{
+  width:250px;
+  height:100vh;
+  background:linear-gradient(180deg,var(--rosa-escuro),var(--rosa));
+  color:white;
+  padding:20px;
+}
+
+.sidebar h1{font-size:20px;margin-bottom:20px;}
+
+.menu button{
+  width:100%;
+  margin:5px 0;
+  background:rgba(255,255,255,0.2);
+}
+
+/* MAIN */
+.main{
+  flex:1;
+  padding:20px;
+}
+
+.header{
+  font-size:22px;
+  margin-bottom:20px;
+  color:var(--rosa-escuro);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:var(--card);
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* MATÉRIAS */
+.materia{
+  background:var(--rosa-claro);
+  padding:10px;
+  border-radius:10px;
+  margin:5px 0;
+}
+
+/* CALENDÁRIO */
+.calendar{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:5px;
+}
+
+.day{
+  padding:10px;
+  text-align:center;
+  border-radius:8px;
+  cursor:pointer;
+  background:#eee;
+}
+
+.presente{background:#ce93d8;}
+.falta{background:#f8bbd0;}
+
+/* META */
+.meta{
+  display:flex;
+  justify-content:space-between;
+  margin:5px 0;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+  <div class="login-box">
+    <h2>Login</h2>
+    <input type="password" id="senha" placeholder="Senha">
+    <button onclick="login()">Entrar</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+
+<div class="sidebar">
+  <h1>📚 Mochila Pro</h1>
+  <div class="menu">
+    <button onclick="mostrar('dashboard')">Dashboard</button>
+    <button onclick="mostrar('materias')">Matérias</button>
+    <button onclick="mostrar('calendario')">Calendário</button>
+    <button onclick="mostrar('metas')">Metas</button>
+  </div>
+</div>
+
+<div class="main">
+
+<div class="header">Bem-vinda a sua mochila digital Maria! 💖</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="grid">
+
+<div class="card">
+<h3>Dados Pessoais</h3>
+<textarea id="dados"></textarea>
+</div>
+
+<div class="card">
+<h3>Horário</h3>
+<textarea id="horario"></textarea>
+</div>
+
+<div class="card">
+<h3>Anotações</h3>
+<textarea id="anotacoes"></textarea>
+</div>
+
+<div class="card">
+<h3>Provas</h3>
+<input id="prova">
+<button onclick="addProva()">Adicionar</button>
+<ul id="listaProvas"></ul>
+</div>
+
+</div>
+
+<!-- MATÉRIAS -->
+<div id="materias" style="display:none">
+<div class="card">
+<h3>Adicionar Matéria</h3>
+
+<select id="categoria">
+<option>Exatas</option>
+<option>Humanas</option>
+<option>Itinerário</option>
+<option>Curso</option>
+</select>
+
+<input id="nomeMateria">
+<button onclick="addMateria()">Adicionar</button>
+
+<div id="listaMaterias"></div>
+
+</div>
+</div>
+
+<!-- CALENDÁRIO -->
+<div id="calendario" style="display:none">
+<div class="card">
+<h3>Calendário Escolar</h3>
+<div class="calendar" id="calendar"></div>
+<textarea id="diario"></textarea>
+<button onclick="marcarPresenca()">Presente</button>
+<button onclick="marcarFalta()">Falta</button>
+</div>
+</div>
+
+<!-- METAS -->
+<div id="metas" style="display:none">
+<div class="card">
+<h3>Metas</h3>
+<input id="metaInput">
+<button onclick="addMeta()">Adicionar</button>
+<div id="listaMetas"></div>
+</div>
+</div>
+
+</div>
+</div>
+
+<script>
+const senhaCorreta="1407";
+
+/* LOGIN */
+function login(){
+  if(senha.value===senhaCorreta){
+    login.style.display="none";
+    app.style.display="flex";
+    carregar();
+  }else alert("Senha incorreta");
+}
+
+/* MENU */
+function mostrar(sec){
+  document.querySelectorAll(".main > div").forEach(d=>d.style.display="none");
+  document.getElementById(sec).style.display="grid";
+}
+
+/* SALVAR */
+function salvar(){
+  localStorage.setItem("dados",dados.value);
+  localStorage.setItem("horario",horario.value);
+  localStorage.setItem("anotacoes",anotacoes.value);
+  localStorage.setItem("materias",listaMaterias.innerHTML);
+  localStorage.setItem("provas",listaProvas.innerHTML);
+  localStorage.setItem("metas",listaMetas.innerHTML);
+}
+
+function carregar(){
+  dados.value=localStorage.getItem("dados")||"";
+  horario.value=localStorage.getItem("horario")||"";
+  anotacoes.value=localStorage.getItem("anotacoes")||"";
+  listaMaterias.innerHTML=localStorage.getItem("materias")||"";
+  listaProvas.innerHTML=localStorage.getItem("provas")||"";
+  listaMetas.innerHTML=localStorage.getItem("metas")||"";
+}
+
+/* MATÉRIA */
+function addMateria(){
+  let div=document.createElement("div");
+  div.className="materia";
+  div.innerHTML=`
+  <b>${nomeMateria.value} (${categoria.value})</b>
+  <button onclick="this.parentElement.remove();salvar()">X</button>
+  <textarea placeholder="Tarefas..."></textarea>
+  <textarea placeholder="Diário da matéria..."></textarea>
+  `;
+  listaMaterias.appendChild(div);
+  nomeMateria.value="";
+  salvar();
+}
+
+/* PROVAS */
+function addProva(){
+  let li=document.createElement("li");
+  li.innerHTML=prova.value+` <button onclick="this.parentElement.remove();salvar()">X</button>`;
+  listaProvas.appendChild(li);
+  prova.value="";
+  salvar();
+}
+
+/* METAS */
+function addMeta(){
+  let div=document.createElement("div");
+  div.className="meta";
+  div.innerHTML=metaInput.value+` <button onclick="this.parentElement.remove();salvar()">✔</button>`;
+  listaMetas.appendChild(div);
+  metaInput.value="";
+  salvar();
+}
+
+/* CALENDÁRIO REAL */
+let calendar=document.getElementById("calendar");
+let selectedDay=null;
+
+for(let i=1;i<=31;i++){
+  let d=document.createElement("div");
+  d.className="day";
+  d.innerText=i;
+  d.onclick=()=>{
+    selectedDay=i;
+    diario.value=localStorage.getItem("dia_"+i)||"";
+  };
+  calendar.appendChild(d);
+}
+
+/* DIÁRIO */
+diario.oninput=()=>{
+  if(selectedDay) localStorage.setItem("dia_"+selectedDay,diario.value);
+};
+
+/* PRESENÇA */
+function marcarPresenca(){
+  document.querySelectorAll(".day")[selectedDay-1].classList.add("presente");
+}
+
+function marcarFalta(){
+  document.querySelectorAll(".day")[selectedDay-1].classList.add("falta");
+}
+
+/* AUTO SAVE */
+setInterval(salvar,2000);
+
+</script>
+
+</body>
+</html>
