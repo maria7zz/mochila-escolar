@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mochila Digital Ultra</title>
+
+<style>
+:root{
+  --rosa:#e91e63;
+  --rosa-escuro:#880e4f;
+  --bg:linear-gradient(135deg,#fce4ec,#f8bbd0);
+  --card:rgba(255,255,255,0.7);
+}
+
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:var(--bg);
+  display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:240px;
+  height:100vh;
+  background:var(--rosa-escuro);
+  color:white;
+  padding:20px;
+}
+
+.sidebar button{
+  width:100%;
+  margin:5px 0;
+  padding:10px;
+  border:none;
+  background:#ffffff22;
+  color:white;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+/* MAIN */
+.main{
+  flex:1;
+  padding:20px;
+}
+
+.header{
+  font-size:24px;
+  color:var(--rosa-escuro);
+  margin-bottom:15px;
+}
+
+.card{
+  backdrop-filter:blur(10px);
+  background:var(--card);
+  padding:20px;
+  border-radius:15px;
+  margin:10px 0;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:15px;
+}
+
+/* CALENDÁRIO */
+.calendar{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:5px;
+}
+
+.day{
+  padding:10px;
+  background:white;
+  border-radius:8px;
+  text-align:center;
+  cursor:pointer;
+}
+
+.presente{background:#ce93d8;}
+.falta{background:#ffcdd2;}
+
+/* INPUT */
+input, textarea{
+  width:100%;
+  padding:10px;
+  margin:5px 0;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+
+button{
+  background:var(--rosa);
+  color:white;
+  border:none;
+  padding:10px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+/* TAREFA */
+.tarefa{
+  display:flex;
+  justify-content:space-between;
+  background:#fff;
+  padding:8px;
+  border-radius:8px;
+  margin:5px 0;
+}
+
+/* META */
+.meta{
+  margin:5px 0;
+}
+.progress{
+  height:8px;
+  background:#ddd;
+  border-radius:5px;
+}
+.progress-bar{
+  height:8px;
+  background:var(--rosa);
+  border-radius:5px;
+}
+
+/* GRÁFICO */
+.bar{
+  height:10px;
+  background:var(--rosa);
+  margin:5px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+<h2>📚 Mochila Ultra</h2>
+<button onclick="mostrar('dashboard')">Dashboard</button>
+<button onclick="mostrar('materias')">Matérias</button>
+<button onclick="mostrar('calendario')">Calendário</button>
+<button onclick="mostrar('metas')">Metas</button>
+<button onclick="mostrar('desempenho')">Desempenho</button>
+</div>
+
+<div class="main">
+
+<div class="header">Bem-vinda, Maria 💖</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="grid">
+<div class="card">
+<h3>Anotações</h3>
+<textarea id="anotacoes"></textarea>
+</div>
+
+<div class="card">
+<h3>Provas</h3>
+<input id="prova">
+<button onclick="addProva()">Adicionar</button>
+<ul id="listaProvas"></ul>
+</div>
+
+<div class="card">
+<h3>Tarefas do Dia</h3>
+<input id="tarefa">
+<button onclick="addTarefa()">Adicionar</button>
+<div id="listaTarefas"></div>
+</div>
+</div>
+
+<!-- MATÉRIAS -->
+<div id="materias" style="display:none">
+<div class="card">
+<input id="materia">
+<button onclick="addMateria()">Adicionar Matéria</button>
+<div id="listaMaterias"></div>
+</div>
+</div>
+
+<!-- CALENDÁRIO REAL -->
+<div id="calendario" style="display:none">
+<div class="card">
+<h3 id="mesAno"></h3>
+<button onclick="mudarMes(-1)">⬅</button>
+<button onclick="mudarMes(1)">➡</button>
+<div class="calendar" id="calendar"></div>
+<textarea id="diario"></textarea>
+</div>
+</div>
+
+<!-- METAS -->
+<div id="metas" style="display:none">
+<div class="card">
+<input id="meta">
+<input id="progresso" placeholder="%">
+<button onclick="addMeta()">Adicionar</button>
+<div id="listaMetas"></div>
+</div>
+</div>
+
+<!-- DESEMPENHO -->
+<div id="desempenho" style="display:none">
+<div class="card">
+<h3>Desempenho</h3>
+<input id="nota" placeholder="Nota (0-10)">
+<button onclick="addNota()">Adicionar</button>
+<div id="grafico"></div>
+</div>
+</div>
+
+</div>
+
+<script>
+
+/* MENU */
+function mostrar(sec){
+document.querySelectorAll(".main > div").forEach(d=>d.style.display="none");
+document.getElementById(sec).style.display="block";
+}
+
+/* SALVAR */
+function salvar(){
+localStorage.setItem("dados",document.body.innerHTML);
+}
+setInterval(salvar,3000);
+
+/* TAREFA */
+function addTarefa(){
+let div=document.createElement("div");
+div.className="tarefa";
+div.innerHTML=`<span>${tarefa.value}</span> <input type="checkbox">`;
+listaTarefas.appendChild(div);
+tarefa.value="";
+}
+
+/* PROVA */
+function addProva(){
+let li=document.createElement("li");
+li.innerText=prova.value;
+listaProvas.appendChild(li);
+prova.value="";
+}
+
+/* MATÉRIA */
+function addMateria(){
+let div=document.createElement("div");
+div.className="card";
+div.innerHTML=`<b>${materia.value}</b><textarea placeholder="Anotações"></textarea>`;
+listaMaterias.appendChild(div);
+materia.value="";
+}
+
+/* CALENDÁRIO REAL */
+let data=new Date();
+function renderCalendar(){
+calendar.innerHTML="";
+let mes=data.getMonth();
+let ano=data.getFullYear();
+
+mesAno.innerText=data.toLocaleString('pt-BR',{month:'long',year:'numeric'});
+
+let dias=new Date(ano,mes+1,0).getDate();
+
+for(let i=1;i<=dias;i++){
+let d=document.createElement("div");
+d.className="day";
+d.innerText=i;
+d.onclick=()=>diario.value=localStorage.getItem("dia"+i)||"";
+calendar.appendChild(d);
+}
+}
+
+function mudarMes(v){
+data.setMonth(data.getMonth()+v);
+renderCalendar();
+}
+
+renderCalendar();
+
+/* METAS */
+function addMeta(){
+let div=document.createElement("div");
+div.className="meta";
+div.innerHTML=`
+${meta.value}
+<div class="progress"><div class="progress-bar" style="width:${progresso.value}%"></div></div>`;
+listaMetas.appendChild(div);
+}
+
+/* DESEMPENHO */
+function addNota(){
+let bar=document.createElement("div");
+bar.className="bar";
+bar.style.width=(nota.value*10)+"%";
+grafico.appendChild(bar);
+}
+
+</script>
+
+</body>
+</html>
