@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Mochila Ultra 7.2</title>
+
+<style>
+
+:root{
+--bg:#fce4ec;
+--card:#ffffff;
+--primary:#e91e63;
+--text:#333;
+}
+
+.dark{
+--bg:#121212;
+--card:#1e1e1e;
+--text:#eee;
+}
+
+body{
+margin:0;
+font-family:Arial;
+background:var(--bg);
+color:var(--text);
+display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+width:200px;
+background:var(--primary);
+color:white;
+padding:15px;
+height:100vh;
+}
+
+.sidebar button{
+width:100%;
+margin:6px 0;
+padding:10px;
+border:none;
+background:#ffffff22;
+color:white;
+border-radius:8px;
+cursor:pointer;
+}
+
+/* MAIN */
+.main{
+flex:1;
+padding:20px;
+}
+
+/* GRID PRINCIPAL */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+}
+
+/* CARD */
+.card{
+background:var(--card);
+padding:12px;
+border-radius:12px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* INPUT */
+input,textarea,select{
+width:100%;
+margin:4px 0;
+padding:8px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+button{
+background:var(--primary);
+color:white;
+border:none;
+padding:6px;
+border-radius:8px;
+cursor:pointer;
+}
+
+/* HORARIO */
+.horario-grid{
+display:grid;
+grid-template-columns:80px repeat(9,1fr);
+gap:5px;
+align-items:center;
+}
+
+.horario-grid div{
+background:var(--card);
+padding:6px;
+border-radius:6px;
+text-align:center;
+}
+
+.horario-grid input{
+width:100%;
+padding:5px;
+font-size:12px;
+}
+
+/* CALENDARIO */
+.calendar{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:5px;
+}
+
+.day{
+padding:8px;
+border-radius:8px;
+background:var(--card);
+text-align:center;
+cursor:pointer;
+}
+
+.prova{background:#ffcc80}
+.presente{background:#c8e6c9}
+.falta{background:#ffcdd2}
+
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+<h3>📚 Mochila</h3>
+<button onclick="mostrar('dashboard')">Dashboard</button>
+<button onclick="mostrar('materias')">Matérias</button>
+<button onclick="mostrar('calendario')">Calendário</button>
+<button onclick="mostrar('horario')">Horário</button>
+<button onclick="mostrar('notas')">Desempenho</button>
+<button onclick="toggleDark()">🌙</button>
+</div>
+
+<div class="main">
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+<div class="grid">
+
+<div class="card">
+<h4>Tarefas</h4>
+<input id="tarefa"><button onclick="addTarefa()">+</button>
+<div id="tarefas"></div>
+</div>
+
+<div class="card">
+<h4>Resumo</h4>
+<div id="resumo"></div>
+</div>
+
+</div>
+</div>
+
+<!-- MATERIAS -->
+<div id="materias" style="display:none">
+<div class="card">
+<input id="matNome" placeholder="Matéria">
+<select id="matTipo">
+<option>Exatas</option>
+<option>Humanas</option>
+<option>Itinerário</option>
+<option>Técnico</option>
+</select>
+<button onclick="addMateria()">Adicionar</button>
+</div>
+
+<div class="grid" id="listaMaterias"></div>
+</div>
+
+<!-- CALENDARIO -->
+<div id="calendario" style="display:none">
+<div class="card">
+<h4 id="mes"></h4>
+<button onclick="voltarMes()">◀</button>
+<button onclick="proximoMes()">▶</button>
+<div class="calendar" id="dias"></div>
+<button onclick="setTipo('prova')">Prova</button>
+<button onclick="setTipo('presente')">Presente</button>
+<button onclick="setTipo('falta')">Falta</button>
+</div>
+</div>
+
+<!-- HORARIO -->
+<div id="horario" style="display:none">
+<div class="card">
+
+<h4>Horário Escolar</h4>
+
+<div class="horario-grid" id="grade"></div>
+
+<button onclick="salvarHorario()">Salvar</button>
+
+</div>
+</div>
+
+<!-- NOTAS -->
+<div id="notas" style="display:none">
+<div class="card">
+<input id="nota"><button onclick="addNota()">+</button>
+<div id="grafico"></div>
+</div>
+</div>
+
+</div>
+
+<script>
+
+let db = JSON.parse(localStorage.getItem("db")) || {
+tarefas:[], materias:[], notas:[], dias:{}, horario:{}
+};
+
+function salvar(){localStorage.setItem("db",JSON.stringify(db))}
+
+/* MENU */
+function mostrar(id){
+document.querySelectorAll(".main > div").forEach(d=>d.style.display="none");
+document.getElementById(id).style.display="block";
+}
+
+/* DARK */
+function toggleDark(){
+document.body.classList.toggle("dark");
+localStorage.setItem("dark",document.body.classList.contains("dark"));
+}
+if(localStorage.getItem("dark")=="true") document.body.classList.add("dark");
+
+/* TAREFAS */
+function addTarefa(){
+if(!tarefa.value) return;
+db.tarefas.push(tarefa.value);
+tarefa.value="";
+salvar(); renderTarefas();
+}
+function renderTarefas(){
+tarefas.innerHTML="";
+db.tarefas.forEach((t,i)=>{
+tarefas.innerHTML+=`${t} <button onclick="delT(${i})">x</button><br>`;
+});
+renderResumo();
+}
+function delT(i){
+db.tarefas.splice(i,1);
+salvar(); renderTarefas();
+}
+
+/* RESUMO */
+function renderResumo(){
+resumo.innerHTML=`
+Tarefas: ${db.tarefas.length}<br>
+Matérias: ${db.materias.length}<br>
+Média: ${db.notas.length? (db.notas.reduce((a,b)=>a+b,0)/db.notas.length).toFixed(1):0}
+`;
+}
+
+/* MATERIAS */
+function addMateria(){
+if(!matNome.value) return;
+
+db.materias.push({
+nome:matNome.value,
+tipo:matTipo.value,
+conteudo:"",
+tarefas:[],
+diario:{}
+});
+
+matNome.value="";
+salvar();
+renderMaterias();
+}
+
+function renderMaterias(){
+listaMaterias.innerHTML="";
+
+db.materias.forEach((m,i)=>{
+listaMaterias.innerHTML+=`
+<div class="card">
+
+<b>${m.nome}</b><br><small>${m.tipo}</small>
+
+<textarea placeholder="Conteúdo"
+onchange="salvarConteudo(${i},this.value)">${m.conteudo}</textarea>
+
+<input type="date" id="data_${i}">
+<input placeholder="Aula" id="dia_${i}">
+<button onclick="addDia(${i})">+</button>
+
+<div>
+${Object.entries(m.diario).map(([d,t])=>`${d}: ${t}<br>`).join("")}
+</div>
+
+<input placeholder="Tarefa" id="tarefa_${i}">
+<button onclick="addTarefaMat(${i})">+</button>
+
+<div>
+${m.tarefas.map(t=>`${t}<br>`).join("")}
+</div>
+
+</div>`;
+});
+
+renderResumo();
+}
+
+function salvarConteudo(i,v){db.materias[i].conteudo=v;salvar();}
+
+function addDia(i){
+let d=document.getElementById("data_"+i).value;
+let t=document.getElementById("dia_"+i).value;
+if(!d||!t)return;
+db.materias[i].diario[d]=t;
+salvar();renderMaterias();
+}
+
+function addTarefaMat(i){
+let t=document.getElementById("tarefa_"+i).value;
+if(!t)return;
+db.materias[i].tarefas.push(t);
+salvar();renderMaterias();
+}
+
+/* CALENDARIO */
+let mesAtual=new Date().getMonth();
+let ano=new Date().getFullYear();
+let tipo="";
+
+function renderCal(){
+dias.innerHTML="";
+mes.innerText=new Date(ano,mesAtual).toLocaleString('pt-BR',{month:'long',year:'numeric'});
+let total=new Date(ano,mesAtual+1,0).getDate();
+
+for(let i=1;i<=total;i++){
+let c=db.dias[`${i}-${mesAtual}-${ano}`]||"";
+dias.innerHTML+=`<div class="day ${c}" onclick="marcar(${i})">${i}</div>`;
+}
+}
+
+function marcar(d){
+db.dias[`${d}-${mesAtual}-${ano}`]=tipo;
+salvar();renderCal();
+}
+function setTipo(t){tipo=t}
+function proximoMes(){mesAtual++;if(mesAtual>11){mesAtual=0;ano++}renderCal()}
+function voltarMes(){mesAtual--;if(mesAtual<0){mesAtual=11;ano--}renderCal()}
+
+/* HORARIO 9 AULAS */
+let diasSemana=["Seg","Ter","Qua","Qui","Sex"];
+
+function renderHorario(){
+grade.innerHTML="";
+
+/* CABEÇALHO */
+grade.innerHTML+="<div></div>";
+for(let i=1;i<=9;i++){
+grade.innerHTML+=`<div><b>${i}ª</b></div>`;
+}
+
+/* LINHAS */
+diasSemana.forEach((d,i)=>{
+grade.innerHTML+=`<div><b>${d}</b></div>`;
+
+for(let j=1;j<=9;j++){
+grade.innerHTML+=`
+<div>
+<input id="h_${i}_${j}">
+</div>`;
+}
+});
+
+/* CARREGAR */
+Object.entries(db.horario).forEach(([k,v])=>{
+let el=document.getElementById(k);
+if(el) el.value=v;
+});
+}
+
+function salvarHorario(){
+let h={};
+diasSemana.forEach((d,i)=>{
+for(let j=1;j<=9;j++){
+h[`h_${i}_${j}`]=document.getElementById(`h_${i}_${j}`).value;
+}
+});
+db.horario=h;
+salvar();
+}
+
+/* NOTAS */
+function addNota(){
+db.notas.push(Number(nota.value));
+nota.value="";
+salvar();renderNotas();
+}
+
+function renderNotas(){
+grafico.innerHTML="";
+db.notas.forEach(n=>{
+grafico.innerHTML+=`
+<div class="card">
+${n}
+<div style="background:#eee">
+<div style="width:${n*10}%;height:8px;background:var(--primary)"></div>
+</div>
+</div>`;
+});
+renderResumo();
+}
+
+/* INIT */
+renderTarefas();
+renderMaterias();
+renderNotas();
+renderCal();
+renderHorario();
+renderResumo();
+
+</script>
+
+</body>
+</html>
