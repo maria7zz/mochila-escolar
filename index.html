@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mochila Digital 3.0</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+display:flex;
+background:linear-gradient(135deg,#fce4ec,#f8bbd0);
+}
+
+/* LOGIN */
+#login{
+position:fixed;
+width:100%;
+height:100%;
+background:#880e4f;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+color:white;
+}
+
+#login input{
+padding:10px;
+margin:10px;
+border:none;
+border-radius:10px;
+}
+
+/* MENU */
+.sidebar{
+width:220px;
+background:#880e4f;
+color:white;
+padding:20px;
+height:100vh;
+}
+
+.sidebar button{
+width:100%;
+margin:5px 0;
+padding:10px;
+border:none;
+background:#ffffff22;
+color:white;
+border-radius:10px;
+cursor:pointer;
+}
+
+/* MAIN */
+.main{
+flex:1;
+padding:20px;
+}
+
+/* CARDS */
+.card{
+background:white;
+padding:15px;
+border-radius:12px;
+margin:10px 0;
+}
+
+/* MATERIA */
+.materia{
+background:#fff;
+padding:10px;
+border-radius:10px;
+margin:8px 0;
+border-left:5px solid #e91e63;
+}
+
+/* INPUT */
+input, textarea, select{
+width:100%;
+margin:5px 0;
+padding:8px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+button{
+background:#e91e63;
+color:white;
+border:none;
+padding:8px;
+border-radius:8px;
+cursor:pointer;
+}
+
+/* CALENDARIO */
+.calendar{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:5px;
+}
+.day{
+background:white;
+padding:10px;
+border-radius:8px;
+text-align:center;
+cursor:pointer;
+}
+
+/* GRAFICO */
+.bar{
+height:10px;
+background:#e91e63;
+margin:5px 0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+<h2>🔐 Acesso</h2>
+<input id="senha" placeholder="Crie ou digite senha">
+<button onclick="entrar()">Entrar</button>
+</div>
+
+<div class="sidebar">
+<h2>📚 Mochila 3.0</h2>
+<button onclick="mostrar('dashboard')">Dashboard</button>
+<button onclick="mostrar('materias')">Matérias</button>
+<button onclick="mostrar('calendario')">Calendário</button>
+<button onclick="mostrar('dados')">Dados</button>
+<button onclick="mostrar('notas')">Notas</button>
+</div>
+
+<div class="main">
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+<div class="card">
+<h3>Tarefas</h3>
+<input id="tarefa">
+<button onclick="addTarefa()">Adicionar</button>
+<div id="listaTarefas"></div>
+</div>
+</div>
+
+<!-- MATERIAS -->
+<div id="materias" style="display:none">
+<div class="card">
+<input id="nomeMateria">
+<select id="tipoMateria">
+<option>Exatas</option>
+<option>Humanas</option>
+<option>Itinerários</option>
+<option>Curso Técnico</option>
+</select>
+<button onclick="addMateria()">Adicionar</button>
+</div>
+
+<div class="card"><h3>Exatas</h3><div id="exatas"></div></div>
+<div class="card"><h3>Humanas</h3><div id="humanas"></div></div>
+<div class="card"><h3>Itinerários</h3><div id="itinerarios"></div></div>
+<div class="card"><h3>Técnico</h3><div id="tecnico"></div></div>
+</div>
+
+<!-- CALENDARIO -->
+<div id="calendario" style="display:none">
+<div class="card">
+<h3 id="mes"></h3>
+<div class="calendar" id="dias"></div>
+<textarea id="textoDia" placeholder="Anotação do dia"></textarea>
+<button onclick="salvarDia()">Salvar</button>
+</div>
+</div>
+
+<!-- DADOS -->
+<div id="dados" style="display:none">
+<div class="card">
+<input id="nome">
+<input id="idade">
+<input id="escola">
+<textarea id="info"></textarea>
+<button onclick="salvarDados()">Salvar</button>
+</div>
+</div>
+
+<!-- NOTAS -->
+<div id="notas" style="display:none">
+<div class="card">
+<input id="nota" placeholder="0-10">
+<button onclick="addNota()">Adicionar</button>
+<div id="grafico"></div>
+</div>
+</div>
+
+</div>
+
+<script>
+
+/* ===== LOGIN ===== */
+function entrar(){
+let senhaSalva = localStorage.getItem("senha");
+
+if(!senhaSalva){
+localStorage.setItem("senha", senha.value);
+}
+
+if(senha.value === localStorage.getItem("senha")){
+login.style.display="none";
+}
+}
+
+/* ===== DADOS ===== */
+let dados = JSON.parse(localStorage.getItem("dados")) || {
+tarefas:[],
+materias:[],
+notas:[],
+pessoal:{},
+dias:{}
+};
+
+function salvar(){
+localStorage.setItem("dados", JSON.stringify(dados));
+}
+
+/* MENU */
+function mostrar(id){
+document.querySelectorAll(".main > div").forEach(d=>d.style.display="none");
+document.getElementById(id).style.display="block";
+}
+
+/* TAREFAS */
+function addTarefa(){
+dados.tarefas.push(tarefa.value);
+salvar();
+renderTarefas();
+}
+
+function renderTarefas(){
+listaTarefas.innerHTML="";
+dados.tarefas.forEach((t,i)=>{
+listaTarefas.innerHTML+=`
+<div class="materia">
+${t}
+<button onclick="removerTarefa(${i})">X</button>
+</div>`;
+});
+}
+
+function removerTarefa(i){
+dados.tarefas.splice(i,1);
+salvar();
+renderTarefas();
+}
+
+/* MATERIAS */
+function addMateria(){
+dados.materias.push({
+nome:nomeMateria.value,
+tipo:tipoMateria.value,
+anotacao:""
+});
+salvar();
+renderMaterias();
+}
+
+function renderMaterias(){
+exatas.innerHTML="";
+humanas.innerHTML="";
+itinerarios.innerHTML="";
+tecnico.innerHTML="";
+
+dados.materias.forEach((m,i)=>{
+let html=`
+<div class="materia">
+<b>${m.nome}</b>
+<textarea onchange="salvarTexto(${i},this.value)">${m.anotacao}</textarea>
+<button onclick="removerMateria(${i})">Excluir</button>
+</div>`;
+
+if(m.tipo=="Exatas") exatas.innerHTML+=html;
+if(m.tipo=="Humanas") humanas.innerHTML+=html;
+if(m.tipo=="Itinerários") itinerarios.innerHTML+=html;
+if(m.tipo=="Curso Técnico") tecnico.innerHTML+=html;
+});
+}
+
+function salvarTexto(i,val){
+dados.materias[i].anotacao=val;
+salvar();
+}
+
+function removerMateria(i){
+dados.materias.splice(i,1);
+salvar();
+renderMaterias();
+}
+
+/* CALENDARIO */
+let data=new Date();
+let diaSelecionado=1;
+
+function renderCalendar(){
+dias.innerHTML="";
+let m=data.getMonth();
+let a=data.getFullYear();
+mes.innerText=data.toLocaleString('pt-BR',{month:'long',year:'numeric'});
+
+let total=new Date(a,m+1,0).getDate();
+
+for(let i=1;i<=total;i++){
+dias.innerHTML+=`<div class="day" onclick="selecionarDia(${i})">${i}</div>`;
+}
+}
+
+function selecionarDia(d){
+diaSelecionado=d;
+textoDia.value = dados.dias[d] || "";
+}
+
+function salvarDia(){
+dados.dias[diaSelecionado]=textoDia.value;
+salvar();
+}
+
+/* DADOS PESSOAIS */
+function salvarDados(){
+dados.pessoal={
+nome:nome.value,
+idade:idade.value,
+escola:escola.value,
+info:info.value
+};
+salvar();
+}
+
+/* NOTAS */
+function addNota(){
+dados.notas.push(nota.value);
+salvar();
+renderNotas();
+}
+
+function renderNotas(){
+grafico.innerHTML="";
+dados.notas.forEach(n=>{
+grafico.innerHTML+=`<div class="bar" style="width:${n*10}%"></div>`;
+});
+}
+
+/* INIT */
+renderTarefas();
+renderMaterias();
+renderCalendar();
+renderNotas();
+
+</script>
+
+</body>
+</html>
