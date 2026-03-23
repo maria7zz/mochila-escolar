@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Mochila Digital PRO</title>
+
+<style>
+:root{
+--bg:#f5f5f5;
+--card:#ffffff;
+--primary:#7b1fa2;
+--text:#333;
+}
+
+.dark{
+--bg:#121212;
+--card:#1e1e1e;
+--text:#eee;
+}
+
+body{
+margin:0;
+font-family:Arial;
+background:var(--bg);
+color:var(--text);
+display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+width:220px;
+background:var(--primary);
+color:white;
+padding:15px;
+height:100vh;
+}
+
+.sidebar button{
+width:100%;
+margin:6px 0;
+padding:10px;
+border:none;
+background:#ffffff22;
+color:white;
+border-radius:8px;
+cursor:pointer;
+}
+
+/* MAIN */
+.main{
+flex:1;
+padding:20px;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:15px;
+}
+
+/* CARD */
+.card{
+background:var(--card);
+padding:12px;
+border-radius:12px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* INPUT */
+input,textarea,select{
+width:100%;
+margin:5px 0;
+padding:8px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+/* BUTTON */
+button{
+background:var(--primary);
+color:white;
+border:none;
+padding:6px;
+border-radius:8px;
+cursor:pointer;
+}
+
+/* CALENDARIO */
+.calendar{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:5px;
+}
+.day{
+padding:8px;
+background:var(--card);
+border-radius:8px;
+text-align:center;
+cursor:pointer;
+}
+.prova{background:#ffcc80}
+.presente{background:#c8e6c9}
+.falta{background:#ffcdd2}
+
+/* HORARIO */
+.horario{
+display:grid;
+grid-template-columns:80px repeat(9,1fr);
+gap:5px;
+}
+.horario input{
+width:100%;
+padding:5px;
+}
+
+/* BADGE */
+.badge{
+display:inline-block;
+padding:3px 6px;
+border-radius:6px;
+background:var(--primary);
+color:white;
+font-size:12px;
+margin-bottom:5px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+<h3>📚 Mochila</h3>
+<button onclick="show('dash')">Dashboard</button>
+<button onclick="show('materias')">Matérias</button>
+<button onclick="show('cal')">Calendário</button>
+<button onclick="show('horario')">Horário</button>
+<button onclick="show('notas')">Desempenho</button>
+<button onclick="toggleDark()">🌙</button>
+</div>
+
+<div class="main">
+
+<!-- DASH -->
+<div id="dash">
+<div class="grid">
+<div class="card">
+<h3>Tarefas</h3>
+<input id="tarefa"><button onclick="addTarefa()">+</button>
+<div id="tarefas"></div>
+</div>
+
+<div class="card">
+<h3>Resumo</h3>
+<div id="resumo"></div>
+</div>
+</div>
+</div>
+
+<!-- MATERIAS -->
+<div id="materias" style="display:none">
+<div class="card">
+<input id="nomeMat">
+<select id="tipoMat">
+<option>Exatas</option>
+<option>Humanas</option>
+<option>Itinerário</option>
+<option>Técnico</option>
+</select>
+<button onclick="addMat()">Adicionar</button>
+</div>
+
+<div class="grid" id="lista"></div>
+</div>
+
+<!-- CALENDARIO -->
+<div id="cal" style="display:none">
+<div class="card">
+<h3 id="mes"></h3>
+<button onclick="prev()">◀</button>
+<button onclick="next()">▶</button>
+<div class="calendar" id="dias"></div>
+<button onclick="setTipo('prova')">Prova</button>
+<button onclick="setTipo('presente')">Presente</button>
+<button onclick="setTipo('falta')">Falta</button>
+</div>
+</div>
+
+<!-- HORARIO -->
+<div id="horario" style="display:none">
+<div class="card">
+<h3>Horário</h3>
+<div class="horario" id="grade"></div>
+<button onclick="saveHorario()">Salvar</button>
+</div>
+</div>
+
+<!-- NOTAS -->
+<div id="notas" style="display:none">
+<div class="card">
+<input id="nota"><button onclick="addNota()">+</button>
+<div id="graf"></div>
+</div>
+</div>
+
+</div>
+
+<script>
+
+let db=JSON.parse(localStorage.getItem("db"))||{
+tarefas:[],materias:[],notas:[],dias:{},horario:{}
+};
+
+function save(){localStorage.setItem("db",JSON.stringify(db))}
+
+function show(id){
+document.querySelectorAll(".main>div").forEach(d=>d.style.display="none");
+document.getElementById(id).style.display="block";
+}
+
+/* DARK */
+function toggleDark(){
+document.body.classList.toggle("dark");
+localStorage.setItem("dark",document.body.classList.contains("dark"));
+}
+if(localStorage.getItem("dark")=="true")document.body.classList.add("dark");
+
+/* TAREFAS */
+function addTarefa(){
+if(!tarefa.value)return;
+db.tarefas.push(tarefa.value);
+tarefa.value="";
+save();renderT();
+}
+function renderT(){
+tarefas.innerHTML="";
+db.tarefas.forEach((t,i)=>{
+tarefas.innerHTML+=`${t} <button onclick="delT(${i})">x</button><br>`;
+});
+updateResumo();
+}
+function delT(i){db.tarefas.splice(i,1);save();renderT();}
+
+/* RESUMO */
+function updateResumo(){
+resumo.innerHTML=`
+Tarefas: ${db.tarefas.length}<br>
+Matérias: ${db.materias.length}<br>
+Média: ${db.notas.length?(db.notas.reduce((a,b)=>a+b,0)/db.notas.length).toFixed(1):0}
+`;
+}
+
+/* MATERIAS */
+function addMat(){
+if(!nomeMat.value)return;
+db.materias.push({
+nome:nomeMat.value,
+tipo:tipoMat.value,
+conteudo:"",
+tarefas:[],
+diario:{}
+});
+nomeMat.value="";
+save();renderM();
+}
+
+function renderM(){
+lista.innerHTML="";
+db.materias.forEach((m,i)=>{
+lista.innerHTML+=`
+<div class="card">
+<div class="badge">${m.tipo}</div>
+<b>${m.nome}</b>
+
+<textarea onchange="saveCont(${i},this.value)">${m.conteudo}</textarea>
+
+<input type="date" id="d_${i}">
+<input placeholder="Aula" id="a_${i}">
+<button onclick="addDia(${i})">+</button>
+
+<div>${Object.entries(m.diario).map(([d,t])=>`${d}: ${t}<br>`).join("")}</div>
+
+<input placeholder="Tarefa" id="t_${i}">
+<button onclick="addTM(${i})">+</button>
+
+<div>${m.tarefas.join("<br>")}</div>
+
+</div>`;
+});
+updateResumo();
+}
+
+function saveCont(i,v){db.materias[i].conteudo=v;save();}
+function addDia(i){
+let d=document.getElementById("d_"+i).value;
+let t=document.getElementById("a_"+i).value;
+if(!d||!t)return;
+db.materias[i].diario[d]=t;
+save();renderM();
+}
+function addTM(i){
+let t=document.getElementById("t_"+i).value;
+if(!t)return;
+db.materias[i].tarefas.push(t);
+save();renderM();
+}
+
+/* CAL */
+let m=new Date().getMonth(),y=new Date().getFullYear(),tipo="";
+function renderCal(){
+dias.innerHTML="";
+mes.innerText=new Date(y,m).toLocaleString('pt-BR',{month:'long',year:'numeric'});
+let total=new Date(y,m+1,0).getDate();
+for(let i=1;i<=total;i++){
+let c=db.dias[`${i}-${m}-${y}`]||"";
+dias.innerHTML+=`<div class="day ${c}" onclick="mark(${i})">${i}</div>`;
+}
+}
+function mark(d){db.dias[`${d}-${m}-${y}`]=tipo;save();renderCal();}
+function setTipo(t){tipo=t}
+function next(){m++;if(m>11){m=0;y++}renderCal()}
+function prev(){m--;if(m<0){m=11;y--}renderCal()}
+
+/* HORARIO */
+let ds=["Seg","Ter","Qua","Qui","Sex"];
+function renderH(){
+grade.innerHTML="<div></div>";
+for(let i=1;i<=9;i++)grade.innerHTML+=`<div>${i}</div>`;
+
+ds.forEach((d,i)=>{
+grade.innerHTML+=`<div>${d}</div>`;
+for(let j=1;j<=9;j++){
+grade.innerHTML+=`<input id="h_${i}_${j}">`;
+}
+});
+
+Object.entries(db.horario).forEach(([k,v])=>{
+let el=document.getElementById(k);
+if(el)el.value=v;
+});
+}
+function saveHorario(){
+let h={};
+ds.forEach((d,i)=>{
+for(let j=1;j<=9;j++){
+h[`h_${i}_${j}`]=document.getElementById(`h_${i}_${j}`).value;
+}
+});
+db.horario=h;save();
+}
+
+/* NOTAS */
+function addNota(){
+db.notas.push(Number(nota.value));
+nota.value="";
+save();renderN();
+}
+function renderN(){
+graf.innerHTML="";
+db.notas.forEach(n=>{
+graf.innerHTML+=`
+<div class="card">
+${n}
+<div style="background:#eee">
+<div style="width:${n*10}%;height:8px;background:var(--primary)"></div>
+</div>
+</div>`;
+});
+updateResumo();
+}
+
+/* INIT */
+renderT();
+renderM();
+renderN();
+renderCal();
+renderH();
+updateResumo();
+
+</script>
+
+</body>
+</html>
