@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<title>Mochila Digital PRO</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#1e1b4b,#6d28d9);
+}
+
+/* CAPA */
+.capa{
+  height:220px;
+  background:url('https://upload.wikimedia.org/wikipedia/commons/0/0f/Erick_Pulgar_2022.jpg') center/cover no-repeat;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+.capa h1{
+  background:rgba(0,0,0,0.6);
+  color:#fff;
+  padding:10px 20px;
+  border-radius:12px;
+  margin-bottom:15px;
+}
+
+/* TOPO */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px;
+  color:white;
+}
+
+/* DASHBOARD */
+.dashboard{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:15px;
+  padding:0 20px 20px;
+}
+.dash-card{
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(10px);
+  padding:15px;
+  border-radius:12px;
+  color:white;
+  text-align:center;
+}
+
+/* CONTAINER */
+.container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:20px;
+  padding:20px;
+}
+
+.card{
+  background:white;
+  border-radius:16px;
+  padding:18px;
+}
+
+h2{color:#4c1d95;}
+
+input,select{
+  width:100%;
+  padding:10px;
+  margin-top:8px;
+  border-radius:10px;
+  border:1px solid #ddd;
+}
+
+button{
+  margin-top:10px;
+  padding:10px;
+  border:none;
+  border-radius:10px;
+  background:#6d28d9;
+  color:white;
+  cursor:pointer;
+}
+
+.subject{
+  background:#f5f3ff;
+  margin-top:10px;
+  padding:10px;
+  border-radius:10px;
+}
+
+.item{
+  background:#ede9fe;
+  margin-top:6px;
+  padding:8px;
+  border-radius:8px;
+  display:flex;
+  justify-content:space-between;
+}
+
+/* DARK MODE */
+.dark{
+  background:#0f172a;
+}
+.dark .card{
+  background:#1e293b;
+  color:white;
+}
+.dark input{
+  background:#334155;
+  color:white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="capa">
+  <h1>🎒 Mochila Digital PRO</h1>
+</div>
+
+<div class="topbar">
+  <div>
+    <h2 id="userNome">Olá 👋</h2>
+    <p id="userInfo"></p>
+  </div>
+  <div>
+    <button onclick="toggleDark()">🌙</button>
+    <button onclick="exportar()">💾</button>
+  </div>
+</div>
+
+<div class="dashboard">
+  <div class="dash-card" id="presencaDash">📊 0%</div>
+  <div class="dash-card" id="tarefasDash">📚 0</div>
+  <div class="dash-card" id="humorDash">💜 -</div>
+</div>
+
+<div class="container">
+
+<div class="card">
+<h2>👤 Info</h2>
+<input id="nome" placeholder="Nome">
+<input id="turma" placeholder="Turma">
+<input id="escola" placeholder="Escola">
+<button onclick="salvarInfo()">Salvar</button>
+</div>
+
+<div class="card">
+<h2>📚 Matérias</h2>
+<input id="materiaNome" placeholder="Matéria">
+<select id="categoria">
+<option>Exatas</option>
+<option>Humanas</option>
+<option>Curso</option>
+</select>
+<input id="inputGlobal" placeholder="Adicionar conteúdo">
+<button onclick="addMateria()">Adicionar Matéria</button>
+<div id="pastas"></div>
+</div>
+
+<div class="card">
+<h2>✅ Presença</h2>
+<input id="dataPresenca" type="date">
+<select id="statusPresenca">
+<option>Presente</option>
+<option>Falta</option>
+</select>
+<button onclick="addPresenca()">Adicionar</button>
+<div id="listaPresenca"></div>
+</div>
+
+<div class="card">
+<h2>💜 Humor</h2>
+<input id="dataHumor" type="date">
+<select id="humor">
+<option>😀 Feliz</option>
+<option>😐 Normal</option>
+<option>😢 Triste</option>
+<option>😡 Estressado</option>
+</select>
+<button onclick="addHumor()">Registrar</button>
+<div id="listaHumor"></div>
+</div>
+
+<div class="card">
+<h2>📝 Provas</h2>
+<input id="dataProva" type="date">
+<input id="nomeProva" placeholder="Prova">
+<button onclick="addProva()">Adicionar</button>
+<div id="listaProvas"></div>
+</div>
+
+</div>
+
+<script>
+let data={materias:{Exatas:[],Humanas:[],Curso:[]},presenca:[],humor:[],provas:[],info:{}};
+
+function salvarLocal(){localStorage.setItem('mochila',JSON.stringify(data));}
+function carregarLocal(){let d=localStorage.getItem('mochila'); if(d)data=JSON.parse(d);}
+carregarLocal();
+
+function salvarInfo(){
+data.info={nome:nome.value,turma:turma.value,escola:escola.value};
+salvarLocal();render();
+}
+
+function addMateria(){
+if(!materiaNome.value)return;
+data.materias[categoria.value].push({nome:materiaNome.value,tarefas:[]});
+materiaNome.value='';
+salvarLocal();render();
+}
+
+function addItem(cat,i){
+let txt=inputGlobal.value;
+if(!txt)return;
+data.materias[cat][i].tarefas.push(txt);
+inputGlobal.value='';
+salvarLocal();render();
+}
+
+function addPresenca(){
+data.presenca.push({d:dataPresenca.value,s:statusPresenca.value});
+salvarLocal();render();
+}
+
+function addHumor(){
+data.humor.push({d:dataHumor.value,h:humor.value});
+salvarLocal();render();
+}
+
+function addProva(){
+data.provas.push({d:dataProva.value,n:nomeProva.value});
+salvarLocal();render();
+}
+
+function atualizarDashboard(){
+let total=data.presenca.length;
+let faltas=data.presenca.filter(x=>x.s==='Falta').length;
+let perc=total?((total-faltas)/total*100).toFixed(0):0;
+presencaDash.innerText="📊 "+perc+"%";
+
+let tarefas=0;
+for(let c in data.materias){
+data.materias[c].forEach(m=>tarefas+=m.tarefas.length);
+}
+tarefasDash.innerText="📚 "+tarefas;
+
+let ultimo=data.humor.slice(-1)[0];
+humorDash.innerText="💜 "+(ultimo?ultimo.h:'-');
+}
+
+function render(){
+userInfo.innerText=data.info.nome?`${data.info.nome} - ${data.info.turma}`:'';
+
+pastas.innerHTML='';
+for(let cat in data.materias){
+data.materias[cat].forEach((m,i)=>{
+let tarefas=m.tarefas.map(t=>`<div class='item'>${t}</div>`).join('');
+pastas.innerHTML+=`
+<div class='subject'>
+<b>${m.nome}</b>
+<button onclick="addItem('${cat}',${i})">+ Tarefa</button>
+${tarefas}
+</div>`;
+});
+}
+
+listaPresenca.innerHTML=data.presenca.map(x=>`<div class='item'>${x.d} - ${x.s}</div>`).join('');
+
+listaHumor.innerHTML=data.humor.map(x=>`<div class='item'>${x.d} - ${x.h}</div>`).join('');
+
+listaProvas.innerHTML=data.provas.map(x=>{
+let diff=(new Date(x.d)-new Date())/(1000*60*60*24);
+let cor=diff<=3?'#fecaca':'#ede9fe';
+return `<div class='item' style="background:${cor}">${x.d} - ${x.n}</div>`;
+}).join('');
+
+atualizarDashboard();
+}
+
+function toggleDark(){
+document.body.classList.toggle('dark');
+}
+
+function exportar(){
+let blob=new Blob([JSON.stringify(data)],{type:"application/json"});
+let a=document.createElement('a');
+a.href=URL.createObjectURL(blob);
+a.download="mochila.json";
+a.click();
+}
+
+render();
+</script>
+
+</body>
+</html>
