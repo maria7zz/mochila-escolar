@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mochila Digital Girl 💜</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+  background: linear-gradient(135deg,#f3e8ff,#ede9fe);
+}
+
+.capa{
+  height:180px;
+  background:linear-gradient(135deg,#c084fc,#a78bfa);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:24px;
+  font-weight:600;
+}
+
+.container{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  padding:20px;
+}
+
+.card{
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+h2{
+  color:#7c3aed;
+  margin-bottom:12px;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:12px;
+  margin-top:8px;
+  border-radius:12px;
+  border:1px solid #ddd;
+  font-size:14px;
+}
+
+textarea{
+  min-height:80px;
+}
+
+button{
+  margin-top:10px;
+  padding:10px;
+  border:none;
+  border-radius:12px;
+  background:#c084fc;
+  color:white;
+  cursor:pointer;
+  width:100%;
+}
+
+button:hover{background:#a855f7;}
+
+.subject{
+  background:#f5f3ff;
+  padding:15px;
+  border-radius:15px;
+  margin-top:15px;
+}
+
+.item{
+  background:#ede9fe;
+  padding:10px;
+  border-radius:10px;
+  margin-top:8px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.delete-btn{
+  background:#fb7185;
+  border:none;
+  padding:5px 10px;
+  border-radius:8px;
+  color:white;
+  cursor:pointer;
+}
+
+.horarios{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+}
+
+.dia{
+  background:#ede9fe;
+  padding:10px;
+  border-radius:12px;
+}
+
+.dia input{
+  margin-top:5px;
+}
+
+@media(max-width:800px){
+  .container{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="capa">✨ Minha Mochila Digital ✨</div>
+
+<div class="container">
+
+<!-- MATÉRIAS -->
+<div class="card">
+<h2>📚 Matérias & Tarefas</h2>
+<input id="materiaNome" placeholder="Nome da matéria">
+<textarea id="tarefaInput" placeholder="Digite a tarefa com mais detalhes..."></textarea>
+<button onclick="addMateria()">Adicionar Matéria</button>
+<div id="pastas"></div>
+</div>
+
+<!-- HUMOR -->
+<div class="card">
+<h2>💖 Como estou me sentindo</h2>
+<select id="humor">
+<option>😊 Feliz</option>
+<option>😐 Normal</option>
+<option>😢 Triste</option>
+<option>😡 Estressada</option>
+<option>🥰 Motivada</option>
+</select>
+<button onclick="addHumor()">Salvar</button>
+<div id="listaHumor"></div>
+</div>
+
+<!-- HORÁRIOS -->
+<div class="card">
+<h2>🗓️ Horários de Aula</h2>
+<div class="horarios" id="horarios"></div>
+</div>
+
+</div>
+
+<script>
+let data = {materias:[],humor:[]};
+
+function addMateria(){
+  let nome = document.getElementById('materiaNome').value;
+  let tarefa = document.getElementById('tarefaInput').value;
+
+  if(!nome) return;
+
+  data.materias.push({nome:nome,tarefas:tarefa?[tarefa]:[]});
+
+  document.getElementById('materiaNome').value='';
+  document.getElementById('tarefaInput').value='';
+  render();
+}
+
+function addTarefa(i){
+  let txt = prompt('Digite a tarefa');
+  if(!txt) return;
+  data.materias[i].tarefas.push(txt);
+  render();
+}
+
+function remover(i){
+  data.materias.splice(i,1);
+  render();
+}
+
+function removerTarefa(i,ti){
+  data.materias[i].tarefas.splice(ti,1);
+  render();
+}
+
+function addHumor(){
+  let h = document.getElementById('humor').value;
+  let dataHoje = new Date().toLocaleDateString();
+
+  data.humor.push(`${dataHoje} - ${h}`);
+
+  render();
+}
+
+function render(){
+  let div = document.getElementById('pastas');
+  div.innerHTML='';
+
+  data.materias.forEach((m,i)=>{
+    let tarefas = m.tarefas.map((t,ti)=>
+      `<div class='item'>${t} <button class='delete-btn' onclick='removerTarefa(${i},${ti})'>X</button></div>`
+    ).join('');
+
+    div.innerHTML += `
+      <div class='subject'>
+        <strong>${m.nome}</strong>
+        <button onclick='addTarefa(${i})'>+ tarefa</button>
+        <button class='delete-btn' onclick='remover(${i})'>Excluir</button>
+        ${tarefas}
+      </div>`;
+  });
+
+  let humorDiv = document.getElementById('listaHumor');
+  humorDiv.innerHTML = data.humor.map(h=>`<div class='item'>${h}</div>`).join('');
+}
+
+let dias = ['Seg','Ter','Qua','Qui','Sex'];
+let hDiv = document.getElementById('horarios');
+
+dias.forEach(d=>{
+  hDiv.innerHTML += `
+    <div class='dia'>
+      <strong>${d}</strong>
+      <input placeholder='Aula 1'>
+      <input placeholder='Aula 2'>
+      <input placeholder='Aula 3'>
+    </div>`;
+});
+
+render();
+</script>
+
+</body>
+</html>
