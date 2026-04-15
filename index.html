@@ -1,0 +1,400 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mochila Digital Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+display:flex;
+background:#F8FAFC;
+color:#111827;
+}
+
+/* SIDEBAR */
+.sidebar{
+width:80px;
+background:white;
+height:100vh;
+box-shadow:0 0 25px rgba(0,0,0,0.08);
+display:flex;
+flex-direction:column;
+align-items:center;
+padding-top:20px;
+gap:20px;
+position:fixed;
+}
+
+.sidebar button{
+background:none;
+border:none;
+font-size:22px;
+cursor:pointer;
+color:#7C3AED;
+}
+
+.main{
+margin-left:80px;
+width:100%;
+}
+
+/* HEADER */
+.header{
+height:90px;
+background:white;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:20px;
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
+}
+
+.avatar{
+width:40px;
+height:40px;
+border-radius:50%;
+background:#7C3AED;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+/* DASHBOARD */
+.dashboard{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:16px;
+box-shadow:0 10px 25px rgba(0,0,0,0.05);
+transition:0.2s ease;
+}
+
+.card:hover{
+transform:translateY(-3px);
+}
+
+h2{
+color:#7C3AED;
+margin-bottom:10px;
+}
+
+.container{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+padding:20px;
+}
+
+input,textarea{
+width:100%;
+padding:12px;
+border-radius:12px;
+border:1px solid #ddd;
+margin-top:8px;
+}
+
+button{
+margin-top:10px;
+padding:10px;
+border:none;
+border-radius:12px;
+background:#7C3AED;
+color:white;
+cursor:pointer;
+}
+
+/* emojis */
+.emojis{
+display:flex;
+gap:10px;
+font-size:24px;
+}
+
+.emojis span{
+cursor:pointer;
+padding:8px;
+border-radius:10px;
+}
+
+.emojis span:hover{
+background:#ede9fe;
+}
+
+/* tarefas */
+.item{
+display:flex;
+justify-content:space-between;
+background:#ede9fe;
+padding:8px;
+border-radius:10px;
+margin-top:5px;
+}
+
+table{
+width:100%;
+}
+
+td input{
+width:100%;
+}
+
+/* progresso */
+.progress{
+height:8px;
+background:#eee;
+border-radius:10px;
+margin-top:5px;
+}
+
+.bar{
+height:8px;
+background:#7C3AED;
+border-radius:10px;
+}
+
+/* FAB */
+.fab{
+position:fixed;
+bottom:20px;
+right:20px;
+width:60px;
+height:60px;
+background:#7C3AED;
+color:white;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+cursor:pointer;
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+<button>🏠</button>
+<button>📚</button>
+<button>📝</button>
+<button>⏰</button>
+<button>😊</button>
+</div>
+
+<div class="main">
+
+<div class="header">
+<h2>Minha Mochila Digital</h2>
+<div class="avatar">U</div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard">
+
+<div class="card">
+📚 Matérias
+<h3 id="totalMaterias">0</h3>
+</div>
+
+<div class="card">
+📝 Tarefas
+<h3 id="totalTarefas">0</h3>
+</div>
+
+<div class="card">
+😊 Humor
+<h3 id="ultimoHumor">-</h3>
+</div>
+
+<div class="card">
+📊 Progresso
+<h3 id="progresso">0%</h3>
+</div>
+
+</div>
+
+<div class="container">
+
+<!-- CRIAR -->
+<div class="card">
+<h2>📚 Criar Matéria</h2>
+<input id="materiaNome" placeholder="Matéria">
+<textarea id="tarefaInput"></textarea>
+<button onclick="addMateria()">Adicionar</button>
+</div>
+
+<!-- TAREFAS -->
+<div class="card">
+<h2>📝 Tarefas</h2>
+<div id="pastas"></div>
+</div>
+
+<!-- HUMOR -->
+<div class="card">
+<h2>😊 Humor</h2>
+
+<div class="emojis">
+<span onclick="setHumor('Feliz como sempre')">Feliz como sempre</span>
+<span onclick="setHumor('Normal eu acho')">Normal eu acho</span>
+<span onclick="setHumor('Meio pá')">Meio pá</span>
+<span onclick="setHumor('Morrendo de sonoo')">Morrendo de sonoo</span>
+<span onclick="setHumor('Estressada humor normal')">Estressada humor normal</span>
+<span onclick="setHumor('Apaixonda não sei por quem')">Apaixonada não sei por quem</span>
+</div>
+
+<div id="listaHumor"></div>
+</div>
+
+<!-- HORARIOS -->
+<div class="card">
+<h2>⏰ Horários</h2>
+
+<table>
+<tr>
+<th></th>
+<th>Seg</th>
+<th>Ter</th>
+<th>Qua</th>
+<th>Qui</th>
+<th>Sex</th>
+</tr>
+
+<tr>
+<td>1ª</td>
+<td><input></td>
+<td><input></td>
+<td><input></td>
+<td><input></td>
+<td><input></td>
+</tr>
+
+<tr>
+<td>2ª</td>
+<td><input></td>
+<td><input></td>
+<td><input></td>
+<td><input></td>
+<td><input></td>
+</tr>
+
+<tr>
+<td>3ª</td>
+<td><input></td>
+<td><input></td>
+<td><input></td>
+<td><input></td>
+<td><input></td>
+</tr>
+
+</table>
+</div>
+
+</div>
+
+</div>
+
+<div class="fab" onclick="addMateria()">+</div>
+
+<script>
+let data={materias:[],humor:[]}
+
+function addMateria(){
+let nome=materiaNome.value
+let tarefa=tarefaInput.value
+
+if(!nome)return
+
+data.materias.push({
+nome,
+tarefas:tarefa?[{txt:tarefa,done:false}]:[]
+})
+
+materiaNome.value=''
+tarefaInput.value=''
+
+render()
+}
+
+function toggle(i,ti){
+data.materias[i].tarefas[ti].done=
+!data.materias[i].tarefas[ti].done
+render()
+}
+
+function setHumor(h){
+data.humor.push(h)
+render()
+}
+
+function render(){
+
+let tarefas=0
+let feitas=0
+
+pastas.innerHTML=''
+
+data.materias.forEach((m,i)=>{
+
+let html=`<h3>${m.nome}</h3>`
+
+m.tarefas.forEach((t,ti)=>{
+
+tarefas++
+if(t.done)feitas++
+
+html+=`
+<div class="item">
+<label>
+<input type="checkbox"
+${t.done?'checked':''}
+onclick="toggle(${i},${ti})">
+${t.txt}
+</label>
+</div>
+`
+})
+
+let prog=Math.round((m.tarefas.filter(t=>t.done).length /
+(m.tarefas.length||1))*100)
+
+html+=`
+<div class="progress">
+<div class="bar" style="width:${prog}%"></div>
+</div>
+`
+
+pastas.innerHTML+=`<div class="card">${html}</div>`
+})
+
+totalMaterias.innerText=data.materias.length
+totalTarefas.innerText=tarefas
+ultimoHumor.innerText=data.humor.at(-1)||'-'
+
+let totalProg=Math.round((feitas/(tarefas||1))*100)
+progresso.innerText=totalProg+"%"
+}
+
+render()
+</script>
+
+</body>
+</html>
+```
