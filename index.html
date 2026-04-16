@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mochila Escolar</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#f7f5ff;
+color:#1e293b;
+}
+
+/* PERFIL */
+
+.header{
+background:linear-gradient(135deg,#ede9fe,#f5f3ff);
+padding:25px;
+display:flex;
+gap:15px;
+align-items:center;
+border-bottom:1px solid #e5e7eb;
+}
+
+.avatar{
+width:70px;
+height:70px;
+border-radius:50%;
+background-image:url("https://i.pinimg.com/736x/4d/6f/7a/4d6f7aef8d9b5d3c13a0e6a2df497bb7.jpg");
+background-size:cover;
+background-position:center;
+}
+
+.profile input{
+border:none;
+background:transparent;
+font-size:20px;
+font-weight:600;
+width:100%;
+}
+
+.profile textarea{
+border:none;
+background:transparent;
+width:100%;
+resize:none;
+color:#6b7280;
+}
+
+/* LAYOUT */
+
+.container{
+display:grid;
+grid-template-columns:1fr 350px;
+gap:20px;
+padding:20px;
+}
+
+/* CARDS */
+
+.card{
+background:white;
+padding:20px;
+border-radius:16px;
+box-shadow:0 4px 10px rgba(0,0,0,0.05);
+margin-bottom:20px;
+}
+
+/* INPUTS */
+
+input,textarea,select{
+width:100%;
+padding:10px;
+border-radius:10px;
+border:1px solid #e5e7eb;
+margin-top:8px;
+}
+
+button{
+background:#a78bfa;
+border:none;
+color:white;
+padding:10px;
+border-radius:10px;
+margin-top:10px;
+cursor:pointer;
+}
+
+.delete{
+background:#ef4444;
+padding:5px 10px;
+}
+
+/* MATERIA */
+
+.materia{
+border:1px solid #eee;
+padding:15px;
+border-radius:12px;
+margin-top:10px;
+}
+
+.tarefa{
+display:flex;
+justify-content:space-between;
+background:#f5f3ff;
+padding:8px;
+border-radius:8px;
+margin-top:6px;
+}
+
+.done{
+text-decoration:line-through;
+opacity:0.5;
+}
+
+.diario-item{
+background:#f5f3ff;
+padding:10px;
+border-radius:10px;
+margin-top:8px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+
+<div class="avatar"></div>
+
+<div class="profile">
+<input id="nome" placeholder="Seu nome">
+<textarea id="bio" placeholder="Sua bio"></textarea>
+</div>
+
+</div>
+
+<div class="container">
+
+<!-- MATERIAS -->
+<div>
+
+<div class="card">
+
+<h3>Adicionar matéria</h3>
+
+<input id="novaMateria" placeholder="Nome da matéria">
+<button onclick="addMateria()">Adicionar</button>
+
+</div>
+
+<div id="listaMaterias"></div>
+
+</div>
+
+<!-- DIARIO -->
+<div>
+
+<div class="card">
+
+<h3>Diário emocional</h3>
+
+<select id="emocao">
+<option>Feliz</option>
+<option>Triste</option>
+<option>Ansiosa</option>
+<option>Cansada</option>
+<option>Motivada</option>
+</select>
+
+<textarea id="textoDiario" placeholder="Escreva como foi seu dia..."></textarea>
+
+<button onclick="addDiario()">Salvar</button>
+
+<div id="listaDiario"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let data = JSON.parse(localStorage.getItem("mochila")) || {
+perfil:{nome:"",bio:""},
+materias:[],
+diario:[]
+}
+
+function salvar(){
+localStorage.setItem("mochila",JSON.stringify(data))
+}
+
+/* MATERIAS */
+
+function addMateria(){
+
+let nome=novaMateria.value.trim()
+if(!nome) return
+
+data.materias.push({
+nome,
+tarefas:[]
+})
+
+novaMateria.value=""
+salvar()
+render()
+
+}
+
+function removerMateria(i){
+data.materias.splice(i,1)
+salvar()
+render()
+}
+
+function addTarefa(i){
+
+let nome=prompt("Nome da tarefa")
+if(!nome) return
+
+let dataT=prompt("Data YYYY-MM-DD")
+
+data.materias[i].tarefas.push({
+nome,
+data:dataT,
+done:false
+})
+
+salvar()
+render()
+}
+
+function toggle(i,t){
+let tarefa=data.materias[i].tarefas[t]
+tarefa.done=!tarefa.done
+salvar()
+render()
+}
+
+function removerTarefa(i,t){
+data.materias[i].tarefas.splice(t,1)
+salvar()
+render()
+}
+
+/* DIARIO */
+
+function addDiario(){
+
+let emocao=emocao.value
+let texto=textoDiario.value
+let dataHoje=new Date().toLocaleDateString()
+
+data.diario.unshift({
+emocao,
+texto,
+data:dataHoje
+})
+
+textoDiario.value=""
+salvar()
+render()
+}
+
+/* RENDER */
+
+function render(){
+
+nome.value=data.perfil.nome
+bio.value=data.perfil.bio
+
+listaMaterias.innerHTML=""
+
+data.materias.forEach((m,i)=>{
+
+let tarefas=m.tarefas.map((t,ti)=>`
+<div class="tarefa ${t.done?'done':''}">
+<div>
+${t.nome}
+<br>
+<small>${t.data||""}</small>
+</div>
+
+<div>
+<button onclick="toggle(${i},${ti})">✓</button>
+<button class="delete" onclick="removerTarefa(${i},${ti})">x</button>
+</div>
+</div>
+`).join("")
+
+listaMaterias.innerHTML+=`
+<div class="card materia">
+
+<h3>${m.nome}</h3>
+
+<button onclick="addTarefa(${i})">Adicionar tarefa</button>
+<button class="delete" onclick="removerMateria(${i})">Excluir</button>
+
+${tarefas}
+
+</div>
+`
+
+})
+
+listaDiario.innerHTML=data.diario.map(d=>`
+<div class="diario-item">
+<strong>${d.emocao}</strong> - ${d.data}
+<br>
+${d.texto}
+</div>
+`).join("")
+
+}
+
+nome.addEventListener("input",()=>{
+data.perfil.nome=nome.value
+salvar()
+})
+
+bio.addEventListener("input",()=>{
+data.perfil.bio=bio.value
+salvar()
+})
+
+render()
+
+</script>
+
+</body>
+</html>
