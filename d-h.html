@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana dos Direitos Humanos</title>
+
+<style>
+body{
+margin:0;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background: linear-gradient(135deg,#ede9ff,#ffffff,#f5f3ff);
+}
+
+.voltar{
+position:fixed;
+top:20px;
+left:20px;
+background:#7c3aed;
+color:white;
+padding:10px 18px;
+border-radius:10px;
+text-decoration:none;
+font-weight:bold;
+}
+
+header{
+background: linear-gradient(90deg,#7c3aed,#a78bfa);
+color:white;
+padding:30px;
+text-align:center;
+}
+
+.container{
+max-width:900px;
+margin:30px auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 0 20px rgba(0,0,0,0.1);
+}
+
+h2{
+color:#6d28d9;
+}
+
+img{
+width:100%;
+border-radius:12px;
+margin:20px 0;
+}
+
+input, textarea{
+width:100%;
+padding:12px;
+border-radius:10px;
+border:1px solid #ddd;
+margin-bottom:10px;
+}
+
+textarea{
+height:120px;
+}
+
+button{
+background: linear-gradient(90deg,#7c3aed,#a78bfa);
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.comentario{
+background:#f5f3ff;
+padding:12px;
+border-radius:10px;
+margin-top:10px;
+border-left:4px solid #7c3aed;
+}
+
+.nome{
+font-weight:bold;
+color:#6d28d9;
+margin-bottom:5px;
+}
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="voltar">⬅ Voltar</a>
+
+<header>
+<h1>Semana dos Direitos Humanos</h1>
+<p>Direitos humanos na escola: convivência e respeito</p>
+</header>
+
+<div class="container">
+
+<h2>Direitos humanos na escola</h2>
+
+<p>
+Os direitos humanos na escola são fundamentais para garantir um ambiente de respeito, igualdade e convivência saudável entre todos. A escola é um espaço onde alunos, professores e outros profissionais convivem diariamente, e por isso é necessário que todos sejam tratados com dignidade e empatia. Quando há respeito entre as pessoas, o ambiente escolar se torna mais acolhedor e favorável para o aprendizado.
+</p>
+
+<p>
+A relação entre professores e alunos deve ser baseada no diálogo e na compreensão. O professor orienta e ensina, enquanto o aluno aprende e também contribui para manter o ambiente organizado. Além disso, outros profissionais da escola ajudam a garantir que todos sejam respeitados e que conflitos sejam resolvidos de forma pacífica.
+</p>
+
+<p>
+Promover os direitos humanos na escola significa valorizar as diferenças, combater o bullying, incentivar a cooperação e construir uma convivência mais justa. Dessa forma, a escola contribui não apenas para o aprendizado, mas também para a formação de cidadãos conscientes e respeitosos.
+</p>
+
+<img src="https://cdn.pixabay.com/photo/2017/02/07/16/47/school-2043484_1280.jpg">
+
+<h2>Deixe seu comentário</h2>
+
+<input type="text" id="nome" placeholder="Seu nome">
+<textarea id="comentario" placeholder="Escreva seu comentário..."></textarea>
+
+<button onclick="adicionarComentario()">Enviar comentário</button>
+
+<div id="listaComentarios"></div>
+
+</div>
+
+<script>
+
+let comentarios = JSON.parse(localStorage.getItem("comentarios")) || [];
+
+function salvarComentarios(){
+localStorage.setItem("comentarios", JSON.stringify(comentarios));
+}
+
+function mostrarComentarios(){
+let lista = document.getElementById("listaComentarios");
+lista.innerHTML = "";
+
+comentarios.forEach(c => {
+
+let div = document.createElement("div");
+div.className = "comentario";
+
+div.innerHTML = `
+<div class="nome">${c.nome}</div>
+<div>${c.texto}</div>
+`;
+
+lista.appendChild(div);
+
+});
+}
+
+function adicionarComentario(){
+
+let nome = document.getElementById("nome").value;
+let texto = document.getElementById("comentario").value;
+
+if(nome.trim() === "" || texto.trim() === ""){
+alert("Preencha o nome e o comentário");
+return;
+}
+
+comentarios.push({
+nome: nome,
+texto: texto
+});
+
+salvarComentarios();
+mostrarComentarios();
+
+document.getElementById("nome").value = "";
+document.getElementById("comentario").value = "";
+}
+
+mostrarComentarios();
+
+</script>
+
+</body>
+</html>
