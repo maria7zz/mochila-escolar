@@ -15,19 +15,8 @@
 body{background:#f7f5ff;color:#1e293b}
 
 .header{
-background:linear-gradient(135deg,#ede9fe,#f5f3ff);
+background:#ede9fe;
 padding:20px;
-display:flex;
-gap:15px;
-align-items:center;
-}
-
-.avatar{
-width:70px;
-height:70px;
-border-radius:50%;
-background:url("https://i.pinimg.com/736x/4d/6f/7a/4d6f7aef8d9b5d3c13a0e6a2df497bb7.jpg");
-background-size:cover;
 }
 
 .container{
@@ -45,15 +34,6 @@ box-shadow:0 4px 10px rgba(0,0,0,.05);
 margin-bottom:20px;
 }
 
-button{
-background:#a78bfa;
-border:none;
-color:white;
-padding:8px 12px;
-border-radius:10px;
-cursor:pointer;
-}
-
 input,textarea,select{
 width:100%;
 padding:10px;
@@ -62,14 +42,22 @@ border:1px solid #e5e7eb;
 margin-top:8px;
 }
 
-/* materia */
+button{
+background:#a78bfa;
+border:none;
+color:white;
+padding:8px 12px;
+border-radius:10px;
+cursor:pointer;
+margin-top:5px;
+}
 
 .cor{
-width:14px;
-height:14px;
+width:12px;
+height:12px;
 border-radius:50%;
 display:inline-block;
-margin-right:6px;
+margin-right:5px;
 }
 
 .tarefa{
@@ -77,8 +65,7 @@ background:#f5f3ff;
 padding:8px;
 border-radius:8px;
 margin-top:6px;
-display:flex;
-justify-content:space-between;
+font-size:13px;
 }
 
 /* horario */
@@ -103,17 +90,15 @@ cursor:pointer;
 display:grid;
 grid-template-columns:repeat(7,1fr);
 gap:5px;
-margin-top:10px;
 }
 
 .dia{
 background:#f5f3ff;
-padding:8px;
+padding:6px;
 border-radius:8px;
-text-align:center;
-cursor:pointer;
-font-size:12px;
 min-height:70px;
+font-size:11px;
+cursor:pointer;
 }
 
 .presenca{background:#bbf7d0}
@@ -123,15 +108,7 @@ min-height:70px;
 .topcal{
 display:flex;
 justify-content:space-between;
-align-items:center;
-margin-bottom:5px;
-}
-
-.legend{
-display:flex;
-gap:10px;
-font-size:12px;
-margin-top:5px;
+margin-bottom:10px;
 }
 
 </style>
@@ -140,11 +117,8 @@ margin-top:5px;
 <body>
 
 <div class="header">
-<div class="avatar"></div>
-<div style="width:100%">
 <input id="nome" placeholder="Seu nome">
 <textarea id="bio" placeholder="Sua bio"></textarea>
-</div>
 </div>
 
 <div class="container">
@@ -161,7 +135,7 @@ margin-top:5px;
 
 <div class="card">
 <h3>Meu horário</h3>
-<div id="gradeHorario" class="grade"></div>
+<div class="grade" id="horario"></div>
 </div>
 
 </div>
@@ -171,20 +145,14 @@ margin-top:5px;
 <div class="card">
 
 <div class="topcal">
-<button onclick="mesAnterior()">◀</button>
-<h3 id="mesLabel"></h3>
-<button onclick="mesProximo()">▶</button>
+<button onclick="mes(-1)">◀</button>
+<b id="mes"></b>
+<button onclick="mes(1)">▶</button>
 </div>
 
-<div class="legend">
-<div><span class="cor" style="background:#bbf7d0"></span>Presença</div>
-<div><span class="cor" style="background:#fecaca"></span>Falta</div>
-<div><span class="cor" style="background:#ddd6fe"></span>Prova</div>
-</div>
+<div class="calendario" id="calendario"></div>
 
-<div id="calendario" class="calendario"></div>
-
-<div id="estatisticas"></div>
+<div id="stats"></div>
 
 </div>
 
@@ -194,124 +162,140 @@ margin-top:5px;
 
 <script>
 
-let hoje = new Date()
-
-let data = JSON.parse(localStorage.getItem("mochila")) || {
-perfil:{nome:"",bio:""},
-materias:[],
-horario:Array(9).fill(""),
-calendario:{}
-}
-
 const cores=[
 "#a78bfa","#60a5fa","#34d399",
 "#f472b6","#fbbf24","#fb7185"
 ]
 
-function salvar(){
-localStorage.setItem("mochila",JSON.stringify(data))
+let hoje=new Date()
+
+let db=JSON.parse(localStorage.getItem("mochila"))||{
+perfil:{nome:"",bio:""},
+materias:[],
+horario:Array(9).fill(""),
+cal:{}
+}
+
+function save(){
+localStorage.setItem("mochila",JSON.stringify(db))
 }
 
 /* perfil */
 
-nome.oninput=e=>{
-data.perfil.nome=e.target.value
-salvar()
+nome.value=db.perfil.nome
+bio.value=db.perfil.bio
+
+nome.oninput=()=>{
+db.perfil.nome=nome.value
+save()
 }
 
-bio.oninput=e=>{
-data.perfil.bio=e.target.value
-salvar()
+bio.oninput=()=>{
+db.perfil.bio=bio.value
+save()
 }
 
 /* materias */
 
 function addMateria(){
 
-let nome=novaMateria.value.trim()
-if(!nome) return
+let nome=novaMateria.value
+if(!nome)return
 
-data.materias.push({
+db.materias.push({
 nome,
 cor:cores[Math.floor(Math.random()*cores.length)],
 tarefas:[]
 })
 
-salvar()
+novaMateria.value=""
+save()
 render()
 
 }
 
 function addTarefa(i){
 
-let nome=prompt("Tarefa")
-let dataT=prompt("YYYY-MM-DD")
+let nome=prompt("tarefa")
+let data=prompt("YYYY-MM-DD")
 
-data.materias[i].tarefas.push({
-nome,
-data:dataT
-})
+if(!nome||!data)return
 
-data.materias[i].tarefas.sort(
+db.materias[i].tarefas.push({nome,data})
+
+db.materias[i].tarefas.sort(
 (a,b)=>new Date(a.data)-new Date(b.data)
 )
 
-salvar()
+save()
 render()
 
 }
 
 /* horario */
 
-function editarHorario(i){
+function renderHorario(){
 
+horario.innerHTML=""
+
+db.horario.forEach((h,i)=>{
+
+horario.innerHTML+=`
+<div class="quadro"
+onclick="editHorario(${i})">
+${h||"+"}
+</div>
+`
+
+})
+
+}
+
+function editHorario(i){
 let t=prompt("Aula")
-if(t===null)return
-
-data.horario[i]=t
-salvar()
+if(t==null)return
+db.horario[i]=t
+save()
 render()
-
 }
 
 /* calendario */
 
-function gerarCalendario(){
+function renderCalendario(){
 
 let ano=hoje.getFullYear()
 let mes=hoje.getMonth()
 
-mesLabel.innerText=
-hoje.toLocaleString("pt-BR",{month:"long",year:"numeric"})
+mes.innerText=
+hoje.toLocaleString("pt-br",{month:"long",year:"numeric"})
 
 let dias=new Date(ano,mes+1,0).getDate()
 
 calendario.innerHTML=""
 
-let pres=0
-let falt=0
+let p=0,f=0
 
 for(let d=1;d<=dias;d++){
 
 let key=`${ano}-${mes}-${d}`
-let tipo=data.calendario[key]||""
+let tipo=db.cal[key]||""
 
-if(tipo=="presenca") pres++
-if(tipo=="falta") falt++
+if(tipo=="presenca")p++
+if(tipo=="falta")f++
 
 let tarefas=""
 
-data.materias.forEach(m=>{
+db.materias.forEach(m=>{
 m.tarefas.forEach(t=>{
-let td=new Date(t.data)
-if(td.getDate()==d && td.getMonth()==mes)
+let dt=new Date(t.data)
+if(dt.getDate()==d && dt.getMonth()==mes)
 tarefas+="•"+t.nome+"<br>"
 })
 })
 
 calendario.innerHTML+=`
 <div class="dia ${tipo}"
-onclick="marcarDia('${key}')">
+onclick="marcar('${key}')">
 
 <b>${d}</b>
 <br>
@@ -322,44 +306,37 @@ ${tarefas}
 
 }
 
-let total=pres+falt
-let media= total? Math.round((pres/total)*100):0
+let total=p+f
+let media= total?Math.round(p/total*100):0
 
-estatisticas.innerHTML=`
-<br>
-Presenças: ${pres} <br>
-Faltas: ${falt} <br>
-Presença: ${media}% 
+stats.innerHTML=`
+Presença: ${media}%<br>
+Faltas: ${f}
 `
 
 }
 
-function marcarDia(key){
+function marcar(k){
 
 let r=prompt(
-1 Presença
-2 Falta
-3 Prova
-0 Limpar
+1 presença
+2 falta
+3 prova
+0 limpar
 )
 
-if(r==1) data.calendario[key]="presenca"
-else if(r==2) data.calendario[key]="falta"
-else if(r==3) data.calendario[key]="prova"
-else delete data.calendario[key]
+if(r==1)db.cal[k]="presenca"
+else if(r==2)db.cal[k]="falta"
+else if(r==3)db.cal[k]="prova"
+else delete db.cal[k]
 
-salvar()
+save()
 render()
 
 }
 
-function mesAnterior(){
-hoje.setMonth(hoje.getMonth()-1)
-render()
-}
-
-function mesProximo(){
-hoje.setMonth(hoje.getMonth()+1)
+function mes(n){
+hoje.setMonth(hoje.getMonth()+n)
 render()
 }
 
@@ -367,19 +344,13 @@ render()
 
 function render(){
 
-nome.value=data.perfil.nome
-bio.value=data.perfil.bio
-
 listaMaterias.innerHTML=""
 
-data.materias.forEach((m,i)=>{
+db.materias.forEach((m,i)=>{
 
-let tarefas=m.tarefas.map(t=>`
-<div class="tarefa">
-${t.nome}
-<small>${t.data}</small>
-</div>
-`).join("")
+let tarefas=m.tarefas.map(t=>
+`<div class="tarefa">${t.nome}<br>${t.data}</div>`
+).join("")
 
 listaMaterias.innerHTML+=`
 <div class="card">
@@ -399,17 +370,8 @@ ${tarefas}
 
 })
 
-gradeHorario.innerHTML=""
-
-data.horario.forEach((h,i)=>{
-gradeHorario.innerHTML+=`
-<div class="quadro" onclick="editarHorario(${i})">
-${h||"Adicionar"}
-</div>
-`
-})
-
-gerarCalendario()
+renderHorario()
+renderCalendario()
 
 }
 
@@ -417,6 +379,6 @@ render()
 
 </script>
   
- <a href="d-h.html"><button class="bnt"> Direitos Humanos </button></a>
+<a href="d-h.html"><button class="bnt"> Direitos Humanos </button></a>
 </body>
 </html>
