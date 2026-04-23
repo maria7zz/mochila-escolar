@@ -10,55 +10,25 @@
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
 
-body{
-background:#f7f5ff;
-color:#1e293b;
-}
-
-/* PERFIL */
+body{background:#f7f5ff;color:#1e293b}
 
 .header{
 background:linear-gradient(135deg,#ede9fe,#f5f3ff);
-padding:25px;
+padding:20px;
 display:flex;
 gap:15px;
 align-items:center;
-border-bottom:1px solid #e5e7eb;
 }
 
 .avatar{
 width:70px;
 height:70px;
 border-radius:50%;
-background-image:url("https://i.pinimg.com/736x/4d/6f/7a/4d6f7aef8d9b5d3c13a0e6a2df497bb7.jpg");
+background:url("https://i.pinimg.com/736x/4d/6f/7a/4d6f7aef8d9b5d3c13a0e6a2df497bb7.jpg");
 background-size:cover;
-background-position:center;
 }
-
-.profile input{
-border:none;
-background:transparent;
-font-size:20px;
-font-weight:600;
-width:100%;
-}
-
-.profile textarea{
-border:none;
-background:transparent;
-width:100%;
-resize:none;
-color:#6b7280;
-}
-
-/* LAYOUT */
 
 .container{
 display:grid;
@@ -67,17 +37,22 @@ gap:20px;
 padding:20px;
 }
 
-/* CARDS */
-
 .card{
 background:white;
 padding:20px;
 border-radius:16px;
-box-shadow:0 4px 10px rgba(0,0,0,0.05);
+box-shadow:0 4px 10px rgba(0,0,0,.05);
 margin-bottom:20px;
 }
 
-/* INPUTS */
+button{
+background:#a78bfa;
+border:none;
+color:white;
+padding:8px 12px;
+border-radius:10px;
+cursor:pointer;
+}
 
 input,textarea,select{
 width:100%;
@@ -87,49 +62,76 @@ border:1px solid #e5e7eb;
 margin-top:8px;
 }
 
-button{
-background:#a78bfa;
-border:none;
-color:white;
-padding:10px;
-border-radius:10px;
-margin-top:10px;
-cursor:pointer;
-}
+/* materia */
 
-.delete{
-background:#ef4444;
-padding:5px 10px;
-}
-
-/* MATERIA */
-
-.materia{
-border:1px solid #eee;
-padding:15px;
-border-radius:12px;
-margin-top:10px;
+.cor{
+width:14px;
+height:14px;
+border-radius:50%;
+display:inline-block;
+margin-right:6px;
 }
 
 .tarefa{
-display:flex;
-justify-content:space-between;
 background:#f5f3ff;
 padding:8px;
 border-radius:8px;
 margin-top:6px;
+display:flex;
+justify-content:space-between;
 }
 
-.done{
-text-decoration:line-through;
-opacity:0.5;
+/* horario */
+
+.grade{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
 }
 
-.diario-item{
+.quadro{
 background:#f5f3ff;
-padding:10px;
+padding:15px;
 border-radius:10px;
-margin-top:8px;
+text-align:center;
+cursor:pointer;
+}
+
+/* calendario */
+
+.calendario{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:5px;
+margin-top:10px;
+}
+
+.dia{
+background:#f5f3ff;
+padding:8px;
+border-radius:8px;
+text-align:center;
+cursor:pointer;
+font-size:12px;
+min-height:70px;
+}
+
+.presenca{background:#bbf7d0}
+.falta{background:#fecaca}
+.prova{background:#ddd6fe}
+
+.topcal{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:5px;
+}
+
+.legend{
+display:flex;
+gap:10px;
+font-size:12px;
+margin-top:5px;
 }
 
 </style>
@@ -138,54 +140,51 @@ margin-top:8px;
 <body>
 
 <div class="header">
-
 <div class="avatar"></div>
-
-<div class="profile">
+<div style="width:100%">
 <input id="nome" placeholder="Seu nome">
 <textarea id="bio" placeholder="Sua bio"></textarea>
 </div>
-
 </div>
 
 <div class="container">
 
-<!-- MATERIAS -->
 <div>
 
 <div class="card">
-
 <h3>Adicionar matéria</h3>
-
-<input id="novaMateria" placeholder="Nome da matéria">
+<input id="novaMateria">
 <button onclick="addMateria()">Adicionar</button>
-
 </div>
 
 <div id="listaMaterias"></div>
 
+<div class="card">
+<h3>Meu horário</h3>
+<div id="gradeHorario" class="grade"></div>
 </div>
 
-<!-- DIARIO -->
+</div>
+
 <div>
 
 <div class="card">
 
-<h3>Diário emocional</h3>
+<div class="topcal">
+<button onclick="mesAnterior()">◀</button>
+<h3 id="mesLabel"></h3>
+<button onclick="mesProximo()">▶</button>
+</div>
 
-<select id="emocao">
-<option>Feliz</option>
-<option>Triste</option>
-<option>Ansiosa</option>
-<option>Cansada</option>
-<option>Motivada</option>
-</select>
+<div class="legend">
+<div><span class="cor" style="background:#bbf7d0"></span>Presença</div>
+<div><span class="cor" style="background:#fecaca"></span>Falta</div>
+<div><span class="cor" style="background:#ddd6fe"></span>Prova</div>
+</div>
 
-<textarea id="textoDiario" placeholder="Escreva como foi seu dia..."></textarea>
+<div id="calendario" class="calendario"></div>
 
-<button onclick="addDiario()">Salvar</button>
-
-<div id="listaDiario"></div>
+<div id="estatisticas"></div>
 
 </div>
 
@@ -195,17 +194,37 @@ margin-top:8px;
 
 <script>
 
+let hoje = new Date()
+
 let data = JSON.parse(localStorage.getItem("mochila")) || {
 perfil:{nome:"",bio:""},
 materias:[],
-diario:[]
+horario:Array(9).fill(""),
+calendario:{}
 }
+
+const cores=[
+"#a78bfa","#60a5fa","#34d399",
+"#f472b6","#fbbf24","#fb7185"
+]
 
 function salvar(){
 localStorage.setItem("mochila",JSON.stringify(data))
 }
 
-/* MATERIAS */
+/* perfil */
+
+nome.oninput=e=>{
+data.perfil.nome=e.target.value
+salvar()
+}
+
+bio.oninput=e=>{
+data.perfil.bio=e.target.value
+salvar()
+}
+
+/* materias */
 
 function addMateria(){
 
@@ -214,71 +233,137 @@ if(!nome) return
 
 data.materias.push({
 nome,
+cor:cores[Math.floor(Math.random()*cores.length)],
 tarefas:[]
 })
 
-novaMateria.value=""
 salvar()
 render()
 
-}
-
-function removerMateria(i){
-data.materias.splice(i,1)
-salvar()
-render()
 }
 
 function addTarefa(i){
 
-let nome=prompt("Nome da tarefa")
-if(!nome) return
-
-let dataT=prompt("Data YYYY-MM-DD")
+let nome=prompt("Tarefa")
+let dataT=prompt("YYYY-MM-DD")
 
 data.materias[i].tarefas.push({
 nome,
-data:dataT,
-done:false
+data:dataT
 })
 
+data.materias[i].tarefas.sort(
+(a,b)=>new Date(a.data)-new Date(b.data)
+)
+
 salvar()
 render()
+
 }
 
-function toggle(i,t){
-let tarefa=data.materias[i].tarefas[t]
-tarefa.done=!tarefa.done
+/* horario */
+
+function editarHorario(i){
+
+let t=prompt("Aula")
+if(t===null)return
+
+data.horario[i]=t
 salvar()
 render()
+
 }
 
-function removerTarefa(i,t){
-data.materias[i].tarefas.splice(t,1)
-salvar()
-render()
-}
+/* calendario */
 
-/* DIARIO */
+function gerarCalendario(){
 
-function addDiario(){
+let ano=hoje.getFullYear()
+let mes=hoje.getMonth()
 
-let emocao=emocao.value
-let texto=textoDiario.value
-let dataHoje=new Date().toLocaleDateString()
+mesLabel.innerText=
+hoje.toLocaleString("pt-BR",{month:"long",year:"numeric"})
 
-data.diario.unshift({
-emocao,
-texto,
-data:dataHoje
+let dias=new Date(ano,mes+1,0).getDate()
+
+calendario.innerHTML=""
+
+let pres=0
+let falt=0
+
+for(let d=1;d<=dias;d++){
+
+let key=`${ano}-${mes}-${d}`
+let tipo=data.calendario[key]||""
+
+if(tipo=="presenca") pres++
+if(tipo=="falta") falt++
+
+let tarefas=""
+
+data.materias.forEach(m=>{
+m.tarefas.forEach(t=>{
+let td=new Date(t.data)
+if(td.getDate()==d && td.getMonth()==mes)
+tarefas+="•"+t.nome+"<br>"
+})
 })
 
-textoDiario.value=""
+calendario.innerHTML+=`
+<div class="dia ${tipo}"
+onclick="marcarDia('${key}')">
+
+<b>${d}</b>
+<br>
+${tarefas}
+
+</div>
+`
+
+}
+
+let total=pres+falt
+let media= total? Math.round((pres/total)*100):0
+
+estatisticas.innerHTML=`
+<br>
+Presenças: ${pres} <br>
+Faltas: ${falt} <br>
+Presença: ${media}% 
+`
+
+}
+
+function marcarDia(key){
+
+let r=prompt(
+1 Presença
+2 Falta
+3 Prova
+0 Limpar
+)
+
+if(r==1) data.calendario[key]="presenca"
+else if(r==2) data.calendario[key]="falta"
+else if(r==3) data.calendario[key]="prova"
+else delete data.calendario[key]
+
 salvar()
+render()
+
+}
+
+function mesAnterior(){
+hoje.setMonth(hoje.getMonth()-1)
 render()
 }
 
-/* RENDER */
+function mesProximo(){
+hoje.setMonth(hoje.getMonth()+1)
+render()
+}
+
+/* render */
 
 function render(){
 
@@ -289,28 +374,23 @@ listaMaterias.innerHTML=""
 
 data.materias.forEach((m,i)=>{
 
-let tarefas=m.tarefas.map((t,ti)=>`
-<div class="tarefa ${t.done?'done':''}">
-<div>
+let tarefas=m.tarefas.map(t=>`
+<div class="tarefa">
 ${t.nome}
-<br>
-<small>${t.data||""}</small>
-</div>
-
-<div>
-<button onclick="toggle(${i},${ti})">✓</button>
-<button class="delete" onclick="removerTarefa(${i},${ti})">x</button>
-</div>
+<small>${t.data}</small>
 </div>
 `).join("")
 
 listaMaterias.innerHTML+=`
-<div class="card materia">
+<div class="card">
+<h3>
+<span class="cor" style="background:${m.cor}"></span>
+${m.nome}
+</h3>
 
-<h3>${m.nome}</h3>
-
-<button onclick="addTarefa(${i})">Adicionar tarefa</button>
-<button class="delete" onclick="removerMateria(${i})">Excluir</button>
+<button onclick="addTarefa(${i})">
+Nova tarefa
+</button>
 
 ${tarefas}
 
@@ -319,30 +399,24 @@ ${tarefas}
 
 })
 
-listaDiario.innerHTML=data.diario.map(d=>`
-<div class="diario-item">
-<strong>${d.emocao}</strong> - ${d.data}
-<br>
-${d.texto}
+gradeHorario.innerHTML=""
+
+data.horario.forEach((h,i)=>{
+gradeHorario.innerHTML+=`
+<div class="quadro" onclick="editarHorario(${i})">
+${h||"Adicionar"}
 </div>
-`).join("")
+`
+})
+
+gerarCalendario()
 
 }
-
-nome.addEventListener("input",()=>{
-data.perfil.nome=nome.value
-salvar()
-})
-
-bio.addEventListener("input",()=>{
-data.perfil.bio=bio.value
-salvar()
-})
 
 render()
 
 </script>
-
-  <a href="d-h.html"><button class="bnt"> Direitos Humanos </button></a>
+  
+ <a href="d-h.html"><button class="bnt"> Direitos Humanos </button></a>
 </body>
 </html>
