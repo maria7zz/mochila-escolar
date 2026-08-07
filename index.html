@@ -1,406 +1,1970 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mochila Escolar</title>
+<title>Mochila Digital</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 
 <style>
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
-
-body{background:#f7f5ff;color:#1e293b}
-
-.header{
-background:#ede9fe;
-padding:20px;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
+
+
+body{
+
+    background:#f8f5ff;
+    color:#312e41;
+
+}
+
+
+/* ================= HEADER ================= */
+
+
+header{
+
+    background:linear-gradient(
+        135deg,
+        #e9d5ff,
+        #f3e8ff
+    );
+
+    padding:35px 6%;
+
+}
+
+
+.topo{
+
+    max-width:1400px;
+    margin:auto;
+
+}
+
+
+.topo h1{
+
+    color:#6d28d9;
+    font-size:32px;
+
+}
+
+
+.topo p{
+
+    color:#7c718c;
+    margin-top:5px;
+    margin-bottom:20px;
+
+}
+
+
+
+.perfil{
+
+    display:grid;
+    grid-template-columns:1fr 2fr;
+    gap:15px;
+
+}
+
+
+
+
+/* ================= CAMPOS ================= */
+
+
+input,
+textarea,
+select{
+
+    width:100%;
+    padding:12px;
+
+    border-radius:12px;
+
+    border:1px solid #ddd6fe;
+
+    background:white;
+
+    outline:none;
+
+    font-size:14px;
+
+}
+
+
+textarea{
+
+    resize:none;
+    min-height:100px;
+
+}
+
+
+
+input:focus,
+textarea:focus,
+select:focus{
+
+    border-color:#8b5cf6;
+
+    box-shadow:
+    0 0 0 3px #ede9fe;
+
+}
+
+
+
+
+/* ================= ESTRUTURA ================= */
+
 
 .container{
-display:grid;
-grid-template-columns:1fr 350px;
-gap:20px;
-padding:20px;
+
+    max-width:1400px;
+
+    margin:auto;
+
+    padding:30px 6%;
+
+    display:grid;
+
+    grid-template-columns:
+    1.7fr 1fr;
+
+    gap:25px;
+
 }
+
+
 
 .card{
-background:white;
-padding:20px;
-border-radius:16px;
-box-shadow:0 4px 10px rgba(0,0,0,.05);
-margin-bottom:20px;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:22px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 5px 20px rgba(0,0,0,.08);
+
+    border:1px solid #eee7ff;
+
 }
 
-input,textarea,select{
-width:100%;
-padding:10px;
-border-radius:10px;
-border:1px solid #e5e7eb;
-margin-top:8px;
+
+
+.card h2,
+.card h3{
+
+    color:#5b21b6;
+
 }
+
+
+
+.subtitulo{
+
+    color:#8b8299;
+
+    font-size:13px;
+
+    margin-top:5px;
+
+}
+
+
+
+
+/* ================= BOTÕES ================= */
+
 
 button{
-background:#a78bfa;
-border:none;
-color:white;
-padding:8px 12px;
-border-radius:10px;
-cursor:pointer;
-margin-top:5px;
+
+    background:#8b5cf6;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 15px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.2s;
+
 }
 
-.cor{
-width:12px;
-height:12px;
-border-radius:50%;
-display:inline-block;
-margin-right:5px;
+
+
+button:hover{
+
+    background:#7c3aed;
+
+    transform:translateY(-2px);
+
 }
+
+
+
+.btn-excluir{
+
+    background:#ef4444;
+
+}
+
+
+.btn-excluir:hover{
+
+    background:#dc2626;
+
+}
+
+
+
+.btn-pequeno{
+
+    padding:6px 10px;
+
+    font-size:12px;
+
+}
+
+
+
+
+/* ================= MATÉRIAS ================= */
+
+
+.form-materia{
+
+    display:grid;
+
+    grid-template-columns:
+
+    1.5fr 1fr auto;
+
+    gap:10px;
+
+    margin-top:20px;
+
+}
+
+
+
+.materia{
+
+    border-left:6px solid #a78bfa;
+
+}
+
+
+
+.cabecalho-materia{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+
+
+.nome-materia{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
+
+
+.bolinha{
+
+    width:14px;
+
+    height:14px;
+
+    border-radius:50%;
+
+}
+
+
+
+.categoria{
+
+    background:#ede9fe;
+
+    color:#6d28d9;
+
+    padding:4px 10px;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+}
+
+
+
+
+
+/* ================= ANOTAÇÕES ================= */
+
+
+.area-anotacao{
+
+    margin-top:20px;
+
+}
+
+
+
+.area-anotacao label{
+
+    display:block;
+
+    color:#5b21b6;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+}
+
+
+
+.salvo{
+
+    color:#16a34a;
+
+    font-size:12px;
+
+}
+
+
+
+/* ================= TAREFAS ================= */
+
+
+.form-tarefa{
+
+    display:grid;
+
+    grid-template-columns:
+
+    1fr 150px auto;
+
+    gap:8px;
+
+    margin-top:12px;
+
+}
+
+
 
 .tarefa{
-background:#f5f3ff;
-padding:8px;
-border-radius:8px;
-margin-top:6px;
-font-size:13px;
+
+    margin-top:10px;
+
+    padding:12px;
+
+    background:#faf7ff;
+
+    border-radius:12px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
 }
 
-/* horario */
+
+
+.tarefa.concluida{
+
+    opacity:.5;
+
+    text-decoration:line-through;
+
+}
+
+
+
+.data{
+
+    font-size:11px;
+
+    color:#8b5cf6;
+
+}
+
+
+
+
+
+/* ================= HORÁRIO ================= */
+
 
 .grade{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:8px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:10px;
+
+    margin-top:20px;
+
 }
 
-.quadro{
-background:#f5f3ff;
-padding:15px;
-border-radius:10px;
-text-align:center;
-cursor:pointer;
+
+
+.aula{
+
+    height:90px;
+
+    background:#f5f3ff;
+
+    border-radius:15px;
+
+    border:1px solid #ddd6fe;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-direction:column;
+
+    cursor:pointer;
+
 }
 
-/* calendario */
+
+
+.aula:hover{
+
+    background:#ede9fe;
+
+}
+
+
+
+.numero{
+
+    color:#8b5cf6;
+
+    font-size:12px;
+
+}
+
+
+
+/* ================= CALENDÁRIO ================= */
+
+
+.cabecalho-calendario{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+
 
 .calendario{
-display:grid;
-grid-template-columns:repeat(7,1fr);
-gap:5px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(7,1fr);
+
+    gap:5px;
+
+    margin-top:15px;
+
 }
+
+
 
 .dia{
-background:#f5f3ff;
-padding:6px;
-border-radius:8px;
-min-height:70px;
-font-size:11px;
-cursor:pointer;
+
+    min-height:70px;
+
+    background:#faf9ff;
+
+    border-radius:10px;
+
+    border:1px solid #eee7ff;
+
+    padding:7px;
+
+    font-size:11px;
+
+    cursor:pointer;
+
 }
 
-.presenca{background:#bbf7d0}
-.falta{background:#fecaca}
-.prova{background:#ddd6fe}
 
-.topcal{
-display:flex;
-justify-content:space-between;
-margin-bottom:10px;
+
+.dia:hover{
+
+    border-color:#a78bfa;
+
 }
 
-.bnt{
-background:#8b5cf6;
-border:none;
-color:white;
-padding:10px 18px;
-border-radius:10px;
-cursor:pointer;
-margin:10px 5px;
-font-weight:600;
-transition:.3s;
+
+
+.vazio{
+
+    background:none;
+
+    border:none;
+
 }
 
-.bnt:hover{
-background:#7c3aed;
-transform:translateY(-2px);
+
+
+.presenca{
+
+    background:#dcfce7;
+
 }
+
+
+
+.falta{
+
+    background:#fee2e2;
+
+}
+
+
+
+.prova{
+
+    background:#ede9fe;
+
+}
+
+<style>
+
+
+/* ================= ESTATÍSTICAS ================= */
+
+
+.estatisticas{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:10px;
+
+    margin-top:20px;
+
+}
+
+
+
+.numero-estatistica{
+
+    background:#f5f3ff;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+}
+
+
+
+.numero-estatistica strong{
+
+    display:block;
+
+    font-size:25px;
+
+    color:#7c3aed;
+
+}
+
+
+
+
+/* ================= LINKS ================= */
+
+
+.links{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+
+
+
+/* ================= RESPONSIVO ================= */
+
+
+@media(max-width:900px){
+
+
+.container{
+
+    grid-template-columns:1fr;
+
+}
+
+
+.perfil{
+
+    grid-template-columns:1fr;
+
+}
+
+
+}
+
+
+
+@media(max-width:600px){
+
+
+.form-materia,
+.form-tarefa{
+
+    grid-template-columns:1fr;
+
+}
+
+
+
+.grade{
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+}
+
+
+}
+
+
 </style>
+
+
 </head>
+
+
 
 <body>
 
-<div class="header">
-<input id="nome" placeholder="Seu nome">
-<textarea id="bio" placeholder="Sua bio"></textarea>
+
+
+<header>
+
+
+<div class="topo">
+
+
+<h1>
+🎒 Mochila Digital da Maria
+</h1>
+
+
+<p>
+Organize suas matérias, tarefas e estudos em um só lugar 💜
+</p>
+
+
+
+<div class="perfil">
+
+
+<input 
+id="nome"
+placeholder="Seu nome"
+>
+
+
+<textarea
+id="bio"
+placeholder="Escreva sua frase, objetivo ou organização..."
+></textarea>
+
+
 </div>
 
-<div class="container">
 
-<div>
+</div>
+
+
+</header>
+
+
+
+
+<main class="container">
+
+
+
+<section>
+
+
+
 
 <div class="card">
-<h3>Adicionar matéria</h3>
-<input id="novaMateria">
-<button onclick="addMateria()">Adicionar</button>
+
+
+<h2>
+📚 Minhas matérias
+</h2>
+
+
+<p class="subtitulo">
+
+Crie suas matérias e deixe suas anotações salvas.
+
+</p>
+
+
+
+<div class="form-materia">
+
+
+<input
+id="novaMateria"
+placeholder="Nome da matéria"
+>
+
+
+
+<select
+id="categoriaMateria"
+>
+
+
+<option>
+Exatas
+</option>
+
+
+<option>
+Humanas
+</option>
+
+
+<option>
+Linguagens
+</option>
+
+
+<option>
+Biológicas
+</option>
+
+
+<option>
+Itinerário
+</option>
+
+
+<option>
+Curso Técnico
+</option>
+
+
+</select>
+
+
+
+<button onclick="adicionarMateria()">
+
+Adicionar
+
+</button>
+
+
+
 </div>
+
+
+</div>
+
+
+
 
 <div id="listaMaterias"></div>
 
-<div class="card">
-<h3>Meu horário</h3>
-<div class="grade" id="horario"></div>
-</div>
 
-</div>
 
-<div>
+
 
 <div class="card">
 
-<div class="topcal">
-<button onclick="mes(-1)">◀</button>
-<b id="mes"></b>
-<button onclick="mes(1)">▶</button>
+
+<h2>
+🕐 Meu horário
+</h2>
+
+
+<p class="subtitulo">
+
+Clique no quadrado para colocar a aula.
+
+</p>
+
+
+
+<div
+class="grade"
+id="horario"
+>
+
+
 </div>
 
-<div class="calendario" id="calendario"></div>
 
-<div id="stats"></div>
 
 </div>
 
-</div>
+
+
+
+</section>
+
+
+
+
+
+<aside>
+
+
+
+
+<div class="card">
+
+
+<div class="cabecalho-calendario">
+
+
+<button onclick="mudarMes(-1)">
+◀
+</button>
+
+
+
+<h3 id="mesAtual">
+
+</h3>
+
+
+
+<button onclick="mudarMes(1)">
+▶
+</button>
+
+
 
 </div>
 
+
+
+<div class="calendario"
+id="calendario">
+
+</div>
+
+
+
+
+<div class="estatisticas">
+
+
+<div class="numero-estatistica">
+
+
+<strong id="porcentagem">
+
+0%
+
+</strong>
+
+
+Presença
+
+
+</div>
+
+
+
+<div class="numero-estatistica">
+
+
+<strong id="faltas">
+
+0
+
+</strong>
+
+
+Faltas
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h3>
+🔗 Outros conteúdos
+</h3>
+
+
+
+<div class="links">
+
+
+<a href="d-h.html">
+
+<button>
+
+Direitos Humanos
+
+</button>
+
+</a>
+
+
+
+<a href="programacao-web.html">
+
+<button>
+
+💻 Programação Web
+
+</button>
+
+</a>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="card">
+
+
+<h3>
+⚙️ Configuração
+</h3>
+
+
+<p class="subtitulo">
+
+Se precisar começar novamente, apague os dados.
+
+</p>
+
+
+<br>
+
+
+<button 
+class="btn-excluir"
+onclick="apagarDados()"
+>
+
+Apagar tudo
+
+</button>
+
+
+</div>
+
+
+</aside>
+
+
+</main>
+
+
+<footer>
+
+
+💜 Mochila Digital • Organização dos estudos
+
+
+</footer>
 <script>
 
-const cores=[
-"#a78bfa","#60a5fa","#34d399",
-"#f472b6","#fbbf24","#fb7185"
-]
 
-let hoje=new Date()
-
-let db=JSON.parse(localStorage.getItem("mochila"))||{
-perfil:{nome:"",bio:""},
-materias:[],
-horario:Array(9).fill(""),
-cal:{}
-}
-
-function save(){
-localStorage.setItem("mochila",JSON.stringify(db))
-}
-
-/* perfil */
-
-nome.value=db.perfil.nome
-bio.value=db.perfil.bio
-
-nome.oninput=()=>{
-db.perfil.nome=nome.value
-save()
-}
-
-bio.oninput=()=>{
-db.perfil.bio=bio.value
-save()
-}
-
-/* materias */
-
-function addMateria(){
-
-let nome=novaMateria.value
-if(!nome)return
-
-db.materias.push({
-nome,
-cor:cores[Math.floor(Math.random()*cores.length)],
-tarefas:[]
-})
-
-novaMateria.value=""
-save()
-render()
-
-}
-
-function addTarefa(i){
-
-let nome=prompt("tarefa")
-let data=prompt("YYYY-MM-DD")
-
-if(!nome||!data)return
-
-db.materias[i].tarefas.push({nome,data})
-
-db.materias[i].tarefas.sort(
-(a,b)=>new Date(a.data)-new Date(b.data)
+let dados = JSON.parse(
+localStorage.getItem("mochilaDigital")
 )
+||
+{
 
-save()
-render()
+nome:"",
+bio:"",
+
+materias:[],
+
+horario:[
+"",
+"",
+"",
+"",
+"",
+"",
+"",
+"",
+""
+],
+
+calendario:{}
+
+};
+
+
+
+let dataAtual = new Date();
+
+
+
+
+/* ================= SALVAR ================= */
+
+
+function salvar(){
+
+localStorage.setItem(
+"mochilaDigital",
+JSON.stringify(dados)
+);
 
 }
 
-/* horario */
+
+
+/* ================= PERFIL ================= */
+
+
+nome.value = dados.nome;
+
+bio.value = dados.bio;
+
+
+
+nome.oninput=function(){
+
+dados.nome=this.value;
+
+salvar();
+
+};
+
+
+
+bio.oninput=function(){
+
+dados.bio=this.value;
+
+salvar();
+
+};
+
+
+
+
+
+/* ================= MATÉRIAS ================= */
+
+
+const cores=[
+
+"#a78bfa",
+"#60a5fa",
+"#34d399",
+"#f472b6",
+"#fbbf24",
+"#fb7185"
+
+];
+
+
+
+function adicionarMateria(){
+
+
+let nomeMateria =
+document.getElementById("novaMateria").value;
+
+
+
+let categoria =
+document.getElementById("categoriaMateria").value;
+
+
+
+if(nomeMateria==""){
+
+alert("Digite o nome da matéria");
+
+return;
+
+}
+
+
+
+dados.materias.push({
+
+nome:nomeMateria,
+
+categoria:categoria,
+
+cor:
+cores[
+dados.materias.length %
+cores.length
+],
+
+anotacao:"",
+
+tarefas:[]
+
+});
+
+
+
+document.getElementById("novaMateria").value="";
+
+
+
+salvar();
+
+render();
+
+
+}
+
+
+
+
+
+
+
+function excluirMateria(i){
+
+
+if(confirm("Excluir essa matéria?")){
+
+
+dados.materias.splice(i,1);
+
+
+salvar();
+
+render();
+
+
+}
+
+
+}
+
+
+
+
+
+
+/* ================= ANOTAÇÕES ================= */
+
+
+function salvarAnotacao(i){
+
+
+dados.materias[i].anotacao =
+
+document.getElementById(
+"anotacao"+i
+).value;
+
+
+
+salvar();
+
+
+
+document.getElementById(
+"salvo"+i
+).innerHTML=
+"✓ Salvo";
+
+
+}
+
+
+
+
+
+
+
+/* ================= TAREFAS ================= */
+
+
+function adicionarTarefa(i){
+
+
+let tarefa =
+document.getElementById(
+"tarefa"+i
+).value;
+
+
+
+let data =
+document.getElementById(
+"data"+i
+).value;
+
+
+
+if(tarefa=="") return;
+
+
+
+dados.materias[i].tarefas.push({
+
+nome:tarefa,
+
+data:data,
+
+feito:false
+
+});
+
+
+
+salvar();
+
+render();
+
+
+}
+
+
+
+
+
+
+function concluirTarefa(m,t){
+
+
+dados.materias[m]
+.tarefas[t]
+.feito =
+!
+dados.materias[m]
+.tarefas[t]
+.feito;
+
+
+
+salvar();
+
+render();
+
+
+}
+
+
+
+
+
+
+function excluirTarefa(m,t){
+
+
+dados.materias[m]
+.tarefas.splice(t,1);
+
+
+
+salvar();
+
+render();
+
+
+}
+
+
+
+
+
+/* ================= HORÁRIO ================= */
+
+
 
 function renderHorario(){
 
-horario.innerHTML=""
 
-db.horario.forEach((h,i)=>{
+let area =
+document.getElementById(
+"horario"
+);
 
-horario.innerHTML+=`
-<div class="quadro"
-onclick="editHorario(${i})">
-${h||"+"}
+
+
+area.innerHTML="";
+
+
+
+dados.horario.forEach(
+function(aula,i){
+
+
+area.innerHTML += `
+
+
+<div class="aula"
+onclick="editarAula(${i})">
+
+
+<span class="numero">
+
+${i+1}ª aula
+
+</span>
+
+
+<strong>
+
+${aula || "+"}
+
+</strong>
+
+
 </div>
-`
 
-})
+
+`;
+
+
+});
+
 
 }
 
-function editHorario(i){
-let t=prompt("Aula")
-if(t==null)return
-db.horario[i]=t
-save()
-render()
+
+
+
+function editarAula(i){
+
+
+let novo =
+prompt(
+"Digite a aula:",
+dados.horario[i]
+);
+
+
+
+if(novo==null)return;
+
+
+
+dados.horario[i]=novo;
+
+
+
+salvar();
+
+renderHorario();
+
+
 }
 
-/* calendario */
+
+
+
+
+/* ================= CALENDÁRIO ================= */
+
+
+function chave(data){
+
+
+return data;
+
+}
+
+
+
+
 
 function renderCalendario(){
 
-let ano=hoje.getFullYear()
-let mes=hoje.getMonth()
 
-mes.innerText=
-hoje.toLocaleString("pt-br",{month:"long",year:"numeric"})
 
-let dias=new Date(ano,mes+1,0).getDate()
+let calendario =
+document.getElementById(
+"calendario"
+);
 
-calendario.innerHTML=""
 
-let p=0,f=0
 
-for(let d=1;d<=dias;d++){
+let mes =
+document.getElementById(
+"mesAtual"
+);
 
-let key=`${ano}-${mes}-${d}`
-let tipo=db.cal[key]||""
 
-if(tipo=="presenca")p++
-if(tipo=="falta")f++
 
-let tarefas=""
+let ano =
+dataAtual.getFullYear();
 
-db.materias.forEach(m=>{
-m.tarefas.forEach(t=>{
-let dt=new Date(t.data)
-if(dt.getDate()==d && dt.getMonth()==mes)
-tarefas+="•"+t.nome+"<br>"
-})
-})
+
+
+let numeroMes =
+dataAtual.getMonth();
+
+
+
+mes.innerHTML =
+dataAtual.toLocaleDateString(
+"pt-BR",
+{
+month:"long",
+year:"numeric"
+}
+);
+
+
+
+calendario.innerHTML="";
+
+
+
+let primeiro =
+new Date(
+ano,
+numeroMes,
+1
+).getDay();
+
+
+
+let total =
+new Date(
+ano,
+numeroMes+1,
+0
+).getDate();
+
+
+
+
+for(let i=0;i<primeiro;i++){
+
+calendario.innerHTML+=
+`
+<div class="dia vazio"></div>
+`;
+
+}
+
+
+
+
+
+let presenca=0;
+
+let falta=0;
+
+
+
+for(
+let dia=1;
+dia<=total;
+dia++
+){
+
+
+
+let id =
+ano+
+"-"+
+(numeroMes+1)+
+"-"+
+dia;
+
+
+
+let tipo =
+dados.calendario[id]
+||
+"";
+
+
+
+if(tipo=="presenca")
+presenca++;
+
+
+
+if(tipo=="falta")
+falta++;
+
+
 
 calendario.innerHTML+=`
-<div class="dia ${tipo}"
-onclick="marcar('${key}')">
 
-<b>${d}</b>
-<br>
-${tarefas}
+
+<div 
+class="dia ${tipo}"
+onclick="marcarDia('${id}')">
+
+
+<strong>
+
+${dia}
+
+</strong>
+
 
 </div>
-`
+
+
+`;
+
+
 
 }
 
-let total=p+f
-let media= total?Math.round(p/total*100):0
 
-stats.innerHTML=`
-Presença: ${media}%<br>
-Faltas: ${f}
-`
 
-}
+let totalMarcado =
+presenca+falta;
 
-function marcar(k){
 
-let r=prompt(
-1 presença
-2 falta
-3 prova
-0 limpar
+
+document.getElementById(
+"porcentagem"
+).innerHTML =
+
+totalMarcado==0
+?
+"0%"
+:
+Math.round(
+presenca/totalMarcado*100
 )
++
+"%";
 
-if(r==1)db.cal[k]="presenca"
-else if(r==2)db.cal[k]="falta"
-else if(r==3)db.cal[k]="prova"
-else delete db.cal[k]
 
-save()
-render()
+
+document.getElementById(
+"faltas"
+).innerHTML=
+falta;
+
+
 
 }
 
-function mes(n){
-hoje.setMonth(hoje.getMonth()+n)
-render()
+
+
+
+
+
+function marcarDia(id){
+
+
+let escolha =
+prompt(
+"1 Presença\n2 Falta\n3 Prova\n0 Limpar"
+);
+
+
+
+if(escolha=="1")
+dados.calendario[id]="presenca";
+
+else
+if(escolha=="2")
+dados.calendario[id]="falta";
+
+else
+if(escolha=="3")
+dados.calendario[id]="prova";
+
+else
+if(escolha=="0")
+delete dados.calendario[id];
+
+else
+return;
+
+
+
+salvar();
+
+renderCalendario();
+
+
 }
 
-/* render */
+
+
+
+
+
+
+function mudarMes(v){
+
+
+dataAtual.setMonth(
+dataAtual.getMonth()+v
+);
+
+
+renderCalendario();
+
+
+}
+
+
+
+
+
+
+/* ================= MOSTRAR ================= */
+
 
 function render(){
 
-listaMaterias.innerHTML=""
 
-db.materias.forEach((m,i)=>{
+let lista =
+document.getElementById(
+"listaMaterias"
+);
 
-let tarefas=m.tarefas.map(t=>
-`<div class="tarefa">${t.nome}<br>${t.data}</div>`
-).join("")
 
-listaMaterias.innerHTML+=`
-<div class="card">
+
+lista.innerHTML="";
+
+
+
+dados.materias.forEach(
+function(m,i){
+
+
+
+let tarefas="";
+
+
+
+m.tarefas.forEach(
+function(t,j){
+
+
+
+tarefas+=`
+
+
+<div class="tarefa">
+
+
+<div>
+
+<b>
+
+${t.nome}
+
+</b>
+
+
+<br>
+
+
+<span class="data">
+
+${t.data}
+
+</span>
+
+
+</div>
+
+
+
+<div>
+
+
+<button
+onclick="concluirTarefa(${i},${j})">
+
+✓
+
+</button>
+
+
+<button
+class="btn-excluir"
+onclick="excluirTarefa(${i},${j})">
+
+X
+
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+`;
+
+
+});
+
+
+
+
+
+lista.innerHTML+=`
+
+
+<div class="card materia">
+
+
+<div class="cabecalho-materia">
+
+
+<div class="nome-materia">
+
+
+<span 
+class="bolinha"
+style="background:${m.cor}">
+</span>
+
+
 <h3>
-<span class="cor" style="background:${m.cor}"></span>
+
 ${m.nome}
+
 </h3>
 
-<button onclick="addTarefa(${i})">
-Nova tarefa
+
+<span class="categoria">
+
+${m.categoria}
+
+</span>
+
+
+</div>
+
+
+
+<button
+class="btn-excluir"
+onclick="excluirMateria(${i})">
+
+X
+
 </button>
+
+
+</div>
+
+
+
+
+
+<div class="area-anotacao">
+
+
+<label>
+
+📝 Anotações
+
+</label>
+
+
+<textarea
+id="anotacao${i}"
+oninput="salvarAnotacao(${i})"
+>${m.anotacao}</textarea>
+
+
+
+<span class="salvo"
+id="salvo${i}">
+
+</span>
+
+
+</div>
+
+
+
+
+
+<h3>
+
+✅ Tarefas
+
+</h3>
+
+
+
+<div class="form-tarefa">
+
+
+<input
+id="tarefa${i}"
+placeholder="Nova tarefa">
+
+
+<input
+id="data${i}"
+type="date">
+
+
+<button
+onclick="adicionarTarefa(${i})">
+
++
+
+</button>
+
+
+</div>
+
+
 
 ${tarefas}
 
+
+
 </div>
-`
 
-})
 
-renderHorario()
-renderCalendario()
+`;
+
+
+
+});
+
+
+
+renderHorario();
+
+renderCalendario();
+
 
 }
 
-render()
+
+
+
+
+
+
+function apagarDados(){
+
+
+if(confirm("Apagar tudo?")){
+
+
+localStorage.clear();
+
+
+location.reload();
+
+
+}
+
+
+}
+
+
+
+
+
+render();
+
+
 
 </script>
-  
-<a href="d-h.html">
-    <button class="bnt">Direitos Humanos</button>
-</a>
 
-<a href="programacao-web.html">
-    <button class="bnt">💻 Programação Web</button>
-</a>
+
 </body>
+
 </html>
