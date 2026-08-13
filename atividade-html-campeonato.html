@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Atividade HTML | Mochila Digital</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+
+        body {
+
+            background: #f8f5ff;
+
+            color: #312e41;
+
+            min-height: 100vh;
+
+        }
+
+
+
+        header {
+
+            background: linear-gradient(
+                135deg,
+                #e9d5ff,
+                #f3e8ff
+            );
+
+            padding: 40px 6%;
+
+            box-shadow:
+                0 4px 15px rgba(0,0,0,.05);
+
+        }
+
+
+        .topo {
+
+            max-width: 1100px;
+
+            margin: auto;
+
+        }
+
+
+        .topo h1 {
+
+            color: #6d28d9;
+
+            font-size: 30px;
+
+        }
+
+
+        .topo p {
+
+            color: #7c718c;
+
+            margin-top: 6px;
+
+            font-size: 14px;
+
+        }
+
+
+        main {
+
+            max-width: 1100px;
+
+            margin: 30px auto;
+
+            padding: 0 6%;
+
+        }
+
+
+        .voltar {
+
+            display: inline-block;
+
+            text-decoration: none;
+
+            background: #8b5cf6;
+
+            color: white;
+
+            padding: 11px 18px;
+
+            border-radius: 12px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            margin-bottom: 25px;
+
+            transition: .2s;
+
+        }
+
+
+        .voltar:hover {
+
+            background: #7c3aed;
+
+            transform: translateY(-2px);
+
+        }
+
+
+       
+
+        .card {
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 28px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,.08);
+
+            border: 1px solid #eee7ff;
+
+        }
+
+
+        .card h2 {
+
+            color: #5b21b6;
+
+            margin-bottom: 20px;
+
+            font-size: 21px;
+
+        }
+
+
+      
+        .titulo-atividade {
+
+            text-align: center;
+
+            background: linear-gradient(
+                135deg,
+                #f5edff,
+                #eee4ff
+            );
+
+            border-radius: 18px;
+
+            padding: 28px;
+
+            border: 1px solid #e4d7f4;
+
+        }
+
+
+        .titulo-atividade .numero {
+
+            display: inline-block;
+
+            background: #8b5cf6;
+
+            color: white;
+
+            padding: 6px 15px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .titulo-atividade h2 {
+
+            color: #6d28d9;
+
+            font-size: 25px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .titulo-atividade p {
+
+            color: #7c718c;
+
+            font-size: 13px;
+
+        }
+
+
+        
+        .enunciado {
+
+            background: #faf8ff;
+
+            border-left: 5px solid #a78bfa;
+
+            border-radius: 0 14px 14px 0;
+
+            padding: 23px;
+
+        }
+
+
+        .enunciado p {
+
+            font-size: 15px;
+
+            line-height: 1.85;
+
+            margin-bottom: 15px;
+
+            text-align: justify;
+
+        }
+
+
+        .enunciado p:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+       
+        .pergunta {
+
+            background: #f5f0ff;
+
+            border: 1px solid #e5d9f7;
+
+            border-radius: 16px;
+
+            padding: 23px;
+
+        }
+
+
+        .pergunta p {
+
+            font-size: 15px;
+
+            line-height: 1.85;
+
+            text-align: justify;
+
+        }
+
+
+     
+
+        .resposta {
+
+            background: white;
+
+            border: 1px solid #e8def5;
+
+            border-radius: 16px;
+
+            padding: 25px;
+
+        }
+
+
+        .etiqueta {
+
+            display: inline-block;
+
+            background: #ede9fe;
+
+            color: #6d28d9;
+
+            padding: 7px 14px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .resposta p {
+
+            font-size: 15px;
+
+            line-height: 1.9;
+
+            text-align: justify;
+
+            margin-bottom: 17px;
+
+        }
+
+
+        .resposta p:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+      
+        code {
+
+            background: #ede9fe;
+
+            color: #6d28d9;
+
+            padding: 2px 6px;
+
+            border-radius: 5px;
+
+            font-family: Consolas, monospace;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+        }
+
+
+       
+
+        footer {
+
+            background: #f3e8ff;
+
+            border-top: 1px solid #e5d8f5;
+
+            text-align: center;
+
+            padding: 25px;
+
+            margin-top: 40px;
+
+            color: #7c718c;
+
+            font-size: 13px;
+
+        }
+
+
+        footer strong {
+
+            color: #6d28d9;
+
+        }
+
+
+      
+
+        @media(max-width:700px) {
+
+            header {
+
+                padding: 30px 6%;
+
+            }
+
+
+            .topo h1 {
+
+                font-size: 24px;
+
+            }
+
+
+            main {
+
+                padding: 0 5%;
+
+            }
+
+
+            .card {
+
+                padding: 20px;
+
+            }
+
+
+            .titulo-atividade h2 {
+
+                font-size: 21px;
+
+            }
+
+
+            .enunciado p,
+            .pergunta p,
+            .resposta p {
+
+                font-size: 14px;
+
+                text-align: left;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <div class="topo">
+
+            <h1>
+                🎒 Mochila Digital da Maria
+            </h1>
+
+            <p>
+                Atividade de HTML • 2º Trimestre
+            </p>
+
+        </div>
+
+    </header>
+
+
+   
+
+    <main>
+
+
+      
+
+        <a href="index.html" class="voltar">
+            ← Voltar para a Mochila
+        </a>
+
+
+ 
+
+        <section class="card">
+
+            <div class="titulo-atividade">
+
+                <span class="numero">
+                    ATIVIDADE • HTML
+                </span>
+
+                <h2>
+                    Criando sua página oficial para o Campeonato Nacional
+                </h2>
+
+                <p>
+                    Atividade de estruturação de páginas utilizando HTML
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>
+                📄 Enunciado
+            </h2>
+
+
+            <div class="enunciado">
+
+                <p>
+                    Você foi classificado para disputar o Campeonato
+                    Brasileiro de Artes Marciais. A organização solicita
+                    que cada atleta envie uma página web simples com sua
+                    apresentação, categoria, estado de origem, principais
+                    conquistas e um link para seu perfil oficial.
+                </p>
+
+
+                <p>
+                    Essa página será publicada no site do evento e deverá
+                    ser organizada para facilitar a leitura dos visitantes
+                    e da imprensa.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>
+                ❓ Pergunta
+            </h2>
+
+
+            <div class="pergunta">
+
+                <p>
+                    Explique como você estruturaria essa página utilizando
+                    HTML, indicando quais tags utilizaria para organizar as
+                    informações do atleta, criar títulos, parágrafos, listas
+                    e links. Justifique também por que é importante utilizar
+                    tags semânticas nessa situação.
+                </p>
+
+            </div>
+
+        </section>
+
+
+    
+        <section class="card">
+
+            <h2>
+                ✏️ Minha resposta
+            </h2>
+
+
+            <div class="resposta">
+
+                <span class="etiqueta">
+                    Resposta da atividade
+                </span>
+
+
+                <p>
+                    Eu estruturaria a página de forma organizada e objetiva.
+                    Inicialmente, utilizaria a tag
+                    <code>&lt;header&gt;</code>
+                    para apresentar o meu nome e o título da página.
+                    Para organizar os títulos e subtítulos, utilizaria as
+                    tags <code>&lt;h1&gt;</code>,
+                    <code>&lt;h2&gt;</code> e
+                    <code>&lt;h3&gt;</code>.
+                </p>
+
+
+                <p>
+                    Para apresentar as informações sobre mim, como minha
+                    categoria, estado, utilizaria a tag
+                    <code>&lt;p&gt;</code>, formando parágrafos claros e
+                    bem estruturados. Para destacar minhas principais
+                    conquistas, utilizaria listas com as tags
+                    <code>&lt;ul&gt;</code> e
+                    <code>&lt;li&gt;</code>, facilitando a leitura das
+                    informações.
+                </p>
+
+
+                <p>
+                    Também utilizaria a tag
+                    <code>&lt;a&gt;</code> para inserir links, como o meu
+                    perfil ou páginas relacionadas ao Campeonato Brasileiro.
+                    Para dividir melhor o conteúdo, utilizaria as tags
+                    semânticas <code>&lt;main&gt;</code>,
+                    <code>&lt;section&gt;</code> e
+                    <code>&lt;footer&gt;</code>.
+                </p>
+
+
+                <p>
+                    Considero importante utilizar tags semânticas porque elas
+                    permitem organizar melhor a estrutura da página. Além
+                    disso, contribuem para a acessibilidade e para que os
+                    mecanismos de busca compreendam melhor o conteúdo da
+                    página. Dessa forma, criaria uma página organizada,
+                    profissional e adequada.
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
+
+        <strong>
+            💜 Mochila Digital da Maria
+        </strong>
+
+        <br>
+
+        Atividade de HTML • Campeonato Nacional
+
+    </footer>
+
+
+</body>
+
+</html>
