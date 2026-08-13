@@ -30,8 +30,6 @@ body{
 }
 
 
-/* ================= HEADER ================= */
-
 
 header{
 
@@ -83,8 +81,6 @@ header{
 
 
 
-/* ================= CAMPOS ================= */
-
 
 input,
 textarea,
@@ -126,10 +122,6 @@ select:focus{
 
 }
 
-
-
-
-/* ================= ESTRUTURA ================= */
 
 
 .container{
@@ -188,11 +180,6 @@ select:focus{
     margin-top:5px;
 
 }
-
-
-
-
-/* ================= BOTÕES ================= */
 
 
 button{
@@ -561,10 +548,7 @@ button:hover{
 
 <style>
 
-
-/* ================= ESTATÍSTICAS ================= */
-
-
+    
 .estatisticas{
 
     display:grid;
@@ -980,7 +964,11 @@ Direitos Humanos
 </button>
 
 </a>
-
+<a href="atividade-html-campeonato.html">
+    <button>
+        🥋 Atividade HTML
+    </button>
+</a>
 
 </div>
 
@@ -1072,9 +1060,6 @@ let dataAtual = new Date();
 
 
 
-/* ================= SALVAR ================= */
-
-
 function salvar(){
 
 localStorage.setItem(
@@ -1084,9 +1069,6 @@ JSON.stringify(dados)
 
 }
 
-
-
-/* ================= PERFIL ================= */
 
 
 nome.value = dados.nome;
@@ -1113,11 +1095,6 @@ salvar();
 
 };
 
-
-
-
-
-/* ================= MATÉRIAS ================= */
 
 
 const cores=[
@@ -1189,10 +1166,6 @@ render();
 
 
 
-
-
-
-
 function excluirMateria(i){
 
 
@@ -1213,11 +1186,6 @@ render();
 }
 
 
-
-
-
-
-/* ================= ANOTAÇÕES ================= */
 
 
 function salvarAnotacao(i){
@@ -1244,12 +1212,6 @@ document.getElementById(
 }
 
 
-
-
-
-
-
-/* ================= TAREFAS ================= */
 
 
 function adicionarTarefa(i){
@@ -1293,10 +1255,6 @@ render();
 }
 
 
-
-
-
-
 function concluirTarefa(m,t){
 
 
@@ -1319,9 +1277,6 @@ render();
 
 
 
-
-
-
 function excluirTarefa(m,t){
 
 
@@ -1336,12 +1291,6 @@ render();
 
 
 }
-
-
-
-
-
-/* ================= HORÁRIO ================= */
 
 
 
@@ -1425,10 +1374,6 @@ renderHorario();
 }
 
 
-
-
-
-/* ================= CALENDÁRIO ================= */
 
 
 function chave(data){
@@ -1615,9 +1560,6 @@ falta;
 
 
 
-
-
-
 function marcarDia(id){
 
 
@@ -1657,10 +1599,6 @@ renderCalendario();
 
 
 
-
-
-
-
 function mudarMes(v){
 
 
@@ -1674,12 +1612,6 @@ renderCalendario();
 
 }
 
-
-
-
-
-
-/* ================= MOSTRAR ================= */
 
 
 function render(){
