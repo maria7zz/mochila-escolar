@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Conscientização e Inclusão | Mochila Digital</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f8f5ff;
+    color:#312e41;
+    line-height:1.6;
+}
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+header{
+    background:linear-gradient(135deg,#e9d5ff,#f3e8ff,#ede9fe);
+    padding:25px 7%;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 3px 15px rgba(91,33,182,.08);
+}
+
+.nav{
+    max-width:1250px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.logo{
+    font-size:20px;
+    font-weight:700;
+    color:#6d28d9;
+}
+
+.nav a{
+    text-decoration:none;
+    color:#5b21b6;
+    font-size:14px;
+    font-weight:600;
+    padding:9px 15px;
+    border-radius:10px;
+    transition:.2s;
+}
+
+.nav a:hover{
+    background:#ddd6fe;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:560px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:80px 7%;
+    background:
+        radial-gradient(circle at 10% 20%,#ddd6fe 0,transparent 25%),
+        radial-gradient(circle at 90% 80%,#e9d5ff 0,transparent 25%),
+        #f8f5ff;
+}
+
+.hero-content{
+    max-width:950px;
+}
+
+.tag{
+    display:inline-block;
+    background:#ede9fe;
+    color:#6d28d9;
+    padding:8px 17px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:clamp(36px,6vw,68px);
+    line-height:1.1;
+    color:#5b21b6;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    color:#8b5cf6;
+}
+
+.hero p{
+    max-width:760px;
+    margin:auto;
+    color:#6b6475;
+    font-size:17px;
+}
+
+.hero-buttons{
+    margin-top:30px;
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+    background:#8b5cf6;
+    color:white;
+    padding:13px 22px;
+    border-radius:13px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.btn:hover{
+    background:#7c3aed;
+    transform:translateY(-2px);
+}
+
+.btn-secundario{
+    background:white;
+    color:#6d28d9;
+    border:1px solid #ddd6fe;
+}
+
+.btn-secundario:hover{
+    background:#f5f3ff;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:70px 7%;
+}
+
+.titulo{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.titulo span{
+    color:#8b5cf6;
+    font-size:13px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.titulo h2{
+    color:#5b21b6;
+    font-size:32px;
+    margin-top:7px;
+}
+
+.titulo p{
+    color:#777080;
+    margin-top:8px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border:1px solid #eee7ff;
+    border-radius:22px;
+    padding:27px;
+    box-shadow:0 7px 25px rgba(91,33,182,.07);
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 30px rgba(91,33,182,.12);
+}
+
+.icone{
+    width:52px;
+    height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:15px;
+    background:#ede9fe;
+    font-size:25px;
+    margin-bottom:18px;
+}
+
+.card h3{
+    color:#5b21b6;
+    margin-bottom:9px;
+}
+
+.card p{
+    color:#706978;
+    font-size:14px;
+}
+
+/* =========================
+   ESTATÍSTICAS
+========================= */
+
+.estatisticas{
+    background:linear-gradient(135deg,#6d28d9,#8b5cf6);
+    color:white;
+}
+
+.estatisticas .titulo h2,
+.estatisticas .titulo p,
+.estatisticas .titulo span{
+    color:white;
+}
+
+.numeros{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.numero{
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:20px;
+    padding:25px 15px;
+    text-align:center;
+    backdrop-filter:blur(5px);
+}
+
+.numero strong{
+    display:block;
+    font-size:31px;
+    margin-bottom:5px;
+}
+
+.numero span{
+    font-size:12px;
+    opacity:.9;
+}
+
+/* =========================
+   GRÁFICO
+========================= */
+
+.grafico-box{
+    background:white;
+    padding:30px;
+    border-radius:22px;
+    border:1px solid #eee7ff;
+    box-shadow:0 7px 25px rgba(91,33,182,.06);
+}
+
+.barra-item{
+    margin-bottom:20px;
+}
+
+.barra-topo{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:7px;
+    font-size:13px;
+    font-weight:600;
+    color:#514b58;
+}
+
+.barra-fundo{
+    width:100%;
+    height:13px;
+    background:#f0eafb;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.barra{
+    height:100%;
+    width:0;
+    background:linear-gradient(90deg,#8b5cf6,#c084fc);
+    border-radius:20px;
+    transition:width 1.2s ease;
+}
+
+/* =========================
+   HISTÓRIA
+========================= */
+
+.linha{
+    position:relative;
+    max-width:850px;
+    margin:auto;
+}
+
+.linha::before{
+    content:"";
+    position:absolute;
+    left:20px;
+    top:0;
+    bottom:0;
+    width:3px;
+    background:#ddd6fe;
+}
+
+.evento{
+    position:relative;
+    padding-left:60px;
+    margin-bottom:35px;
+}
+
+.evento::before{
+    content:"";
+    position:absolute;
+    left:10px;
+    top:4px;
+    width:23px;
+    height:23px;
+    border-radius:50%;
+    background:#8b5cf6;
+    border:5px solid #ede9fe;
+}
+
+.ano{
+    color:#8b5cf6;
+    font-weight:700;
+    font-size:14px;
+}
+
+.evento h3{
+    color:#5b21b6;
+    margin:3px 0;
+}
+
+.evento p{
+    color:#706978;
+    font-size:14px;
+}
+
+/* =========================
+   ACESSIBILIDADE
+========================= */
+
+.acessibilidade{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.acess-card{
+    padding:25px;
+    border-radius:20px;
+    background:#fff;
+    border:1px solid #eee7ff;
+    transition:.2s;
+}
+
+.acess-card:hover{
+    border-color:#c4b5fd;
+    transform:translateY(-3px);
+}
+
+.acess-card h3{
+    color:#6d28d9;
+    margin-bottom:7px;
+}
+
+.acess-card p{
+    font-size:14px;
+    color:#706978;
+}
+
+/* =========================
+   VÍDEO
+========================= */
+
+.video-area{
+    background:#f1edff;
+}
+
+.video-box{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    border-radius:22px;
+    padding:15px;
+    box-shadow:0 8px 30px rgba(91,33,182,.1);
+}
+
+.video-box video{
+    width:100%;
+    display:block;
+    border-radius:15px;
+    background:#171222;
+}
+
+.video-legenda{
+    padding:18px 10px 5px;
+    color:#706978;
+    font-size:13px;
+}
+
+/* =========================
+   QUIZ
+========================= */
+
+.quiz{
+    max-width:850px;
+    margin:auto;
+}
+
+.pergunta{
+    background:white;
+    border:1px solid #eee7ff;
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:18px;
+}
+
+.pergunta h3{
+    color:#5b21b6;
+    font-size:16px;
+    margin-bottom:15px;
+}
+
+.opcao{
+    width:100%;
+    text-align:left;
+    margin:7px 0;
+    background:#faf9ff;
+    color:#4b4652;
+    border:1px solid #e5def5;
+    padding:12px 15px;
+    border-radius:11px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.opcao:hover{
+    background:#ede9fe;
+    border-color:#c4b5fd;
+}
+
+.opcao.certa{
+    background:#dcfce7;
+    border-color:#86efac;
+}
+
+.opcao.errada{
+    background:#fee2e2;
+    border-color:#fca5a5;
+}
+
+.resultado{
+    text-align:center;
+    background:#ede9fe;
+    color:#5b21b6;
+    padding:20px;
+    border-radius:18px;
+    margin-top:20px;
+    display:none;
+}
+
+.resultado strong{
+    font-size:25px;
+}
+
+/* =========================
+   FRASE FINAL
+========================= */
+
+.mensagem{
+    text-align:center;
+    background:linear-gradient(135deg,#ede9fe,#f3e8ff);
+    border-radius:25px;
+    padding:55px 25px;
+}
+
+.mensagem h2{
+    color:#5b21b6;
+    font-size:30px;
+    margin-bottom:12px;
+}
+
+.mensagem p{
+    max-width:700px;
+    margin:auto;
+    color:#6d6675;
+}
+
+/* =========================
+   FONTES
+========================= */
+
+.fontes{
+    background:white;
+}
+
+.fontes ul{
+    max-width:850px;
+    margin:auto;
+    padding-left:20px;
+}
+
+.fontes li{
+    margin-bottom:12px;
+    color:#6d6675;
+    font-size:13px;
+}
+
+.fontes a{
+    color:#6d28d9;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#312e41;
+    color:#ddd6fe;
+    text-align:center;
+    padding:30px 20px;
+    font-size:13px;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media(max-width:900px){
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .numeros{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:650px){
+
+    .nav{
+        flex-direction:column;
+    }
+
+    .hero{
+        min-height:500px;
+        padding:60px 6%;
+    }
+
+    .acessibilidade{
+        grid-template-columns:1fr;
+    }
+
+    .numeros{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .container{
+        padding:55px 6%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="nav">
+
+        <div class="logo">
+            🎒 Mochila Digital
+        </div>
+
+        <div>
+            <a href="index.html">← Voltar para a Mochila</a>
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="tag">
+            💜 21 DE SETEMBRO
+        </span>
+
+        <h1>
+            Dia Nacional de Luta da
+            <span>Pessoa com Deficiência</span>
+        </h1>
+
+        <p>
+            Uma data para ampliar a conscientização sobre inclusão,
+            acessibilidade, respeito, cidadania e garantia de direitos
+            das pessoas com deficiência.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#sobre" class="btn">
+                Conheça a data
+            </a>
+
+            <a href="#video" class="btn btn-secundario">
+                🎥 Assistir vídeo
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SOBRE
+========================= -->
+
+<section class="container" id="sobre">
+
+    <div class="titulo">
+
+        <span>ENTENDA</span>
+
+        <h2>Por que essa data é importante?</h2>
+
+        <p>
+            Conhecimento também é uma forma de construir uma sociedade mais inclusiva.
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <div class="icone">📅</div>
+
+            <h3>21 de setembro</h3>
+
+            <p>
+                O Dia Nacional de Luta da Pessoa com Deficiência
+                é celebrado no dia 21 de setembro e foi instituído
+                pela Lei nº 11.133, de 14 de julho de 2005.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icone">♿</div>
+
+            <h3>Inclusão</h3>
+
+            <p>
+                A inclusão busca garantir que as pessoas com
+                deficiência possam participar da sociedade com
+                igualdade de oportunidades e respeito.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icone">🤝</div>
+
+            <h3>Respeito</h3>
+
+            <p>
+                Conscientizar significa reconhecer direitos,
+                combater preconceitos e contribuir para ambientes
+                mais acessíveis e acolhedores.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ESTATÍSTICAS
+========================= -->
+
+<section class="container estatisticas">
+
+    <div class="titulo">
+
+        <span>DADOS DO BRASIL</span>
+
+        <h2>Conheça alguns números</h2>
+
+        <p>
+            Dados da PNAD Contínua 2022, do IBGE, para pessoas
+            de 2 anos ou mais.
+        </p>
+
+    </div>
+
+
+    <div class="numeros">
+
+
+        <div class="numero">
+
+            <strong>18,6 mi</strong>
+
+            <span>
+                pessoas com deficiência
+            </span>
+
+        </div>
+
+
+        <div class="numero">
+
+            <strong>8,9%</strong>
+
+            <span>
+                da população de 2 anos ou mais
+            </span>
+
+        </div>
+
+
+        <div class="numero">
+
+            <strong>10,0%</strong>
+
+            <span>
+                percentual entre mulheres
+            </span>
+
+        </div>
+
+
+        <div class="numero">
+
+            <strong>7,7%</strong>
+
+            <span>
+                percentual entre homens
+            </span>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     GRÁFICO
+========================= -->
+
+<section class="container">
+
+    <div class="titulo">
+
+        <span>PNAD CONTÍNUA 2022</span>
+
+        <h2>Percentual por região</h2>
+
+        <p>
+            Percentual de pessoas com deficiência na população
+            de 2 anos ou mais.
+        </p>
+
+    </div>
+
+
+    <div class="grafico-box">
+
+
+        <div class="barra-item">
+
+            <div class="barra-topo">
+                <span>Nordeste</span>
+                <span>10,3%</span>
+            </div>
+
+            <div class="barra-fundo">
+                <div class="barra" data-width="82%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="barra-item">
+
+            <div class="barra-topo">
+                <span>Sul</span>
+                <span>8,8%</span>
+            </div>
+
+            <div class="barra-fundo">
+                <div class="barra" data-width="70%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="barra-item">
+
+            <div class="barra-topo">
+                <span>Centro-Oeste</span>
+                <span>8,6%</span>
+            </div>
+
+            <div class="barra-fundo">
+                <div class="barra" data-width="68%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="barra-item">
+
+            <div class="barra-topo">
+                <span>Norte</span>
+                <span>8,4%</span>
+            </div>
+
+            <div class="barra-fundo">
+                <div class="barra" data-width="67%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="barra-item">
+
+            <div class="barra-topo">
+                <span>Sudeste</span>
+                <span>8,2%</span>
+            </div>
+
+            <div class="barra-fundo">
+                <div class="barra" data-width="65%"></div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     HISTÓRIA
+========================= -->
+
+<section class="container">
+
+    <div class="titulo">
+
+        <span>HISTÓRIA</span>
+
+        <h2>Uma luta construída ao longo do tempo</h2>
+
+        <p>
+            A conscientização atual faz parte de uma trajetória
+            de mobilização social e conquista de direitos.
+        </p>
+
+    </div>
+
+
+    <div class="linha">
+
+
+        <div class="evento">
+
+            <span class="ano">1982</span>
+
+            <h3>Mobilização social</h3>
+
+            <p>
+                O Dia Nacional de Luta da Pessoa com Deficiência
+                tem origem em mobilizações de movimentos sociais
+                ligados aos direitos das pessoas com deficiência.
+            </p>
+
+        </div>
+
+
+        <div class="evento">
+
+            <span class="ano">2005</span>
+
+            <h3>Reconhecimento legal</h3>
+
+            <p>
+                A Lei nº 11.133 instituiu oficialmente o dia
+                21 de setembro como Dia Nacional de Luta da
+                Pessoa Portadora de Deficiência.
+            </p>
+
+        </div>
+
+
+        <div class="evento">
+
+            <span class="ano">ATUALMENTE</span>
+
+            <h3>Conscientização e inclusão</h3>
+
+            <p>
+                A data continua sendo um momento de reflexão
+                sobre acessibilidade, participação social,
+                cidadania e combate ao capacitismo.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ACESSIBILIDADE
+========================= -->
+
+<section class="container">
+
+    <div class="titulo">
+
+        <span>ACESSIBILIDADE</span>
+
+        <h2>Incluir também é remover barreiras</h2>
+
+        <p>
+            A acessibilidade pode estar presente em diferentes
+            espaços e formas de comunicação.
+        </p>
+
+    </div>
+
+
+    <div class="acessibilidade">
+
+
+        <div class="acess-card">
+
+            <h3>🏢 Acessibilidade física</h3>
+
+            <p>
+                Rampas, elevadores, corrimãos, banheiros acessíveis
+                e espaços planejados para diferentes necessidades.
+            </p>
+
+        </div>
+
+
+        <div class="acess-card">
+
+            <h3>🗣️ Acessibilidade comunicacional</h3>
+
+            <p>
+                Recursos que facilitam o acesso à informação,
+                como Libras, legendas, audiodescrição e comunicação
+                acessível.
+            </p>
+
+        </div>
+
+
+        <div class="acess-card">
+
+            <h3>💻 Acessibilidade digital</h3>
+
+            <p>
+                Sites, aplicativos e conteúdos digitais devem
+                considerar diferentes formas de interação e acesso.
+            </p>
+
+        </div>
+
+
+        <div class="acess-card">
+
+            <h3>🤝 Acessibilidade atitudinal</h3>
+
+            <p>
+                Enfrentar preconceitos, estereótipos e atitudes
+                discriminatórias também faz parte da inclusão.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     VÍDEO
+========================= -->
+
+<section class="container video-area" id="video">
+
+    <div class="titulo">
+
+        <span>CONSCIENTIZAÇÃO</span>
+
+        <h2>Assista ao vídeo</h2>
+
+        <p>
+            Um momento para refletir sobre inclusão,
+            respeito e acessibilidade.
+        </p>
+
+    </div>
+
+
+    <div class="video-box">
+
+        <!--
+        COLOQUE O SEU VÍDEO NA MESMA PASTA DESTE ARQUIVO
+        E DEIXE O NOME COMO:
+
+        video-conscientizacao.mp4
+        -->
+
+        <video controls>
+
+            <source
+                src="video-conscientizacao.mp4"
+                type="video/mp4"
+            >
+
+            Seu navegador não consegue reproduzir este vídeo.
+
+        </video>
+
+
+        <div class="video-legenda">
+
+            🎥 Vídeo de conscientização sobre a importância
+            da inclusão e do respeito às pessoas com deficiência.
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     QUIZ
+========================= -->
+
+<section class="container">
+
+    <div class="titulo">
+
+        <span>INTERAÇÃO</span>
+
+        <h2>Teste seus conhecimentos</h2>
+
+        <p>
+            Responda às perguntas e veja quantas você consegue acertar.
+        </p>
+
+    </div>
+
+
+    <div class="quiz">
+
+
+        <div class="pergunta">
+
+            <h3>
+                1. Em qual data é celebrado o Dia Nacional de Luta
+                da Pessoa com Deficiência?
+            </h3>
+
+            <button class="opcao" onclick="responder(this,false)">
+                7 de setembro
+            </button>
+
+            <button class="opcao" onclick="responder(this,true)">
+                21 de setembro
+            </button>
+
+            <button class="opcao" onclick="responder(this,false)">
+                15 de outubro
+            </button>
+
+        </div>
+
+
+        <div class="pergunta">
+
+            <h3>
+                2. O que a acessibilidade busca proporcionar?
+            </h3>
+
+            <button class="opcao" onclick="responder(this,false)">
+                Apenas conforto
+            </button>
+
+            <button class="opcao" onclick="responder(this,true)">
+                Acesso e participação com autonomia e igualdade
+            </button>
+
+            <button class="opcao" onclick="responder(this,false)">
+                Exclusivamente atendimento médico
+            </button>
+
+        </div>
+
+
+        <div class="pergunta">
+
+            <h3>
+                3. Qual destas atitudes contribui para a inclusão?
+            </h3>
+
+            <button class="opcao" onclick="responder(this,true)">
+                Respeitar as diferenças e combater o preconceito
+            </button>
+
+            <button class="opcao" onclick="responder(this,false)">
+                Ignorar as necessidades de acessibilidade
+            </button>
+
+            <button class="opcao" onclick="responder(this,false)">
+                Criar barreiras de participação
+            </button>
+
+        </div>
+
+
+        <div class="resultado" id="resultado">
+
+            Você acertou:
+
+            <strong id="pontuacao">0</strong>
+
+            de 3 perguntas! 💜
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MENSAGEM FINAL
+========================= -->
+
+<section class="container">
+
+    <div class="mensagem">
+
+        <h2>
+            Inclusão começa nas atitudes.
+        </h2>
+
+        <p>
+            Construir uma sociedade inclusiva é responsabilidade
+            de todos. Respeitar, ouvir, eliminar barreiras e
+            garantir participação são atitudes que ajudam a tornar
+            os espaços mais acessíveis para todas as pessoas.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FONTES
+========================= -->
+
+<section class="container fontes">
+
+    <div class="titulo">
+
+        <span>REFERÊNCIAS</span>
+
+        <h2>Fontes consultadas</h2>
+
+    </div>
+
+
+    <ul>
+
+        <li>
+            IBGE — Pesquisa Nacional por Amostra de Domicílios
+            Contínua — Pessoas com Deficiência 2022.
+        </li>
+
+        <li>
+            Ministério da Saúde — Calendário da Saúde.
+        </li>
+
+        <li>
+            Ministério dos Direitos Humanos e da Cidadania —
+            informações sobre o Dia Nacional de Luta da Pessoa
+            com Deficiência.
+        </li>
+
+        <li>
+            Lei nº 11.133, de 14 de julho de 2005.
+        </li>
+
+    </ul>
+
+</section>
+
+
+<footer>
+
+    💜 Mochila Digital da Maria • Conscientização e Inclusão
+
+</footer>
+
+
+<script>
+
+/* =========================
+   ANIMAÇÃO DO GRÁFICO
+========================= */
+
+const barras = document.querySelectorAll(".barra");
+
+const observador = new IntersectionObserver((entradas)=>{
+
+    entradas.forEach((entrada)=>{
+
+        if(entrada.isIntersecting){
+
+            entrada.target.style.width =
+                entrada.target.dataset.width;
+
+        }
+
+    });
+
+},{
+    threshold:.3
+});
+
+
+barras.forEach((barra)=>{
+    observador.observe(barra);
+});
+
+
+/* =========================
+   QUIZ
+========================= */
+
+let pontos = 0;
+let respondidas = 0;
+
+
+function responder(botao,certa){
+
+    const pergunta =
+        botao.parentElement;
+
+    const botoes =
+        pergunta.querySelectorAll(".opcao");
+
+
+    if(pergunta.dataset.respondida === "true"){
+        return;
+    }
+
+
+    pergunta.dataset.respondida = "true";
+
+    respondidas++;
+
+
+    botoes.forEach((item)=>{
+
+        item.disabled = true;
+
+    });
+
+
+    if(certa){
+
+        botao.classList.add("certa");
+
+        pontos++;
+
+    }else{
+
+        botao.classList.add("errada");
+
+        botoes.forEach((item)=>{
+
+            if(item.getAttribute("onclick")
+                .includes("true")){
+
+                item.classList.add("certa");
+
+            }
+
+        });
+
+    }
+
+
+    if(respondidas === 3){
+
+        document.getElementById("pontuacao")
+            .textContent = pontos;
+
+        document.getElementById("resultado")
+            .style.display = "block";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>
