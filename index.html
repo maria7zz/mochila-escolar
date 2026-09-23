@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
@@ -10,7 +11,6 @@
 <title>Mochila Digital</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 
 <style>
 
@@ -646,7 +646,6 @@ button:hover{
 
 </style>
 
-
 </head>
 
 
@@ -657,14 +656,11 @@ button:hover{
 
 <header>
 
-
 <div class="topo">
-
 
 <h1>
 🎒 Mochila Digital da Maria
 </h1>
-
 
 <p>
 Organize suas matérias, tarefas e estudos em um só lugar 💜
@@ -674,11 +670,10 @@ Organize suas matérias, tarefas e estudos em um só lugar 💜
 
 <div class="perfil">
 
-
-<input 
+<input
 id="nome"
 placeholder="Seu nome"
->
+
 
 
 <textarea
@@ -686,15 +681,11 @@ id="bio"
 placeholder="Escreva sua frase, objetivo ou organização..."
 ></textarea>
 
-
 </div>
 
-
 </div>
-
 
 </header>
-
 
 
 
@@ -706,14 +697,11 @@ placeholder="Escreva sua frase, objetivo ou organização..."
 
 
 
-
 <div class="card">
-
 
 <h2>
 📚 Minhas matérias
 </h2>
-
 
 <p class="subtitulo">
 
@@ -725,48 +713,42 @@ Crie suas matérias e deixe suas anotações salvas.
 
 <div class="form-materia">
 
-
 <input
 id="novaMateria"
 placeholder="Nome da matéria"
->
+
+
 
 
 
 <select
 id="categoriaMateria"
->
+
 
 
 <option>
 Exatas
 </option>
 
-
 <option>
 Humanas
 </option>
-
 
 <option>
 Linguagens
 </option>
 
-
 <option>
 Biológicas
 </option>
-
 
 <option>
 Itinerário
 </option>
 
-
 <option>
 Curso Técnico
 </option>
-
 
 </select>
 
@@ -782,9 +764,7 @@ Adicionar
 
 </div>
 
-
 </div>
-
 
 
 
@@ -796,11 +776,9 @@ Adicionar
 
 <div class="card">
 
-
 <h2>
 🕐 Meu horário
 </h2>
-
 
 <p class="subtitulo">
 
@@ -815,13 +793,11 @@ class="grade"
 id="horario"
 >
 
-
 </div>
 
 
 
 </div>
-
 
 
 
@@ -835,12 +811,9 @@ id="horario"
 
 
 
-
 <div class="card">
 
-
 <div class="cabecalho-calendario">
-
 
 <button onclick="mudarMes(-1)">
 ◀
@@ -871,12 +844,9 @@ id="calendario">
 
 
 
-
 <div class="estatisticas">
 
-
 <div class="numero-estatistica">
-
 
 <strong id="porcentagem">
 
@@ -884,9 +854,7 @@ id="calendario">
 
 </strong>
 
-
 Presença
-
 
 </div>
 
@@ -894,16 +862,13 @@ Presença
 
 <div class="numero-estatistica">
 
-
 <strong id="faltas">
 
 0
 
 </strong>
 
-
 Faltas
-
 
 </div>
 
@@ -923,7 +888,6 @@ Faltas
 
 <div class="card">
 
-
 <h3>
 🔗 Outros conteúdos
 </h3>
@@ -931,7 +895,6 @@ Faltas
 
 
 <div class="links">
-
 
 <a href="d-h.html">
 
@@ -954,7 +917,7 @@ Direitos Humanos
 </button>
 
 </a>
-    
+
 <a href="dia-dos-estudantes.html">
 
 <button>
@@ -972,7 +935,6 @@ Direitos Humanos
 
 </div>
 
-
 </div>
 
 
@@ -981,11 +943,9 @@ Direitos Humanos
 
 <div class="card">
 
-
 <h3>
 ⚙️ Configuração
 </h3>
-
 
 <p class="subtitulo">
 
@@ -993,38 +953,30 @@ Se precisar começar novamente, apague os dados.
 
 </p>
 
-
 <br>
 
-
-<button 
+<button
 class="btn-excluir"
 onclick="apagarDados()"
->
+
+
 
 Apagar tudo
 
 </button>
 
-
 </div>
-
 
 </aside>
 
-
 </main>
-
 
 <footer>
 
-
 💜 Mochila Digital • Organização dos estudos
-
 
 </footer>
 <script>
-
 
 let dados = JSON.parse(
 localStorage.getItem("mochilaDigital")
@@ -1056,7 +1008,6 @@ calendario:{}
 
 
 let dataAtual = new Date();
-
 
 
 
@@ -1112,7 +1063,6 @@ const cores=[
 
 function adicionarMateria(){
 
-
 let nomeMateria =
 document.getElementById("novaMateria").value;
 
@@ -1135,9 +1085,9 @@ return;
 
 dados.materias.push({
 
-nome:nomeMateria,
+nome,
 
-categoria:categoria,
+categoria,
 
 cor:
 cores[
@@ -1161,35 +1111,27 @@ salvar();
 
 render();
 
-
 }
 
 
 
 function excluirMateria(i){
 
-
 if(confirm("Excluir essa matéria?")){
 
-
 dados.materias.splice(i,1);
-
 
 salvar();
 
 render();
 
-
 }
 
-
 }
-
 
 
 
 function salvarAnotacao(i){
-
 
 dados.materias[i].anotacao =
 
@@ -1208,14 +1150,11 @@ document.getElementById(
 ).innerHTML=
 "✓ Salvo";
 
-
 }
 
 
 
-
 function adicionarTarefa(i){
-
 
 let tarefa =
 document.getElementById(
@@ -1237,11 +1176,11 @@ if(tarefa=="") return;
 
 dados.materias[i].tarefas.push({
 
-nome:tarefa,
+nome,
 
-data:data,
+data,
 
-feito:false
+feito
 
 });
 
@@ -1251,12 +1190,9 @@ salvar();
 
 render();
 
-
 }
 
-
 function concluirTarefa(m,t){
-
 
 dados.materias[m]
 .tarefas[t]
@@ -1272,13 +1208,11 @@ salvar();
 
 render();
 
-
 }
 
 
 
 function excluirTarefa(m,t){
-
 
 dados.materias[m]
 .tarefas.splice(t,1);
@@ -1289,13 +1223,11 @@ salvar();
 
 render();
 
-
 }
 
 
 
 function renderHorario(){
-
 
 let area =
 document.getElementById(
@@ -1311,13 +1243,10 @@ area.innerHTML="";
 dados.horario.forEach(
 function(aula,i){
 
-
 area.innerHTML += `
-
 
 <div class="aula"
 onclick="editarAula(${i})">
-
 
 <span class="numero">
 
@@ -1325,30 +1254,23 @@ ${i+1}ª aula
 
 </span>
 
-
 <strong>
 
 ${aula || "+"}
 
 </strong>
 
-
 </div>
-
 
 `;
 
-
 });
-
 
 }
 
 
 
-
 function editarAula(i){
-
 
 let novo =
 prompt(
@@ -1370,14 +1292,11 @@ salvar();
 
 renderHorario();
 
-
 }
 
 
 
-
 function chave(data){
-
 
 return data;
 
@@ -1448,11 +1367,11 @@ numeroMes+1,
 
 
 
-
 for(let i=0;i<primeiro;i++){
 
 calendario.innerHTML+=
 `
+
 <div class="dia vazio"></div>
 `;
 
@@ -1504,11 +1423,9 @@ falta++;
 
 calendario.innerHTML+=`
 
-
 <div 
 class="dia ${tipo}"
 onclick="marcarDia('${id}')">
-
 
 <strong>
 
@@ -1516,9 +1433,7 @@ ${dia}
 
 </strong>
 
-
 </div>
-
 
 `;
 
@@ -1562,7 +1477,6 @@ falta;
 
 function marcarDia(id){
 
-
 let escolha =
 prompt(
 "1 Presença\n2 Falta\n3 Prova\n0 Limpar"
@@ -1594,28 +1508,23 @@ salvar();
 
 renderCalendario();
 
-
 }
 
 
 
 function mudarMes(v){
 
-
 dataAtual.setMonth(
 dataAtual.getMonth()+v
 );
 
-
 renderCalendario();
-
 
 }
 
 
 
 function render(){
-
 
 let lista =
 document.getElementById(
@@ -1644,9 +1553,7 @@ function(t,j){
 
 tarefas+=`
 
-
 <div class="tarefa">
-
 
 <div>
 
@@ -1656,9 +1563,7 @@ ${t.nome}
 
 </b>
 
-
 <br>
-
 
 <span class="data">
 
@@ -1666,13 +1571,11 @@ ${t.data}
 
 </span>
 
-
 </div>
 
 
 
 <div>
-
 
 <button
 onclick="concluirTarefa(${i},${j})">
@@ -1680,7 +1583,6 @@ onclick="concluirTarefa(${i},${j})">
 ✓
 
 </button>
-
 
 <button
 class="btn-excluir"
@@ -1690,16 +1592,13 @@ X
 
 </button>
 
-
 </div>
 
 
 
 </div>
-
 
 `;
-
 
 });
 
@@ -1709,21 +1608,16 @@ X
 
 lista.innerHTML+=`
 
-
 <div class="card materia">
-
 
 <div class="cabecalho-materia">
 
-
 <div class="nome-materia">
-
 
 <span 
 class="bolinha"
 style="background:${m.cor}">
 </span>
-
 
 <h3>
 
@@ -1731,13 +1625,11 @@ ${m.nome}
 
 </h3>
 
-
 <span class="categoria">
 
 ${m.categoria}
 
 </span>
-
 
 </div>
 
@@ -1751,7 +1643,6 @@ X
 
 </button>
 
-
 </div>
 
 
@@ -1760,13 +1651,11 @@ X
 
 <div class="area-anotacao">
 
-
 <label>
 
 📝 Anotações
 
 </label>
-
 
 <textarea
 id="anotacao${i}"
@@ -1779,7 +1668,6 @@ oninput="salvarAnotacao(${i})"
 id="salvo${i}">
 
 </span>
-
 
 </div>
 
@@ -1797,24 +1685,20 @@ id="salvo${i}">
 
 <div class="form-tarefa">
 
-
 <input
 id="tarefa${i}"
 placeholder="Nova tarefa">
-
 
 <input
 id="data${i}"
 type="date">
 
-
 <button
 onclick="adicionarTarefa(${i})">
 
-+
+
 
 </button>
-
 
 </div>
 
@@ -1825,7 +1709,6 @@ ${tarefas}
 
 
 </div>
-
 
 `;
 
@@ -1839,7 +1722,6 @@ renderHorario();
 
 renderCalendario();
 
-
 }
 
 
@@ -1850,18 +1732,13 @@ renderCalendario();
 
 function apagarDados(){
 
-
 if(confirm("Apagar tudo?")){
-
 
 localStorage.clear();
 
-
 location.reload();
 
-
 }
-
 
 }
 
@@ -1874,7 +1751,6 @@ render();
 
 
 </script>
-
 
 </body>
 
