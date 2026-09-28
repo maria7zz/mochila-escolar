@@ -1,8 +1,9 @@
 button {
     padding: 10px 20px;
-    border: nome;
-    border-radius: 8px;
-    background: #95d5b2;
+    border: 2px solid #40916c;
+    border-radius: 20px;
+    background: #b7e4c7;
+    color: #1b4332;
     cursor: pointer;
     display: block;
     margin: 10px auto;
