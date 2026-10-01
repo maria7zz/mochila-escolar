@@ -1,10 +1,117 @@
+```css
+/* ==============================
+   BOTÃO ROXO + LILÁS + DOURADO
+============================== */
+
 button {
+
+    /* ===== TAMANHO ===== */
+
+    width: 220px;
+    height: 70px;
+
+
+    /* ===== ESPAÇO INTERNO ===== */
+
     padding: 10px 20px;
-    border: 2px solid #40916c;
+
+
+    /* ===== BORDA ===== */
+
+    border: 3px solid #E6B84A;
     border-radius: 20px;
-    background: #b7e4c7;
-    color: #1b4332;
+
+
+    /* ===== CORES ===== */
+
+    background: linear-gradient(
+        135deg,
+        #24103D,
+        #4B227A
+    );
+
+    color: #FFE8A3;
+
+
+    /* ===== TEXTO ===== */
+
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+
+
+    /* ===== CURSOR ===== */
+
     cursor: pointer;
+
+
+    /* ===== SOMBRA ===== */
+
+    box-shadow:
+        0 5px 10px rgba(36, 16, 61, 0.35),
+        0 0 8px rgba(230, 184, 74, 0.15);
+
+
+    /* ===== COMPORTAMENTO ===== */
+
     display: block;
+
     margin: 10px auto;
+
+
+    /* ===== TRANSIÇÃO ===== */
+
+    transition: all 0.3s ease;
 }
+
+
+/* ==============================
+   QUANDO O MOUSE PASSA
+============================== */
+
+button:hover {
+
+    background: linear-gradient(
+        135deg,
+        #4B227A,
+        #B88AE8
+    );
+
+    color: #24103D;
+
+    border-color: #FFE8A3;
+
+    transform: scale(1.05);
+
+    box-shadow:
+        0 8px 18px rgba(36, 16, 61, 0.40),
+        0 0 18px rgba(230, 184, 74, 0.45);
+}
+
+
+/* ==============================
+   QUANDO O BOTÃO É PRESSIONADO
+============================== */
+
+button:active {
+
+    transform: scale(0.95);
+
+    box-shadow:
+        0 3px 5px rgba(36, 16, 61, 0.25);
+}
+
+
+/* ==============================
+   QUANDO RECEBE FOCO
+============================== */
+
+button:focus {
+
+    outline: 4px solid #B88AE8;
+
+    outline-offset: 4px;
+}
+```
