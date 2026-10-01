@@ -1,0 +1,3334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Políticas Públicas | Saúde e Segurança nas Escolas</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+<style>
+
+/* =========================================================
+   CORES
+========================================================= */
+
+:root{
+
+    --roxo-escuro:#10071d;
+    --roxo:#32134f;
+    --roxo2:#51247a;
+    --roxo3:#7542a8;
+
+    --lilas:#c9a7ff;
+    --lilas-claro:#eadfff;
+
+    --dourado:#e5b84b;
+    --amarelo:#ffd86b;
+
+    --branco:#ffffff;
+
+    --texto:#d9cde5;
+    --texto-escuro:#5f536b;
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:var(--roxo-escuro);
+
+    color:white;
+
+    overflow-x:hidden;
+
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button{
+    font-family:inherit;
+}
+
+
+/* =========================================================
+   FUNDO
+========================================================= */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    width:500px;
+    height:500px;
+
+    background:#7c3fb5;
+
+    opacity:.13;
+
+    filter:blur(120px);
+
+    border-radius:50%;
+
+    top:5%;
+    left:-200px;
+
+    z-index:-1;
+
+}
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:450px;
+    height:450px;
+
+    background:#e5b84b;
+
+    opacity:.08;
+
+    filter:blur(120px);
+
+    border-radius:50%;
+
+    right:-180px;
+    bottom:5%;
+
+    z-index:-1;
+
+}
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+header{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    height:78px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 6%;
+
+    background:rgba(16,7,29,.92);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(229,184,75,.18);
+
+    z-index:999;
+
+}
+
+.logo{
+
+    font-size:24px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+}
+
+.logo span{
+
+    color:var(--dourado);
+
+}
+
+nav{
+
+    display:flex;
+
+    gap:25px;
+
+}
+
+nav a{
+
+    color:#d9cde5;
+
+    font-size:13px;
+
+    transition:.3s;
+
+}
+
+nav a:hover{
+
+    color:var(--dourado);
+
+}
+
+.menu{
+
+    display:none;
+
+    border:none;
+
+    background:none;
+
+    color:white;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    min-height:100vh;
+
+    padding:150px 8% 90px;
+
+    display:grid;
+
+    grid-template-columns:1.2fr .8fr;
+
+    gap:70px;
+
+    align-items:center;
+
+    background:
+
+    radial-gradient(
+        circle at 85% 20%,
+        rgba(151,83,219,.32),
+        transparent 35%
+    ),
+
+    linear-gradient(
+        135deg,
+        #10071d,
+        #251039 60%,
+        #351650
+    );
+
+}
+
+.tag{
+
+    color:var(--dourado);
+
+    font-size:12px;
+
+    font-weight:700;
+
+    letter-spacing:3px;
+
+}
+
+.hero h1{
+
+    font-size:clamp(43px,6vw,76px);
+
+    line-height:1.03;
+
+    margin:22px 0;
+
+}
+
+.hero h1 span{
+
+    display:block;
+
+    color:var(--lilas);
+
+}
+
+.hero p{
+
+    max-width:650px;
+
+    color:var(--texto);
+
+    font-size:17px;
+
+    line-height:1.8;
+
+}
+
+.botoes{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:35px;
+
+    flex-wrap:wrap;
+
+}
+
+.btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:14px 23px;
+
+    border-radius:12px;
+
+    font-weight:700;
+
+    font-size:14px;
+
+    transition:.3s;
+
+    cursor:pointer;
+
+}
+
+.btn-dourado{
+
+    color:#24132f;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #dfaa35,
+        #ffdd72
+    );
+
+}
+
+.btn-dourado:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 15px 35px rgba(229,184,75,.25);
+
+}
+
+.btn-contorno{
+
+    border:1px solid rgba(229,184,75,.45);
+
+    color:var(--amarelo);
+
+}
+
+.btn-contorno:hover{
+
+    background:rgba(229,184,75,.08);
+
+}
+
+
+/* =========================================================
+   HERO CARD
+========================================================= */
+
+.hero-card{
+
+    padding:40px;
+
+    border-radius:30px;
+
+    background:
+
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,.10),
+        rgba(255,255,255,.03)
+    );
+
+    border:1px solid rgba(229,184,75,.25);
+
+    box-shadow:
+    0 30px 90px rgba(0,0,0,.4);
+
+    animation:flutuar 4s ease-in-out infinite;
+
+}
+
+@keyframes flutuar{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+}
+
+.icone{
+
+    font-size:65px;
+
+    margin-bottom:20px;
+
+}
+
+.hero-card h2{
+
+    color:var(--amarelo);
+
+    margin-bottom:12px;
+
+}
+
+.hero-card p{
+
+    color:var(--texto);
+
+    font-size:14px;
+
+    line-height:1.8;
+
+}
+
+.mini{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:12px;
+
+    margin-top:28px;
+
+}
+
+.mini div{
+
+    padding:18px;
+
+    background:rgba(255,255,255,.05);
+
+    border-radius:15px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.mini strong{
+
+    display:block;
+
+    font-size:25px;
+
+    color:var(--dourado);
+
+}
+
+.mini small{
+
+    color:#bdb0ca;
+
+}
+
+
+/* =========================================================
+   NÚMEROS
+========================================================= */
+
+.numeros{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    background:#140a20;
+
+    border-top:1px solid rgba(229,184,75,.12);
+
+    border-bottom:1px solid rgba(229,184,75,.12);
+
+}
+
+.numero{
+
+    padding:30px;
+
+    text-align:center;
+
+}
+
+.numero strong{
+
+    display:block;
+
+    color:var(--dourado);
+
+    font-size:42px;
+
+}
+
+.numero span{
+
+    color:#bdb1c8;
+
+    font-size:12px;
+
+}
+
+
+/* =========================================================
+   SEÇÕES
+========================================================= */
+
+section{
+
+    padding:105px 8%;
+
+}
+
+.titulo{
+
+    max-width:850px;
+
+    margin-bottom:55px;
+
+}
+
+.titulo.central{
+
+    text-align:center;
+
+    margin-left:auto;
+    margin-right:auto;
+
+}
+
+.titulo span{
+
+    color:var(--dourado);
+
+    font-size:12px;
+
+    font-weight:700;
+
+    letter-spacing:3px;
+
+}
+
+.titulo h2{
+
+    font-size:clamp(32px,4vw,52px);
+
+    line-height:1.1;
+
+    margin:15px 0;
+
+}
+
+.titulo p{
+
+    color:var(--texto);
+
+    line-height:1.8;
+
+}
+
+
+/* =========================================================
+   POLÍTICAS PÚBLICAS
+========================================================= */
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+.card{
+
+    padding:32px;
+
+    border-radius:23px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(201,167,255,.12);
+
+    transition:.35s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-9px);
+
+    border-color:rgba(229,184,75,.45);
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.25);
+
+}
+
+.card-icon{
+
+    width:58px;
+
+    height:58px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:17px;
+
+    background:rgba(201,167,255,.10);
+
+    font-size:27px;
+
+    margin-bottom:22px;
+
+}
+
+.card h3{
+
+    color:var(--lilas);
+
+    margin-bottom:12px;
+
+}
+
+.card p{
+
+    color:var(--texto);
+
+    font-size:14px;
+
+    line-height:1.8;
+
+}
+
+
+/* =========================================================
+   DESTAQUE PSE
+========================================================= */
+
+.pse{
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #2c1244,
+        #170a25
+    );
+
+}
+
+.pse-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:60px;
+
+    align-items:center;
+
+}
+
+.pse-lista{
+
+    display:grid;
+
+    gap:12px;
+
+}
+
+.pse-item{
+
+    padding:20px;
+
+    display:flex;
+
+    gap:15px;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.3s;
+
+}
+
+.pse-item:hover{
+
+    transform:translateX(7px);
+
+    border-color:rgba(229,184,75,.35);
+
+}
+
+.pse-item b{
+
+    color:var(--dourado);
+
+}
+
+.pse-item h3{
+
+    color:white;
+
+    margin-bottom:4px;
+
+}
+
+.pse-item p{
+
+    color:#c4b7d0;
+
+    font-size:13px;
+
+}
+
+
+/* =========================================================
+   ABAS
+========================================================= */
+
+.tabs{
+
+    margin-top:35px;
+
+}
+
+.tab-botoes{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:18px;
+
+}
+
+.tab-botao{
+
+    padding:11px 16px;
+
+    border-radius:10px;
+
+    border:1px solid rgba(255,255,255,.1);
+
+    background:rgba(255,255,255,.05);
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+.tab-botao.active,
+.tab-botao:hover{
+
+    background:var(--roxo3);
+
+    border-color:var(--dourado);
+
+}
+
+.tab{
+
+    display:none;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(201,167,255,.12);
+
+}
+
+.tab.active{
+
+    display:block;
+
+    animation:aparecer .4s ease;
+
+}
+
+.tab h3{
+
+    color:var(--amarelo);
+
+    margin-bottom:10px;
+
+}
+
+.tab p{
+
+    color:var(--texto);
+
+    line-height:1.8;
+
+}
+
+@keyframes aparecer{
+
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   SEGURANÇA
+========================================================= */
+
+.seguranca{
+
+    background:#0c0613;
+
+}
+
+.seguranca-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+.seg-card{
+
+    padding:32px;
+
+    border-radius:22px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(111,63,168,.15),
+        rgba(255,255,255,.03)
+    );
+
+    border:1px solid rgba(229,184,75,.13);
+
+}
+
+.seg-card span{
+
+    color:var(--dourado);
+
+    font-weight:800;
+
+    font-size:13px;
+
+}
+
+.seg-card h3{
+
+    color:var(--lilas);
+
+    margin:12px 0;
+
+}
+
+.seg-card p{
+
+    color:var(--texto);
+
+    font-size:14px;
+
+    line-height:1.8;
+
+}
+
+
+/* =========================================================
+   LEIS
+========================================================= */
+
+.leis{
+
+    background:#f4edfb;
+
+    color:#291c35;
+
+}
+
+.leis .titulo p{
+
+    color:var(--texto-escuro);
+
+}
+
+.lei-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+.lei{
+
+    padding:30px;
+
+    background:white;
+
+    border-radius:20px;
+
+    border:1px solid #e4d9ed;
+
+    box-shadow:0 10px 35px rgba(40,20,60,.06);
+
+    transition:.3s;
+
+}
+
+.lei:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 18px 40px rgba(40,20,60,.1);
+
+}
+
+.lei .ano{
+
+    color:#8351aa;
+
+    font-weight:800;
+
+    font-size:13px;
+
+}
+
+.lei h3{
+
+    color:#48235e;
+
+    margin:10px 0;
+
+}
+
+.lei p{
+
+    color:#6c6072;
+
+    font-size:14px;
+
+    line-height:1.8;
+
+}
+
+
+/* =========================================================
+   DADOS REAIS
+========================================================= */
+
+.dados{
+
+    background:#12091d;
+
+}
+
+.dados-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+.dado{
+
+    padding:32px;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(229,184,75,.15);
+
+}
+
+.dado strong{
+
+    font-size:38px;
+
+    color:var(--dourado);
+
+    display:block;
+
+    margin-bottom:8px;
+
+}
+
+.dado h3{
+
+    color:var(--lilas);
+
+    margin-bottom:8px;
+
+}
+
+.dado p{
+
+    color:var(--texto);
+
+    font-size:13px;
+
+    line-height:1.8;
+
+}
+
+.fonte-dado{
+
+    margin-top:15px;
+
+    font-size:10px;
+
+    color:#9c8ba9;
+
+}
+
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+.timeline{
+
+    background:#211034;
+
+}
+
+.linha{
+
+    max-width:950px;
+
+    margin:auto;
+
+    position:relative;
+
+}
+
+.linha::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:28px;
+
+    top:0;
+
+    bottom:0;
+
+    width:2px;
+
+    background:linear-gradient(
+        var(--dourado),
+        var(--roxo3)
+    );
+
+}
+
+.evento{
+
+    display:grid;
+
+    grid-template-columns:60px 1fr;
+
+    gap:25px;
+
+    margin-bottom:35px;
+
+    position:relative;
+
+}
+
+.bolinha{
+
+    width:56px;
+
+    height:56px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        var(--dourado),
+        var(--amarelo)
+    );
+
+    color:#27132f;
+
+    font-weight:800;
+
+    z-index:2;
+
+}
+
+.evento-conteudo{
+
+    padding:22px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.evento-conteudo h3{
+
+    color:var(--lilas);
+
+}
+
+.evento-conteudo p{
+
+    color:var(--texto);
+
+    font-size:13px;
+
+    margin-top:7px;
+
+    line-height:1.8;
+
+}
+
+
+/* =========================================================
+   INFORMAÇÕES
+========================================================= */
+
+.info-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+
+}
+
+.info{
+
+    padding:30px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.info h3{
+
+    color:var(--amarelo);
+
+    margin-bottom:10px;
+
+}
+
+.info p{
+
+    color:var(--texto);
+
+    font-size:14px;
+
+    line-height:1.8;
+
+}
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+.quiz{
+
+    background:
+
+    radial-gradient(
+        circle at center,
+        #432060,
+        #12071c
+    );
+
+    text-align:center;
+
+}
+
+.quiz-box{
+
+    max-width:850px;
+
+    margin:auto;
+
+    padding:40px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(229,184,75,.2);
+
+}
+
+.quiz-box h3{
+
+    font-size:23px;
+
+    margin-bottom:25px;
+
+}
+
+.opcoes{
+
+    display:grid;
+
+    gap:12px;
+
+}
+
+.opcao{
+
+    padding:15px;
+
+    border-radius:12px;
+
+    border:1px solid rgba(255,255,255,.1);
+
+    background:rgba(255,255,255,.04);
+
+    color:white;
+
+    text-align:left;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.opcao:hover{
+
+    transform:translateX(5px);
+
+    border-color:var(--dourado);
+
+}
+
+#resultado{
+
+    margin-top:20px;
+
+    color:var(--amarelo);
+
+    font-weight:700;
+
+}
+
+
+/* =========================================================
+   FONTES
+========================================================= */
+
+.fontes{
+
+    background:#0b0610;
+
+}
+
+.fonte-lista{
+
+    max-width:950px;
+
+    margin:auto;
+
+    display:grid;
+
+    gap:12px;
+
+}
+
+.fonte{
+
+    padding:20px;
+
+    border-radius:15px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.07);
+
+}
+
+.fonte strong{
+
+    color:var(--dourado);
+
+}
+
+.fonte p{
+
+    color:#bdb0c8;
+
+    font-size:12px;
+
+    margin-top:5px;
+
+}
+
+
+/* =========================================================
+   CONCLUSÃO
+========================================================= */
+
+.conclusao{
+
+    text-align:center;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #351650,
+        #150923
+    );
+
+}
+
+.conclusao h2{
+
+    max-width:900px;
+
+    margin:15px auto;
+
+    font-size:clamp(35px,5vw,60px);
+
+    line-height:1.1;
+
+}
+
+.conclusao p{
+
+    max-width:750px;
+
+    margin:25px auto;
+
+    color:var(--texto);
+
+    line-height:1.8;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+
+    text-align:center;
+
+    padding:45px 8%;
+
+    background:#08040d;
+
+    border-top:1px solid rgba(229,184,75,.15);
+
+}
+
+footer strong{
+
+    color:var(--dourado);
+
+    font-size:24px;
+
+}
+
+footer p{
+
+    color:#8f8299;
+
+    font-size:12px;
+
+    margin-top:8px;
+
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media(max-width:1000px){
+
+    nav{
+
+        display:none;
+
+        position:absolute;
+
+        top:78px;
+
+        left:0;
+
+        width:100%;
+
+        padding:25px;
+
+        background:#150b21;
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+    nav.ativo{
+
+        display:flex;
+
+    }
+
+    .menu{
+
+        display:block;
+
+    }
+
+    .hero,
+    .pse-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .cards{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .numeros{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .dados-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:650px){
+
+    section{
+
+        padding:75px 6%;
+
+    }
+
+    .hero{
+
+        padding:130px 6% 70px;
+
+    }
+
+    .hero h1{
+
+        font-size:45px;
+
+    }
+
+    .cards,
+    .seguranca-grid,
+    .lei-grid,
+    .info-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .numeros{
+
+        grid-template-columns:1fr 1fr;
+
+    }
+
+    .botoes{
+
+        flex-direction:column;
+
+    }
+
+    .btn{
+
+        width:100%;
+
+    }
+
+    .quiz-box{
+
+        padding:25px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     MENU
+===================================================== -->
+
+<header>
+
+    <div class="logo">
+        EDU<span>+</span>
+    </div>
+
+    <nav id="menu">
+
+        <a href="#inicio">Início</a>
+
+        <a href="#politicas">Políticas Públicas</a>
+
+        <a href="#saude">Saúde</a>
+
+        <a href="#seguranca">Segurança</a>
+
+        <a href="#leis">Leis</a>
+
+        <a href="#dados">Dados</a>
+
+        <a href="#quiz">Quiz</a>
+
+    </nav>
+
+    <button class="menu" onclick="abrirMenu()">☰</button>
+
+</header>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero" id="inicio">
+
+    <div>
+
+        <span class="tag">
+            EDUCAÇÃO • SAÚDE • SEGURANÇA
+        </span>
+
+        <h1>
+
+            Políticas Públicas,
+            <span>Saúde e Segurança</span>
+            nas Escolas
+
+        </h1>
+
+        <p>
+
+            Entenda como o poder público, as escolas,
+            os serviços de saúde, as famílias e a comunidade
+            participam da construção de ambientes escolares
+            mais seguros, saudáveis, inclusivos e preparados
+            para a aprendizagem.
+
+        </p>
+
+        <div class="botoes">
+
+            <a href="#politicas"
+               class="btn btn-dourado">
+
+                Explorar conteúdo
+
+            </a>
+
+            <a href="#dados"
+               class="btn btn-contorno">
+
+                Ver dados →
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-card">
+
+        <div class="icone">
+            🏫
+        </div>
+
+        <h2>
+            Por que esse assunto importa?
+        </h2>
+
+        <p>
+
+            A escola não é apenas um lugar para estudar.
+            Ela também é um espaço de convivência,
+            desenvolvimento, proteção, promoção da saúde
+            e exercício da cidadania.
+
+        </p>
+
+
+        <div class="mini">
+
+            <div>
+                <strong>46 mi</strong>
+                <small>matrículas na educação básica em 2025</small>
+            </div>
+
+            <div>
+                <strong>178,8 mil</strong>
+                <small>escolas no Brasil em 2025</small>
+            </div>
+
+            <div>
+                <strong>2007</strong>
+                <small>ano de criação do PSE</small>
+            </div>
+
+            <div>
+                <strong>40 mi</strong>
+                <small>estudantes atendidos pelo PNAE</small>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     NÚMEROS
+===================================================== -->
+
+<section class="numeros">
+
+    <div class="numero">
+
+        <strong>46 mi</strong>
+
+        <span>
+            matrículas na educação básica em 2025
+        </span>
+
+    </div>
+
+
+    <div class="numero">
+
+        <strong>178,8 mil</strong>
+
+        <span>
+            escolas de educação básica em 2025
+        </span>
+
+    </div>
+
+
+    <div class="numero">
+
+        <strong>10,1 mi</strong>
+
+        <span>
+            matrículas em tempo integral em 2025
+        </span>
+
+    </div>
+
+
+    <div class="numero">
+
+        <strong>40 mi</strong>
+
+        <span>
+            estudantes atendidos pelo PNAE
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     POLÍTICAS PÚBLICAS
+===================================================== -->
+
+<section id="politicas">
+
+    <div class="titulo central">
+
+        <span>01 • POLÍTICAS PÚBLICAS</span>
+
+        <h2>
+            O que são políticas públicas?
+        </h2>
+
+        <p>
+
+            Políticas públicas são ações, programas,
+            serviços, normas e estratégias desenvolvidos
+            pelo Estado para enfrentar necessidades coletivas
+            e garantir direitos.
+
+            Na educação, elas podem envolver financiamento,
+            alimentação, saúde, inclusão, infraestrutura,
+            permanência escolar e proteção.
+
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                📚
+            </div>
+
+            <h3>
+                Educação
+            </h3>
+
+            <p>
+
+                Políticas educacionais buscam garantir
+                acesso à escola, permanência, aprendizagem,
+                qualidade do ensino e igualdade de oportunidades.
+
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                💰
+            </div>
+
+            <h3>
+                Financiamento
+            </h3>
+
+            <p>
+
+                Programas como o PDDE destinam recursos
+                suplementares às escolas para necessidades
+                prioritárias e melhorias físicas e pedagógicas.
+
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                🩺
+            </div>
+
+            <h3>
+                Saúde
+            </h3>
+
+            <p>
+
+                Ações públicas aproximam as redes de saúde
+                e educação para trabalhar prevenção,
+                promoção da saúde e desenvolvimento dos estudantes.
+
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                🍎
+            </div>
+
+            <h3>
+                Alimentação
+            </h3>
+
+            <p>
+
+                O PNAE oferece alimentação escolar e também
+                trabalha educação alimentar e nutricional
+                nas redes públicas de educação básica.
+
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                ♿
+            </div>
+
+            <h3>
+                Inclusão
+            </h3>
+
+            <p>
+
+                Políticas de educação inclusiva procuram garantir
+                participação, acessibilidade, recursos de apoio
+                e igualdade de oportunidades.
+
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                🛡️
+            </div>
+
+            <h3>
+                Proteção
+            </h3>
+
+            <p>
+
+                A proteção escolar envolve prevenção da violência,
+                enfrentamento do bullying, acolhimento e articulação
+                com redes de proteção.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PSE
+===================================================== -->
+
+<section class="pse" id="saude">
+
+    <div class="pse-grid">
+
+
+        <div>
+
+            <div class="titulo">
+
+                <span>
+                    02 • PROGRAMA SAÚDE NA ESCOLA
+                </span>
+
+                <h2>
+                    Saúde e educação trabalhando juntas.
+                </h2>
+
+                <p>
+
+                    O Programa Saúde na Escola (PSE) é uma política
+                    intersetorial dos Ministérios da Saúde e da Educação.
+
+                    Criado em 2007, o programa busca contribuir para
+                    o desenvolvimento integral dos estudantes da rede
+                    pública de educação básica.
+
+                </p>
+
+            </div>
+
+
+            <div class="tabs">
+
+                <div class="tab-botoes">
+
+                    <button
+                        class="tab-botao active"
+                        onclick="aba('pse1',this)">
+
+                        Saúde mental
+
+                    </button>
+
+                    <button
+                        class="tab-botao"
+                        onclick="aba('pse2',this)">
+
+                        Alimentação
+
+                    </button>
+
+                    <button
+                        class="tab-botao"
+                        onclick="aba('pse3',this)">
+
+                        Vacinação
+
+                    </button>
+
+                    <button
+                        class="tab-botao"
+                        onclick="aba('pse4',this)">
+
+                        Prevenção
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="pse1"
+                    class="tab active">
+
+                    <h3>
+                        🧠 Saúde mental
+                    </h3>
+
+                    <p>
+
+                        O PSE inclui a promoção da saúde mental
+                        entre suas ações, incentivando atividades
+                        relacionadas ao bem-estar e à atenção
+                        às questões psicossociais.
+
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="pse2"
+                    class="tab">
+
+                    <h3>
+                        🥗 Alimentação saudável
+                    </h3>
+
+                    <p>
+
+                        O programa inclui ações de alimentação
+                        saudável e prevenção da obesidade,
+                        relacionando educação em saúde
+                        e hábitos alimentares.
+
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="pse3"
+                    class="tab">
+
+                    <h3>
+                        💉 Situação vacinal
+                    </h3>
+
+                    <p>
+
+                        A verificação da situação vacinal
+                        faz parte das ações previstas no PSE,
+                        aproximando a comunidade escolar
+                        das ações de prevenção em saúde.
+
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="pse4"
+                    class="tab">
+
+                    <h3>
+                        🛡️ Prevenção
+                    </h3>
+
+                    <p>
+
+                        O PSE também trabalha prevenção de
+                        violências e acidentes, atividade física,
+                        saúde bucal, saúde ocular, saúde auditiva,
+                        prevenção de doenças e outros temas.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="pse-lista">
+
+
+            <div class="pse-item">
+
+                <b>01</b>
+
+                <div>
+
+                    <h3>
+                        Saúde ambiental
+                    </h3>
+
+                    <p>
+                        Relação entre ambiente e saúde.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="pse-item">
+
+                <b>02</b>
+
+                <div>
+
+                    <h3>
+                        Atividade física
+                    </h3>
+
+                    <p>
+                        Incentivo a hábitos ativos e saudáveis.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="pse-item">
+
+                <b>03</b>
+
+                <div>
+
+                    <h3>
+                        Cultura de paz
+                    </h3>
+
+                    <p>
+                        Promoção da cultura de paz e direitos humanos.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="pse-item">
+
+                <b>04</b>
+
+                <div>
+
+                    <h3>
+                        Saúde bucal
+                    </h3>
+
+                    <p>
+                        Educação e prevenção relacionadas à saúde bucal.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="pse-item">
+
+                <b>05</b>
+
+                <div>
+
+                    <h3>
+                        Prevenção de violências
+                    </h3>
+
+                    <p>
+                        Ações educativas e preventivas.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="pse-item">
+
+                <b>06</b>
+
+                <div>
+
+                    <h3>
+                        Saúde sexual e reprodutiva
+                    </h3>
+
+                    <p>
+                        Educação e prevenção de ISTs e HIV.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SEGURANÇA
+===================================================== -->
+
+<section class="seguranca" id="seguranca">
+
+    <div class="titulo central">
+
+        <span>
+            03 • SEGURANÇA NAS ESCOLAS
+        </span>
+
+        <h2>
+            Segurança também significa prevenção.
+        </h2>
+
+        <p>
+
+            A segurança escolar não se resume à presença
+            de profissionais de segurança. Ela também envolve
+            prevenção, convivência, infraestrutura, acolhimento,
+            identificação de riscos e articulação entre diferentes
+            serviços públicos.
+
+        </p>
+
+    </div>
+
+
+    <div class="seguranca-grid">
+
+
+        <div class="seg-card">
+
+            <span>01</span>
+
+            <h3>
+                Prevenção da violência
+            </h3>
+
+            <p>
+
+                A prevenção pode envolver ações educativas,
+                diálogo, identificação de situações de risco
+                e articulação com a rede de proteção.
+
+            </p>
+
+        </div>
+
+
+        <div class="seg-card">
+
+            <span>02</span>
+
+            <h3>
+                Bullying e cyberbullying
+            </h3>
+
+            <p>
+
+                O ambiente escolar deve trabalhar respeito,
+                convivência e prevenção de agressões físicas,
+                verbais, psicológicas e virtuais.
+
+            </p>
+
+        </div>
+
+
+        <div class="seg-card">
+
+            <span>03</span>
+
+            <h3>
+                Cultura de paz
+            </h3>
+
+            <p>
+
+                Educação para o diálogo, respeito aos direitos
+                humanos e resolução de conflitos pode contribuir
+                para uma convivência escolar mais saudável.
+
+            </p>
+
+        </div>
+
+
+        <div class="seg-card">
+
+            <span>04</span>
+
+            <h3>
+                Infraestrutura
+            </h3>
+
+            <p>
+
+                A segurança também depende de ambientes adequados,
+                manutenção, acessibilidade, sinalização e prevenção
+                de acidentes.
+
+            </p>
+
+        </div>
+
+
+        <div class="seg-card">
+
+            <span>05</span>
+
+            <h3>
+                Rede de proteção
+            </h3>
+
+            <p>
+
+                Escola, família, saúde, assistência social,
+                órgãos de proteção e segurança pública podem
+                atuar de forma articulada conforme a situação.
+
+            </p>
+
+        </div>
+
+
+        <div class="seg-card">
+
+            <span>06</span>
+
+            <h3>
+                Segurança digital
+            </h3>
+
+            <p>
+
+                A educação digital também faz parte da proteção,
+                ajudando estudantes a compreender riscos,
+                privacidade, respeito e responsabilidade online.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LEIS E POLÍTICAS
+===================================================== -->
+
+<section class="leis" id="leis">
+
+    <div class="titulo central">
+
+        <span>
+            04 • LEGISLAÇÃO E POLÍTICAS
+        </span>
+
+        <h2>
+            Direitos e políticas que envolvem a escola.
+        </h2>
+
+        <p>
+
+            A educação, a saúde e a proteção de crianças e
+            adolescentes são temas tratados por leis, decretos
+            e programas públicos.
+
+        </p>
+
+    </div>
+
+
+    <div class="lei-grid">
+
+
+        <div class="lei">
+
+            <span class="ano">
+                2007
+            </span>
+
+            <h3>
+                Programa Saúde na Escola
+            </h3>
+
+            <p>
+
+                O PSE foi instituído pelo Decreto nº 6.286,
+                de 5 de dezembro de 2007, integrando ações
+                das áreas de Saúde e Educação.
+
+            </p>
+
+        </div>
+
+
+        <div class="lei">
+
+            <span class="ano">
+                2009
+            </span>
+
+            <h3>
+                Programa Nacional de Alimentação Escolar
+            </h3>
+
+            <p>
+
+                A Lei nº 11.947/2009 estabelece regras para
+                o atendimento da alimentação escolar e para
+                o PNAE.
+
+            </p>
+
+        </div>
+
+
+        <div class="lei">
+
+            <span class="ano">
+                1995
+            </span>
+
+            <h3>
+                Programa Dinheiro Direto na Escola
+            </h3>
+
+            <p>
+
+                O PDDE foi instituído em 1995 e destina
+                recursos suplementares às escolas participantes
+                para necessidades prioritárias e melhorias.
+
+            </p>
+
+        </div>
+
+
+        <div class="lei">
+
+            <span class="ano">
+                2025
+            </span>
+
+            <h3>
+                Educação Especial Inclusiva
+            </h3>
+
+            <p>
+
+                O Decreto nº 12.686/2025 instituiu a Política
+                Nacional de Educação Especial Inclusiva e a
+                Rede Nacional de Educação Especial Inclusiva.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     DADOS REAIS
+===================================================== -->
+
+<section class="dados" id="dados">
+
+    <div class="titulo central">
+
+        <span>
+            05 • DADOS DO BRASIL
+        </span>
+
+        <h2>
+            O tamanho da educação brasileira.
+        </h2>
+
+        <p>
+
+            Dados oficiais ajudam a entender a dimensão
+            das políticas públicas educacionais.
+
+        </p>
+
+    </div>
+
+
+    <div class="dados-grid">
+
+
+        <div class="dado">
+
+            <strong>
+                46.018.380
+            </strong>
+
+            <h3>
+                Matrículas
+            </h3>
+
+            <p>
+
+                Número de matrículas registradas na educação
+                básica brasileira em 2025.
+
+            </p>
+
+            <div class="fonte-dado">
+                Fonte: Censo Escolar 2025 — INEP.
+            </div>
+
+        </div>
+
+
+        <div class="dado">
+
+            <strong>
+                178,8 mil
+            </strong>
+
+            <h3>
+                Escolas
+            </h3>
+
+            <p>
+
+                Quantidade de escolas de educação básica
+                registradas no Brasil em 2025.
+
+            </p>
+
+            <div class="fonte-dado">
+                Fonte: Censo Escolar 2025 — INEP.
+            </div>
+
+        </div>
+
+
+        <div class="dado">
+
+            <strong>
+                10,1 milhões
+            </strong>
+
+            <h3>
+                Tempo integral
+            </h3>
+
+            <p>
+
+                Matrículas em tempo integral registradas
+                no Censo Escolar 2025.
+
+            </p>
+
+            <div class="fonte-dado">
+                Fonte: INEP — Censo Escolar 2025.
+            </div>
+
+        </div>
+
+
+        <div class="dado">
+
+            <strong>
+                40 milhões
+            </strong>
+
+            <h3>
+                PNAE
+            </h3>
+
+            <p>
+
+                Aproximadamente 40 milhões de estudantes
+                da educação básica pública são atendidos
+                pelo Programa Nacional de Alimentação Escolar.
+
+            </p>
+
+            <div class="fonte-dado">
+                Fonte: FNDE — 2026.
+            </div>
+
+        </div>
+
+
+        <div class="dado">
+
+            <strong>
+                2007
+            </strong>
+
+            <h3>
+                PSE
+            </h3>
+
+            <p>
+
+                Ano em que o Programa Saúde na Escola
+                foi instituído.
+
+            </p>
+
+            <div class="fonte-dado">
+                Fonte: Ministério da Saúde.
+            </div>
+
+        </div>
+
+
+        <div class="dado">
+
+            <strong>
+                1995
+            </strong>
+
+            <h3>
+                PDDE
+            </h3>
+
+            <p>
+
+                Ano de criação do programa que repassa
+                recursos suplementares às escolas participantes.
+
+            </p>
+
+            <div class="fonte-dado">
+                Fonte: Ministério da Educação.
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LINHA DO TEMPO
+===================================================== -->
+
+<section class="timeline">
+
+    <div class="titulo central">
+
+        <span>
+            06 • LINHA DO TEMPO
+        </span>
+
+        <h2>
+            Algumas políticas importantes ao longo do tempo.
+        </h2>
+
+    </div>
+
+
+    <div class="linha">
+
+
+        <div class="evento">
+
+            <div class="bolinha">
+                95
+            </div>
+
+            <div class="evento-conteudo">
+
+                <h3>
+                    1995 — PDDE
+                </h3>
+
+                <p>
+
+                    É instituído o Programa Dinheiro Direto na Escola,
+                    destinado a apoiar necessidades prioritárias
+                    das escolas participantes.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="evento">
+
+            <div class="bolinha">
+                07
+            </div>
+
+            <div class="evento-conteudo">
+
+                <h3>
+                    2007 — PSE
+                </h3>
+
+                <p>
+
+                    É criado o Programa Saúde na Escola,
+                    integrando ações dos Ministérios da Saúde
+                    e da Educação.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="evento">
+
+            <div class="bolinha">
+                09
+            </div>
+
+            <div class="evento-conteudo">
+
+                <h3>
+                    2009 — PNAE
+                </h3>
+
+                <p>
+
+                    A Lei nº 11.947 estabelece regras para
+                    a alimentação escolar e consolida bases
+                    legais do PNAE.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="evento">
+
+            <div class="bolinha">
+                23
+            </div>
+
+            <div class="evento-conteudo">
+
+                <h3>
+                    2023 — Escola Segura
+                </h3>
+
+                <p>
+
+                    O Ministério da Justiça e Segurança Pública,
+                    em parceria com a SaferNet Brasil, implementou
+                    o canal Escola Segura para receber comunicações
+                    sobre ameaças ou indícios de violência em
+                    ambientes escolares.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="evento">
+
+            <div class="bolinha">
+                25
+            </div>
+
+            <div class="evento-conteudo">
+
+                <h3>
+                    2025 — Educação Especial Inclusiva
+                </h3>
+
+                <p>
+
+                    O Decreto nº 12.686 instituiu a Política
+                    Nacional de Educação Especial Inclusiva
+                    e a Rede Nacional de Educação Especial Inclusiva.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     INFORMAÇÕES
+===================================================== -->
+
+<section>
+
+    <div class="titulo central">
+
+        <span>
+            07 • VOCÊ SABIA?
+        </span>
+
+        <h2>
+            Informações importantes sobre o tema.
+        </h2>
+
+    </div>
+
+
+    <div class="info-grid">
+
+
+        <div class="info">
+
+            <h3>
+                💡 Saúde e educação são intersetoriais
+            </h3>
+
+            <p>
+
+                O PSE mostra que políticas de saúde podem
+                ser desenvolvidas em articulação com a escola
+                e a Atenção Primária à Saúde.
+
+            </p>
+
+        </div>
+
+
+        <div class="info">
+
+            <h3>
+                💡 Alimentação também é política pública
+            </h3>
+
+            <p>
+
+                O PNAE não trata apenas da oferta de refeições.
+                O programa também prevê educação alimentar e
+                nutricional e possui regras para aquisição dos alimentos.
+
+            </p>
+
+        </div>
+
+
+        <div class="info">
+
+            <h3>
+                💡 Segurança não é apenas policiamento
+            </h3>
+
+            <p>
+
+                Prevenção da violência, cultura de paz,
+                convivência, infraestrutura, acolhimento
+                e articulação da rede também fazem parte
+                da discussão sobre segurança escolar.
+
+            </p>
+
+        </div>
+
+
+        <div class="info">
+
+            <h3>
+                💡 Dados ajudam a planejar políticas
+            </h3>
+
+            <p>
+
+                O Censo Escolar reúne informações sobre escolas,
+                matrículas, docentes, turmas e diferentes etapas
+                e modalidades da educação brasileira.
+
+            </p>
+
+        </div>
+
+
+        <div class="info">
+
+            <h3>
+                💡 Inclusão envolve eliminar barreiras
+            </h3>
+
+            <p>
+
+                A Política Nacional de Educação Especial Inclusiva
+                prevê um sistema educacional inclusivo e recursos
+                e apoios necessários à participação e aprendizagem.
+
+            </p>
+
+        </div>
+
+
+        <div class="info">
+
+            <h3>
+                💡 A comunidade também participa
+            </h3>
+
+            <p>
+
+                Famílias, estudantes, professores, gestores
+                e diferentes serviços públicos podem participar
+                da construção de ambientes escolares mais protegidos.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     QUIZ
+===================================================== -->
+
+<section class="quiz" id="quiz">
+
+    <div class="titulo central">
+
+        <span>
+            08 • QUIZ
+        </span>
+
+        <h2>
+            Teste seus conhecimentos!
+        </h2>
+
+        <p>
+
+            Veja quanto você aprendeu sobre políticas públicas,
+            saúde e segurança nas escolas.
+
+        </p>
+
+    </div>
+
+
+    <div class="quiz-box">
+
+        <h3 id="pergunta">
+
+            Qual programa integra ações dos Ministérios
+            da Saúde e da Educação?
+
+        </h3>
+
+
+        <div class="opcoes">
+
+
+            <button
+                class="opcao"
+                onclick="responder(0)">
+
+                A) Programa Saúde na Escola
+
+            </button>
+
+
+            <button
+                class="opcao"
+                onclick="responder(1)">
+
+                B) Programa Dinheiro Direto na Escola
+
+            </button>
+
+
+            <button
+                class="opcao"
+                onclick="responder(2)">
+
+                C) Censo Escolar
+
+            </button>
+
+
+            <button
+                class="opcao"
+                onclick="responder(3)">
+
+                D) PNAE
+
+            </button>
+
+
+        </div>
+
+
+        <div id="resultado"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FONTES
+========================================================= -->
+
+<section class="fontes">
+
+    <div class="titulo central">
+
+        <span>
+            09 • FONTES
+        </span>
+
+        <h2>
+            De onde vêm essas informações?
+        </h2>
+
+        <p>
+
+            Para pesquisas escolares, é importante consultar
+            fontes oficiais e verificar o ano dos dados.
+
+        </p>
+
+    </div>
+
+
+    <div class="fonte-lista">
+
+
+        <div class="fonte">
+
+            <strong>
+                Ministério da Saúde
+            </strong>
+
+            <p>
+                Informações oficiais sobre o Programa Saúde na Escola.
+            </p>
+
+        </div>
+
+
+        <div class="fonte">
+
+            <strong>
+                Ministério da Educação
+            </strong>
+
+            <p>
+                Políticas educacionais, programas e legislação educacional.
+            </p>
+
+        </div>
+
+
+        <div class="fonte">
+
+            <strong>
+                INEP — Censo Escolar
+            </strong>
+
+            <p>
+                Principal pesquisa estatística da educação básica brasileira.
+            </p>
+
+        </div>
+
+
+        <div class="fonte">
+
+            <strong>
+                FNDE
+            </strong>
+
+            <p>
+                Informações sobre PNAE, PDDE e financiamento educacional.
+            </p>
+
+        </div>
+
+
+        <div class="fonte">
+
+            <strong>
+                Ministério da Justiça e Segurança Pública
+            </strong>
+
+            <p>
+                Informações sobre segurança escolar e o canal Escola Segura.
+            </p>
+
+        </div>
+
+
+        <div class="fonte">
+
+            <strong>
+                Presidência da República / Planalto
+            </strong>
+
+            <p>
+                Textos oficiais de leis e decretos federais.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONCLUSÃO
+===================================================== -->
+
+<section class="conclusao">
+
+    <span class="tag">
+        EDUCAÇÃO • SAÚDE • SEGURANÇA
+    </span>
+
+    <h2>
+        Conhecer as políticas públicas
+        também é exercer cidadania.
+    </h2>
+
+    <p>
+
+        A escola é um espaço onde educação, saúde,
+        proteção, inclusão e convivência se encontram.
+        Conhecer essas políticas ajuda a compreender
+        direitos, responsabilidades e os caminhos usados
+        pelo poder público para enfrentar desafios
+        presentes na comunidade escolar.
+
+    </p>
+
+
+    <a
+        href="#inicio"
+        class="btn btn-dourado">
+
+        Voltar ao início ↑
+
+    </a>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <strong>
+        EDU+
+    </strong>
+
+    <p>
+        Políticas Públicas • Saúde • Segurança nas Escolas
+    </p>
+
+    <p>
+        Página educativa — informações baseadas em fontes oficiais.
+    </p>
+
+</footer>
+
+
+<script>
+
+
+/* =========================================================
+   MENU MOBILE
+========================================================= */
+
+function abrirMenu(){
+
+    document
+        .getElementById("menu")
+        .classList.toggle("ativo");
+
+}
+
+
+/* =========================================================
+   ABAS
+========================================================= */
+
+function aba(id,botao){
+
+    const abas =
+        document.querySelectorAll(".tab");
+
+    const botoes =
+        document.querySelectorAll(".tab-botao");
+
+
+    abas.forEach(function(item){
+
+        item.classList.remove("active");
+
+    });
+
+
+    botoes.forEach(function(item){
+
+        item.classList.remove("active");
+
+    });
+
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+
+    botao.classList.add("active");
+
+}
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+let respondeu=false;
+
+
+function responder(resposta){
+
+    if(respondeu) return;
+
+    respondeu=true;
+
+
+    const resultado =
+        document.getElementById("resultado");
+
+
+    if(resposta===0){
+
+        resultado.innerHTML=
+        "✓ Correto! O Programa Saúde na Escola (PSE) integra ações de Saúde e Educação.";
+
+    }
+
+    else{
+
+        resultado.innerHTML=
+        "✕ Não é essa. A resposta correta é a alternativa A: Programa Saúde na Escola.";
+
+    }
+
+}
+
+
+/* =========================================================
+   ANIMAÇÃO
+========================================================= */
+
+const elementos =
+    document.querySelectorAll(
+        ".card,.seg-card,.lei,.dado,.info,.evento,.pse-item"
+    );
+
+
+const observer =
+    new IntersectionObserver(
+
+        function(entries){
+
+            entries.forEach(function(entry){
+
+                if(entry.isIntersecting){
+
+                    entry.target.style.opacity="1";
+
+                    entry.target.style.transform=
+                    "translateY(0)";
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold:.08
+        }
+
+    );
+
+
+elementos.forEach(function(elemento){
+
+    elemento.style.opacity="0";
+
+    elemento.style.transform=
+    "translateY(25px)";
+
+    elemento.style.transition=
+    "opacity .7s ease, transform .7s ease";
+
+    observer.observe(elemento);
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>
