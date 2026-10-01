@@ -634,7 +634,58 @@ button:hover{
 
 
 }
+.btn-politicas {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
 
+    padding: 16px 24px;
+
+    color: #ffffff;
+    text-decoration: none;
+
+    background: linear-gradient(
+        135deg,
+        #351452,
+        #5d2a82
+    );
+
+    border: 1px solid #dcb44d;
+    border-radius: 14px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.25),
+        inset 0 0 15px rgba(220, 180, 77, 0.08);
+
+    transition: all 0.3s ease;
+}
+
+.btn-politicas span {
+    color: #f2ca5c;
+    font-size: 18px;
+}
+
+.btn-politicas small {
+    color: #d8c7e8;
+    font-size: 11px;
+}
+
+.btn-politicas:hover {
+    transform: translateY(-4px);
+
+    background: linear-gradient(
+        135deg,
+        #4b216d,
+        #7540a0
+    );
+
+    border-color: #ffe28a;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.35),
+        0 0 20px rgba(220, 180, 77, 0.18);
+}
 
 </style>
 
@@ -964,7 +1015,11 @@ Direitos Humanos
     <button>
         🥋 Atividade HTML
     </button>
-
+    
+<a href="politicas-escola.html" class="btn-politicas">
+    <span>✦</span>
+    Políticas Públicas
+    <small>Saúde e Segurança nas Escolas</small>
 </a>
     
 </div>
