@@ -462,6 +462,37 @@ footer strong {
         transform: none;
     }
 }
+    
+.botao-voltar-mochila {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 24px;
+    margin: 20px 0;
+    background: linear-gradient(135deg, #351452, #7041a4);
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    border: 1px solid #f0c66a;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.botao-voltar-mochila span {
+    color: #f0c66a;
+    font-size: 22px;
+}
+
+.botao-voltar-mochila:hover {
+    transform: translateY(-4px);
+    background: linear-gradient(135deg, #482274, #8758bd);
+    border-color: #ffe28a;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+}
+
 </style>
 </head>
 
@@ -910,6 +941,10 @@ footer strong {
         </p>
 
         <a href="#inicio" class="voltar">↑ Voltar ao início</a>
+        <a href="index.html" class="botao-voltar-mochila">
+    <span>←</span>
+    Voltar para minha Mochila Digital
+</a>
     </div>
 </section>
 
