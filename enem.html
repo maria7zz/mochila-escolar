@@ -1,0 +1,1390 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENEM | Educação e Futuro</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --roxo-escuro: #24103D;
+    --roxo: #4B227A;
+    --lilas: #B88AE8;
+    --dourado: #E6B84A;
+    --amarelo: #FFE8A3;
+    --branco: #fff;
+    --fundo: #f8f5fc;
+    --texto: #352444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--fundo);
+    color: var(--texto);
+    overflow-x: hidden;
+}
+
+/* CABEÇALHO */
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(36, 16, 61, 0.94);
+    backdrop-filter: blur(12px);
+    padding: 16px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 20px #170b2530;
+}
+
+.logo {
+    color: var(--amarelo);
+    font-size: 22px;
+    font-weight: 800;
+}
+
+nav {
+    display: flex;
+    gap: 23px;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: var(--amarelo);
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    color: white;
+    border: none;
+    font-size: 27px;
+    cursor: pointer;
+}
+
+/* BOTÕES */
+
+.botao {
+    display: inline-block;
+    text-decoration: none;
+    background: linear-gradient(135deg, var(--dourado), var(--amarelo));
+    color: var(--roxo-escuro);
+    padding: 13px 24px;
+    border-radius: 30px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+    font-family: inherit;
+}
+
+.botao:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px #e6b84a55;
+}
+
+/* INÍCIO */
+
+.hero {
+    min-height: 650px;
+    padding: 150px 8% 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    background:
+    radial-gradient(circle at 85% 30%, #7545a0 0%, transparent 35%),
+    linear-gradient(125deg, #24103D, #4B227A);
+    color: white;
+}
+
+.hero-conteudo {
+    max-width: 650px;
+    animation: aparecer 1s ease;
+}
+
+.tag {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 30px;
+    background: #ffffff18;
+    border: 1px solid #ffffff40;
+    color: var(--amarelo);
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(35px, 5vw, 60px);
+    line-height: 1.15;
+    margin-bottom: 22px;
+}
+
+.hero h1 span {
+    color: var(--amarelo);
+}
+
+.hero p {
+    color: #e7dcef;
+    line-height: 1.9;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+.hero-icone {
+    font-size: 170px;
+    animation: flutuar 4s ease-in-out infinite;
+    filter: drop-shadow(0 15px 20px #0005);
+}
+
+/* SEÇÕES */
+
+section {
+    padding: 85px 8%;
+}
+
+.titulo {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.titulo small {
+    color: var(--roxo);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.titulo h2 {
+    font-size: clamp(25px, 4vw, 36px);
+    color: var(--roxo-escuro);
+    margin-top: 10px;
+}
+
+.titulo p {
+    color: #756b7c;
+    max-width: 700px;
+    margin: 12px auto 0;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* SOBRE */
+
+.sobre {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    align-items: center;
+}
+
+.sobre-texto p {
+    line-height: 1.9;
+    color: #665b70;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.sobre-destaque {
+    background: linear-gradient(145deg, #24103D, #563080);
+    color: white;
+    padding: 35px;
+    border-radius: 25px;
+    box-shadow: 0 12px 30px #24103d25;
+}
+
+.sobre-destaque .numero {
+    font-size: 45px;
+    color: var(--amarelo);
+    font-weight: 800;
+}
+
+.sobre-destaque p {
+    color: #eee2fa;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+/* CARTÕES */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.card {
+    background: white;
+    padding: 27px;
+    border-radius: 20px;
+    border: 1px solid #eadff5;
+    box-shadow: 0 5px 20px #24103d0b;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px #24103d1b;
+}
+
+.card .emoji {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: var(--roxo);
+    margin-bottom: 12px;
+    font-size: 17px;
+}
+
+.card p {
+    color: #756b7c;
+    line-height: 1.8;
+    font-size: 13px;
+}
+
+/* PROGRAMAS */
+
+.programas {
+    background: #eee6f7;
+}
+
+.programa-card {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    border-left: 5px solid var(--lilas);
+    transition: .3s;
+}
+
+.programa-card:hover {
+    transform: translateX(5px);
+}
+
+.programa-card h3 {
+    color: var(--roxo);
+    margin-bottom: 10px;
+}
+
+.programa-card p {
+    color: #756b7c;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* ETAPAS */
+
+.etapas {
+    max-width: 850px;
+    margin: auto;
+}
+
+.etapa {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 22px;
+    margin-bottom: 15px;
+    background: white;
+    border-radius: 17px;
+    box-shadow: 0 4px 15px #24103d0b;
+}
+
+.etapa-numero {
+    min-width: 42px;
+    height: 42px;
+    background: var(--roxo);
+    color: white;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+}
+
+.etapa h3 {
+    color: var(--roxo);
+    margin-bottom: 7px;
+    font-size: 16px;
+}
+
+.etapa p {
+    color: #756b7c;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* PREPARAÇÃO */
+
+.preparacao {
+    background: linear-gradient(135deg, #24103D, #4B227A);
+    color: white;
+}
+
+.preparacao .titulo h2 {
+    color: white;
+}
+
+.preparacao .titulo p {
+    color: #e2d6ee;
+}
+
+.dicas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.dica {
+    padding: 22px;
+    background: #ffffff12;
+    border: 1px solid #ffffff25;
+    border-radius: 17px;
+}
+
+.dica h3 {
+    color: var(--amarelo);
+    margin-bottom: 9px;
+    font-size: 16px;
+}
+
+.dica p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: #e7dcef;
+}
+
+/* CHECKLIST */
+
+.checklist {
+    max-width: 750px;
+    margin: auto;
+    padding: 30px;
+    background: white;
+    border-radius: 22px;
+    box-shadow: 0 8px 25px #24103d12;
+}
+
+.checklist h3 {
+    color: var(--roxo);
+    margin-bottom: 20px;
+}
+
+.item-check {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 13px 0;
+    border-bottom: 1px solid #eee6f5;
+    font-size: 14px;
+}
+
+.item-check input {
+    accent-color: var(--roxo);
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.progresso {
+    margin-top: 22px;
+    height: 10px;
+    background: #eee6f5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progresso-barra {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--roxo), var(--lilas));
+    transition: .4s;
+}
+
+#textoProgresso {
+    display: block;
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--roxo);
+    font-weight: 600;
+}
+
+/* QUIZ */
+
+.quiz {
+    max-width: 750px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 22px;
+    box-shadow: 0 8px 25px #24103d12;
+}
+
+.quiz h3 {
+    color: var(--roxo);
+    margin-bottom: 20px;
+}
+
+.pergunta {
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.opcao {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 14px;
+    margin: 10px 0;
+    border: 1px solid #e5d9f0;
+    background: #faf8fd;
+    color: var(--texto);
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: .2s;
+}
+
+.opcao:hover:not(:disabled) {
+    background: #eee3f9;
+    border-color: var(--lilas);
+}
+
+.opcao:disabled {
+    cursor: default;
+}
+
+.opcao.correta {
+    background: #dff5e5;
+    border-color: #55a96a;
+}
+
+.opcao.errada {
+    background: #ffe4e4;
+    border-color: #d66b6b;
+}
+
+#feedback {
+    margin: 17px 0;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+#resultado {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--roxo);
+    margin: 15px 0;
+}
+
+.oculto {
+    display: none;
+}
+
+/* PERGUNTAS FREQUENTES */
+
+.faq {
+    max-width: 850px;
+    margin: auto;
+}
+
+.faq-item {
+    background: white;
+    border-radius: 15px;
+    margin-bottom: 13px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px #24103d0b;
+}
+
+.faq-pergunta {
+    width: 100%;
+    background: white;
+    border: none;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    align-items: center;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--roxo);
+    cursor: pointer;
+}
+
+.faq-resposta {
+    display: none;
+    padding: 0 20px 20px;
+    font-size: 13px;
+    line-height: 1.8;
+    color: #756b7c;
+}
+
+.faq-item.ativo .faq-resposta {
+    display: block;
+}
+
+.faq-item.ativo .seta {
+    transform: rotate(180deg);
+}
+
+/* FINAL */
+
+.final {
+    text-align: center;
+    background: linear-gradient(135deg, #24103D, #4B227A);
+    color: white;
+}
+
+.final h2 {
+    font-size: 32px;
+    color: var(--amarelo);
+    margin-bottom: 15px;
+}
+
+.final p {
+    max-width: 650px;
+    margin: auto auto 25px;
+    color: #e7dcef;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+footer {
+    background: #180b29;
+    color: #c9b6dc;
+    padding: 25px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* ANIMAÇÕES */
+
+@keyframes flutuar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVIDADE */
+
+@media(max-width: 950px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-icone {
+        font-size: 110px;
+    }
+}
+
+@media(max-width: 700px) {
+    header {
+        padding: 15px 5%;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        padding: 25px;
+        background: var(--roxo-escuro);
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav.aberto {
+        display: flex;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 130px;
+    }
+
+    .hero-icone {
+        font-size: 100px;
+    }
+
+    .sobre {
+        grid-template-columns: 1fr;
+    }
+
+    .cards, .dicas {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding: 65px 6%;
+    }
+
+    .hero h1 {
+        font-size: 37px;
+    }
+
+    .etapa {
+        gap: 12px;
+    }
+}
+
+  .voltar-site {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    z-index: 999;
+    background: linear-gradient(135deg, #E6B84A, #FFE8A3);
+    color: #24103D;
+    padding: 13px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: 0 5px 20px #0003;
+    transition: .3s;
+}
+
+.voltar-site:hover {
+    transform: translateY(-5px);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">ENEM ✦</div>
+
+    <button class="menu-btn" onclick="abrirMenu()" aria-label="Abrir menu">☰</button>
+
+    <nav id="menu">
+        <a href="#inicio">Início</a>
+        <a href="#sobre">O que é?</a>
+        <a href="#importancia">Importância</a>
+        <a href="#programas">Programas</a>
+        <a href="#preparacao">Preparação</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#duvidas">Dúvidas</a>
+    </nav>
+</header>
+
+<!-- INÍCIO -->
+
+<div class="hero" id="inicio">
+    <div class="hero-conteudo">
+        <span class="tag">🎓 Educação • Conhecimento • Oportunidades</span>
+
+        <h1>Seu futuro começa com uma <span>oportunidade.</span></h1>
+
+        <p>
+            O Exame Nacional do Ensino Médio é muito mais do que uma prova.
+            Ele representa uma oportunidade de acesso ao ensino superior,
+            desenvolvimento pessoal e construção de novos caminhos para o futuro.
+        </p>
+
+        <a href="#sobre" class="botao">Descubra a importância →</a>
+    </div>
+
+    <div class="hero-icone">📚</div>
+</div>
+
+<!-- SOBRE O ENEM -->
+
+<section id="sobre">
+    <div class="titulo">
+        <small>Conhecendo o exame</small>
+        <h2>O que é o ENEM?</h2>
+        <p>Entenda a finalidade do principal exame de avaliação do ensino médio brasileiro.</p>
+    </div>
+
+    <div class="sobre">
+        <div class="sobre-texto">
+            <p>
+                O Exame Nacional do Ensino Médio (ENEM) é uma avaliação
+                educacional criada em 1998 pelo Ministério da Educação (MEC).
+                Atualmente, é uma das principais formas de ingresso no ensino
+                superior no Brasil.
+            </p>
+
+            <p>
+                A prova avalia os conhecimentos desenvolvidos pelos estudantes
+                durante a educação básica, incluindo interpretação de textos,
+                raciocínio lógico, conhecimentos científicos e capacidade de
+                argumentação.
+            </p>
+
+            <p>
+                O exame também pode ser realizado por pessoas que já concluíram
+                o ensino médio e desejam buscar oportunidades de formação
+                acadêmica.
+            </p>
+        </div>
+
+        <div class="sobre-destaque">
+            <div class="numero">4 + 1</div>
+            <h3>Áreas do conhecimento</h3>
+            <p>
+                O ENEM possui quatro provas objetivas, divididas em áreas do
+                conhecimento, além da redação, que exige a produção de um
+                texto dissertativo-argumentativo.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ESTRUTURA -->
+
+<section style="background:#eee6f7">
+    <div class="titulo">
+        <small>Estrutura da avaliação</small>
+        <h2>Como funciona a prova?</h2>
+        <p>Conheça as áreas avaliadas e os conhecimentos exigidos.</p>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <div class="emoji">📖</div>
+            <h3>Linguagens e Códigos</h3>
+            <p>Português, literatura, língua estrangeira, artes, educação física e tecnologias da comunicação.</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🌎</div>
+            <h3>Ciências Humanas</h3>
+            <p>História, geografia, filosofia e sociologia, envolvendo sociedade, cultura e acontecimentos históricos.</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🔬</div>
+            <h3>Ciências da Natureza</h3>
+            <p>Biologia, química e física, com questões que relacionam ciência e situações do cotidiano.</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">📐</div>
+            <h3>Matemática</h3>
+            <p>Matemática e suas aplicações, incluindo estatística, geometria, álgebra e raciocínio lógico.</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">✍️</div>
+            <h3>Redação</h3>
+            <p>Produção de um texto dissertativo-argumentativo, com defesa de um ponto de vista e proposta de intervenção.</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🧠</div>
+            <h3>Interpretação</h3>
+            <p>A capacidade de compreender informações, analisar problemas e relacionar diferentes conhecimentos é importante em toda a prova.</p>
+        </div>
+    </div>
+</section>
+
+<!-- IMPORTÂNCIA -->
+
+<section id="importancia">
+    <div class="titulo">
+        <small>Por que participar?</small>
+        <h2>A importância de fazer o ENEM</h2>
+        <p>Realizar o exame pode representar um passo importante na trajetória educacional de um estudante.</p>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <div class="emoji">🎓</div>
+            <h3>Acesso à universidade</h3>
+            <p>Possibilita concorrer a vagas em diversas instituições de ensino superior, públicas e privadas.</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🚀</div>
+            <h3>Novas oportunidades</h3>
+            <p>Amplia as possibilidades de formação profissional e de construção de uma carreira.</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">💡</div>
+            <h3>Autoconhecimento</h3>
+            <p>Permite identificar conhecimentos já desenvolvidos e conteúdos que precisam de mais atenção.</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">📈</div>
+            <h3>Desenvolvimento pessoal</h3>
+            <p>Estimula disciplina, organização, responsabilidade e capacidade de lidar com desafios.</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🌟</div>
+            <h3>Inclusão educacional</h3>
+            <p>Contribui para ampliar as possibilidades de acesso à educação superior por meio de diferentes programas.</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">📝</div>
+            <h3>Experiência</h3>
+            <p>Conhecer a estrutura da prova e vivenciar o exame ajuda o estudante a se preparar para futuras edições.</p>
+        </div>
+    </div>
+</section>
+
+<!-- PROGRAMAS -->
+
+<section class="programas" id="programas">
+    <div class="titulo">
+        <small>Depois do resultado</small>
+        <h2>Quais portas o ENEM pode abrir?</h2>
+        <p>A nota do exame pode ser utilizada em diferentes processos seletivos e programas educacionais.</p>
+    </div>
+
+    <div class="cards">
+        <div class="programa-card">
+            <h3>🎓 SISU</h3>
+            <p>
+                O Sistema de Seleção Unificada utiliza a nota do ENEM para
+                selecionar estudantes para vagas em instituições públicas
+                de ensino superior que participam do programa.
+            </p>
+        </div>
+
+        <div class="programa-card">
+            <h3>📚 PROUNI</h3>
+            <p>
+                O Programa Universidade para Todos oferece bolsas de estudo
+                integrais e parciais em instituições privadas de ensino
+                superior, conforme seus critérios de participação.
+            </p>
+        </div>
+
+        <div class="programa-card">
+            <h3>💻 FIES</h3>
+            <p>
+                O Fundo de Financiamento Estudantil possibilita o financiamento
+                de cursos superiores em instituições privadas participantes,
+                conforme as regras do programa.
+            </p>
+        </div>
+    </div>
+
+    <p style="text-align:center;font-size:12px;color:#756b7c;margin-top:25px;line-height:1.8">
+        Atenção: cada programa possui requisitos próprios, prazos e critérios
+        de seleção. Consulte sempre os editais oficiais.
+    </p>
+</section>
+
+<!-- ETAPAS -->
+
+<section>
+    <div class="titulo">
+        <small>Entenda o processo</small>
+        <h2>O caminho até a universidade</h2>
+        <p>Veja algumas etapas que fazem parte dessa trajetória.</p>
+    </div>
+
+    <div class="etapas">
+        <div class="etapa">
+            <div class="etapa-numero">1</div>
+            <div>
+                <h3>Inscrição</h3>
+                <p>O estudante acompanha o edital e realiza sua inscrição dentro do prazo divulgado pelo INEP.</p>
+            </div>
+        </div>
+
+        <div class="etapa">
+            <div class="etapa-numero">2</div>
+            <div>
+                <h3>Preparação</h3>
+                <p>Organiza os estudos, revisa conteúdos, pratica questões e desenvolve a escrita da redação.</p>
+            </div>
+        </div>
+
+        <div class="etapa">
+            <div class="etapa-numero">3</div>
+            <div>
+                <h3>Realização das provas</h3>
+                <p>Comparece aos locais de aplicação nos dias e horários indicados no cartão de confirmação.</p>
+            </div>
+        </div>
+
+        <div class="etapa">
+            <div class="etapa-numero">4</div>
+            <div>
+                <h3>Resultado</h3>
+                <p>Consulta suas notas e verifica as oportunidades disponíveis de acordo com seu desempenho.</p>
+            </div>
+        </div>
+
+        <div class="etapa">
+            <div class="etapa-numero">5</div>
+            <div>
+                <h3>Processos seletivos</h3>
+                <p>Utiliza a nota conforme as regras dos programas e instituições para os quais deseja concorrer.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PREPARAÇÃO -->
+
+<section class="preparacao" id="preparacao">
+    <div class="titulo">
+        <small>Prepare-se para o futuro</small>
+        <h2>Como se preparar para o ENEM?</h2>
+        <p>Uma boa preparação não acontece de um dia para o outro. O segredo está na constância e na organização.</p>
+    </div>
+
+    <div class="dicas">
+        <div class="dica">
+            <h3>📅 Organize seus horários</h3>
+            <p>Monte um cronograma de estudos que considere sua rotina escolar e reserve momentos para cada área do conhecimento.</p>
+        </div>
+
+        <div class="dica">
+            <h3>📚 Estude por questões</h3>
+            <p>Resolver provas anteriores ajuda a conhecer o estilo das perguntas e desenvolver estratégias de interpretação.</p>
+        </div>
+
+        <div class="dica">
+            <h3>✍️ Pratique redação</h3>
+            <p>Treine a construção de argumentos, a organização das ideias e a elaboração de propostas de intervenção.</p>
+        </div>
+
+        <div class="dica">
+            <h3>🔎 Acompanhe as atualidades</h3>
+            <p>Leia notícias, conheça diferentes assuntos sociais e desenvolva uma visão crítica sobre o mundo.</p>
+        </div>
+
+        <div class="dica">
+            <h3>🔄 Faça revisões</h3>
+            <p>Retome os conteúdos estudados e identifique suas principais dificuldades para melhorar seu desempenho.</p>
+        </div>
+
+        <div class="dica">
+            <h3>💜 Cuide do seu bem-estar</h3>
+            <p>Tenha momentos de descanso, durma adequadamente e mantenha uma rotina equilibrada durante a preparação.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CHECKLIST INTERATIVO -->
+
+<section>
+    <div class="titulo">
+        <small>Organização dos estudos</small>
+        <h2>Meu checklist de preparação</h2>
+        <p>Marque as atividades que você já realizou e acompanhe seu progresso!</p>
+    </div>
+
+    <div class="checklist">
+        <h3>📋 Minha jornada ENEM</h3>
+
+        <label class="item-check">
+            <input type="checkbox" class="check">
+            Organizei meu cronograma de estudos.
+        </label>
+
+        <label class="item-check">
+            <input type="checkbox" class="check">
+            Conheci as áreas do conhecimento.
+        </label>
+
+        <label class="item-check">
+            <input type="checkbox" class="check">
+            Resolvi questões de provas anteriores.
+        </label>
+
+        <label class="item-check">
+            <input type="checkbox" class="check">
+            Pratiquei uma redação.
+        </label>
+
+        <label class="item-check">
+            <input type="checkbox" class="check">
+            Revisei os conteúdos mais difíceis.
+        </label>
+
+        <label class="item-check">
+            <input type="checkbox" class="check">
+            Consultei as informações do edital.
+        </label>
+
+        <div class="progresso">
+            <div class="progresso-barra" id="barra"></div>
+        </div>
+
+        <span id="textoProgresso">0% concluído</span>
+    </div>
+</section>
+
+<!-- QUIZ -->
+
+<section style="background:#eee6f7" id="quiz">
+    <div class="titulo">
+        <small>Teste seus conhecimentos</small>
+        <h2>Desafio ENEM 🧠</h2>
+        <p>Responda às perguntas e descubra quanto você já sabe sobre o exame!</p>
+    </div>
+
+    <div class="quiz">
+        <h3 id="numeroPergunta">Pergunta 1 de 5</h3>
+
+        <p class="pergunta" id="pergunta"></p>
+
+        <div id="opcoes"></div>
+
+        <p id="feedback"></p>
+
+        <button class="botao oculto" id="proximo" onclick="proximaPergunta()">
+            Próxima pergunta →
+        </button>
+
+        <div id="resultado" class="oculto"></div>
+
+        <button class="botao oculto" id="reiniciar" onclick="iniciarQuiz()">
+            Refazer quiz ↻
+        </button>
+    </div>
+</section>
+
+<!-- FAQ -->
+
+<section id="duvidas">
+    <div class="titulo">
+        <small>Saiba mais</small>
+        <h2>Perguntas frequentes</h2>
+        <p>Algumas dúvidas comuns sobre o Exame Nacional do Ensino Médio.</p>
+    </div>
+
+    <div class="faq">
+
+        <div class="faq-item">
+            <button class="faq-pergunta" onclick="abrirFAQ(this)">
+                Quem pode fazer o ENEM?
+                <span class="seta">⌄</span>
+            </button>
+            <div class="faq-resposta">
+                O ENEM pode ser realizado por estudantes que estão concluindo
+                ou já concluíram o ensino médio. Treineiros também podem
+                participar para conhecer a prova e testar seus conhecimentos,
+                mas não podem utilizar o resultado para ingresso no ensino superior.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-pergunta" onclick="abrirFAQ(this)">
+                Fazer o ENEM é obrigatório?
+                <span class="seta">⌄</span>
+            </button>
+            <div class="faq-resposta">
+                Não. A participação é voluntária, mas realizar o exame pode
+                ser muito importante para quem deseja ingressar em uma
+                universidade ou buscar outras oportunidades educacionais.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-pergunta" onclick="abrirFAQ(this)">
+                O ENEM é realizado em apenas um dia?
+                <span class="seta">⌄</span>
+            </button>
+            <div class="faq-resposta">
+                Não. Tradicionalmente, a aplicação acontece em dois domingos,
+                com provas divididas entre as áreas do conhecimento e a redação.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-pergunta" onclick="abrirFAQ(this)">
+                É possível entrar em uma universidade pública pelo ENEM?
+                <span class="seta">⌄</span>
+            </button>
+            <div class="faq-resposta">
+                Sim. Uma das possibilidades é participar do SISU, que utiliza
+                a nota do ENEM para selecionar candidatos às vagas das
+                instituições públicas participantes.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-pergunta" onclick="abrirFAQ(this)">
+                O que acontece se eu não estudar para a prova?
+                <span class="seta">⌄</span>
+            </button>
+            <div class="faq-resposta">
+                A falta de preparação pode dificultar a resolução das questões.
+                Por isso, organizar os estudos, revisar os conteúdos e praticar
+                redações são atitudes importantes para melhorar o desempenho.
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- MENSAGEM FINAL -->
+
+<section class="final">
+    <h2>Seu futuro merece essa oportunidade! ✨</h2>
+
+    <p>
+        Fazer o ENEM é acreditar que a educação pode transformar realidades.
+        Cada conteúdo aprendido, cada questão resolvida e cada esforço
+        realizado representam um passo em direção aos seus objetivos.
+        O conhecimento abre caminhos, e a sua dedicação pode ajudar
+        a construir o futuro que você deseja.
+    </p>
+
+    <a href="#inicio" class="botao">Voltar ao início ↑</a>
+</section>
+
+<footer>
+    <p>ENEM | Educação, Conhecimento e Oportunidades</p>
+    <p>Uma iniciativa de conscientização sobre a importância da educação.</p>
+    <p>© 2026 • Todos os direitos reservados.</p>
+</footer>
+
+<script>
+
+/* MENU */
+
+function abrirMenu() {
+    document.getElementById("menu").classList.toggle("aberto");
+}
+
+document.querySelectorAll("#menu a").forEach(link => {
+    link.addEventListener("click", () => {
+        document.getElementById("menu").classList.remove("aberto");
+    });
+});
+
+/* CHECKLIST */
+
+const checks = document.querySelectorAll(".check");
+
+function atualizarProgresso() {
+    const concluidos = document.querySelectorAll(".check:checked").length;
+    const total = checks.length;
+    const porcentagem = Math.round((concluidos / total) * 100);
+
+    document.getElementById("barra").style.width = porcentagem + "%";
+    document.getElementById("textoProgresso").textContent =
+        porcentagem + "% concluído (" + concluidos + " de " + total + ")";
+}
+
+checks.forEach(check => {
+    check.addEventListener("change", atualizarProgresso);
+});
+
+/* QUIZ */
+
+const perguntas = [
+    {
+        pergunta: "1. Qual é o principal objetivo do ENEM?",
+        opcoes: [
+            "Avaliar somente a frequência escolar.",
+            "Avaliar conhecimentos e possibilitar oportunidades de acesso ao ensino superior.",
+            "Substituir todas as provas escolares.",
+            "Avaliar apenas conhecimentos de matemática."
+        ],
+        correta: 1,
+        explicacao: "O ENEM avalia conhecimentos do ensino médio e também é utilizado em processos de acesso ao ensino superior."
+    },
+    {
+        pergunta: "2. Qual instituição é responsável pela aplicação do ENEM?",
+        opcoes: [
+            "IBGE",
+            "INEP",
+            "Banco Central",
+            "Ministério do Trabalho"
+        ],
+        correta: 1,
+        explicacao: "O INEP é responsável pela organização e aplicação do exame."
+    },
+    {
+        pergunta: "3. Qual programa utiliza a nota do ENEM para selecionar estudantes para vagas em instituições públicas participantes?",
+        opcoes: [
+            "SISU",
+            "FGTS",
+            "ENCCEJA",
+            "CadÚnico"
+        ],
+        correta: 0,
+        explicacao: "O SISU utiliza os resultados do ENEM para selecionar candidatos às vagas oferecidas pelas instituições participantes."
+    },
+    {
+        pergunta: "4. Quantas áreas de conhecimento são avaliadas nas provas objetivas?",
+        opcoes: [
+            "Duas",
+            "Três",
+            "Quatro",
+            "Seis"
+        ],
+        correta: 2,
+        explicacao: "São quatro áreas: Linguagens, Ciências Humanas, Ciências da Natureza e Matemática."
+    },
+    {
+        pergunta: "5. Qual é a importância de praticar redação?",
+        opcoes: [
+            "Não possui importância.",
+            "Ajuda a desenvolver argumentação, escrita e organização das ideias.",
+            "Substitui todas as outras matérias.",
+            "Serve apenas para aumentar o tempo da prova."
+        ],
+        correta: 1,
+        explicacao: "A redação exige capacidade de argumentação, domínio da escrita e organização das ideias."
+    }
+];
+
+let indice = 0;
+let pontuacao = 0;
+let respondida = false;
+
+function iniciarQuiz() {
+    indice = 0;
+    pontuacao = 0;
+    respondida = false;
+
+    document.getElementById("resultado").classList.add("oculto");
+    document.getElementById("reiniciar").classList.add("oculto");
+    document.getElementById("proximo").classList.add("oculto");
+    document.getElementById("feedback").textContent = "";
+
+    mostrarPergunta();
+}
+
+function mostrarPergunta() {
+    respondida = false;
+
+    const atual = perguntas[indice];
+
+    document.getElementById("numeroPergunta").textContent =
+        "Pergunta " + (indice + 1) + " de " + perguntas.length;
+
+    document.getElementById("pergunta").textContent = atual.pergunta;
+
+    document.getElementById("feedback").textContent = "";
+    document.getElementById("proximo").classList.add("oculto");
+
+    const opcoes = document.getElementById("opcoes");
+    opcoes.innerHTML = "";
+
+    atual.opcoes.forEach((opcao, i) => {
+        const botao = document.createElement("button");
+
+        botao.className = "opcao";
+        botao.textContent = opcao;
+
+        botao.onclick = () => responder(i, botao);
+
+        opcoes.appendChild(botao);
+    });
+}
+
+function responder(escolha, botao) {
+    if (respondida) return;
+
+    respondida = true;
+
+    const atual = perguntas[indice];
+    const botoes = document.querySelectorAll(".opcao");
+
+    botoes.forEach((b, i) => {
+        b.disabled = true;
+
+        if (i === atual.correta) {
+            b.classList.add("correta");
+        }
+    });
+
+    if (escolha === atual.correta) {
+        pontuacao++;
+        document.getElementById("feedback").textContent =
+            "✓ Muito bem! " + atual.explicacao;
+    } else {
+        botao.classList.add("errada");
+
+        document.getElementById("feedback").textContent =
+            "Não foi dessa vez! " + atual.explicacao;
+    }
+
+    const proximo = document.getElementById("proximo");
+    proximo.textContent =
+        indice === perguntas.length - 1 ? "Ver resultado →" : "Próxima pergunta →";
+
+    proximo.classList.remove("oculto");
+}
+
+function proximaPergunta() {
+    indice++;
+
+    if (indice < perguntas.length) {
+        mostrarPergunta();
+    } else {
+        finalizarQuiz();
+    }
+}
+
+function finalizarQuiz() {
+    document.getElementById("numeroPergunta").textContent = "Quiz finalizado!";
+    document.getElementById("pergunta").textContent = "";
+    document.getElementById("opcoes").innerHTML = "";
+    document.getElementById("feedback").textContent = "";
+    document.getElementById("proximo").classList.add("oculto");
+
+    const resultado = document.getElementById("resultado");
+
+    resultado.textContent =
+        "Você acertou " + pontuacao + " de " + perguntas.length + " questões!";
+
+    resultado.classList.remove("oculto");
+
+    document.getElementById("reiniciar").classList.remove("oculto");
+}
+
+/* PERGUNTAS FREQUENTES */
+
+function abrirFAQ(botao) {
+    const item = botao.parentElement;
+    item.classList.toggle("ativo");
+}
+
+/* INICIAR */
+
+iniciarQuiz();
+
+</script>
+
+</body>
+</html>
